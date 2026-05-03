@@ -60,7 +60,14 @@ def main() -> int:
         return 2
 
     if client is not None:
-        upsert_stocks(client, metadata_rows())
+        try:
+            upsert_stocks(client, metadata_rows())
+            print(f"Supabase OK — upserted {len(metadata_rows())} stocks metadata")
+        except Exception as e:  # noqa: BLE001
+            print(f"!! Supabase upsert_stocks FAILED: {type(e).__name__}: {e}")
+            print("   Most likely cause: you used the ANON key instead of the SERVICE_ROLE key,")
+            print("   or the schema.sql wasn't run in Supabase yet.")
+            raise
 
     failures = 0
     signals = []
@@ -152,8 +159,16 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    import traceback
+
     try:
         sys.exit(main())
     except KeyboardInterrupt:
         print("\ninterrupted")
         sys.exit(130)
+    except Exception as e:  # noqa: BLE001
+        print("\n========= UNCAUGHT EXCEPTION =========")
+        print(f"{type(e).__name__}: {e}")
+        traceback.print_exc()
+        print("======================================")
+        sys.exit(1)
