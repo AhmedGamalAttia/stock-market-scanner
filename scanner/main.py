@@ -20,7 +20,7 @@ if hasattr(sys.stdout, "reconfigure"):
 from dotenv import load_dotenv
 from tabulate import tabulate
 
-from fetch import fetch_history, to_price_rows
+from fetch import fetch_history, has_twelvedata, to_price_rows
 from indicators import enrich
 from signals import build_signal
 from store import (
@@ -74,6 +74,14 @@ def main() -> int:
     all_price_rows: list[dict] = []
     last_signal_date: str | None = None
 
+    # TwelveData free tier: 8 calls/min → need ≥7.5s sleep between calls.
+    # investing.com: be polite with 0.25s.
+    sleep_per_call = 8.0 if has_twelvedata() else 0.25
+    if has_twelvedata():
+        print(f"Using TwelveData (free tier rate limit → {sleep_per_call}s/call)")
+    else:
+        print("Using investing.com (no TWELVEDATA_API_KEY set)")
+
     for i, sym in enumerate(symbols, 1):
         print(f"[{i:>3}/{len(symbols)}] {sym} ... ", end="", flush=True)
         df = fetch_history(sym)
@@ -96,7 +104,7 @@ def main() -> int:
             print(f"close={last_close:.2f}  no signal")
 
         all_price_rows.extend(to_price_rows(sym, df, last_n=120))
-        time.sleep(0.25)  # be polite to data source
+        time.sleep(sleep_per_call)
 
     # Sort by confidence (expert layer's verdict), then by raw technical score
     signals.sort(key=lambda s: (s.confidence, s.score), reverse=True)

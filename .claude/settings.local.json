@@ -10,7 +10,8 @@
       "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" main.py --min-score 20 2>&1 | Select-Object -Last 30)",
       "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" _verify.py)",
       "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" main.py --dry-run --limit 8 --min-score 20 2>&1 | Select-Object -Last 25)",
-      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" main.py --min-score 20 2>&1 | Select-Object -Last 35)"
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" main.py --min-score 20 2>&1 | Select-Object -Last 35)",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" main.py --dry-run --limit 3 --min-score 20 2>&1 | Select-Object -Last 12)"
     ]
   }
 }
