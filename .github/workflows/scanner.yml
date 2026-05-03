@@ -9,7 +9,9 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 8
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     defaults:
       run:
         working-directory: scanner
@@ -23,6 +25,18 @@ jobs:
           cache: pip
           cache-dependency-path: scanner/requirements.txt
 
+      - name: Verify required secrets
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "::error::Missing GitHub Secrets: SUPABASE_URL and/or SUPABASE_SERVICE_ROLE_KEY."
+            echo "Add them in: Settings → Secrets and variables → Actions"
+            exit 2
+          fi
+          echo "Secrets present. SUPABASE_URL host: ${SUPABASE_URL#https://}"
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+
       - name: Install deps
         run: pip install -r requirements.txt
 
@@ -30,4 +44,5 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          PYTHONIOENCODING: utf-8
         run: python main.py

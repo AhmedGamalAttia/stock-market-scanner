@@ -55,7 +55,9 @@ def main() -> int:
     if args.dry_run:
         print("(dry-run mode — no Supabase writes)")
     elif client is None:
-        print("! SUPABASE env vars missing — falling back to dry-run")
+        print("!! SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY missing — failing fast.")
+        print("   Add them in GitHub: Settings → Secrets and variables → Actions.")
+        return 2
 
     if client is not None:
         upsert_stocks(client, metadata_rows())
@@ -125,21 +127,27 @@ def main() -> int:
         )
 
     emitted = 0
-    if client is not None and last_signal_date:
-        upsert_daily_prices(client, all_price_rows)
-        emitted = replace_signals_for_date(client, signals, last_signal_date)
+    if client is not None:
+        if all_price_rows:
+            upsert_daily_prices(client, all_price_rows)
+        if last_signal_date and signals:
+            emitted = replace_signals_for_date(client, signals, last_signal_date)
         log_run(
             client,
-            ok=True,
+            ok=failures < len(symbols),  # only "ok" if at least one fetch worked
             symbols_total=len(symbols),
             symbols_failed=failures,
             signals_emitted=emitted,
             notes=f"min_score={args.min_score}",
         )
-        print(f"\nSupabase: wrote {len(all_price_rows)} prices, {emitted} signals")
-    elif client is None and not args.dry_run:
-        return 1
+        print(
+            f"\nSupabase: wrote {len(all_price_rows)} prices, {emitted} signals "
+            f"({failures}/{len(symbols)} fetch failures)"
+        )
 
+    if failures == len(symbols):
+        print("!! ALL fetches failed. Likely the data source is blocking GitHub IPs.")
+        return 3
     return 0
 
 
