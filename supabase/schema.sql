@@ -1,4 +1,4 @@
--- EGX Scanner schema
+-- EGX Scanner schema (idempotent — safe to re-run)
 -- Run this in Supabase SQL Editor (Database > SQL Editor > New query)
 
 create table if not exists stocks (
@@ -9,6 +9,8 @@ create table if not exists stocks (
   is_active boolean default true,
   updated_at timestamptz default now()
 );
+
+alter table stocks add column if not exists sharia_status text;
 
 create table if not exists daily_prices (
   symbol text references stocks(symbol) on delete cascade,
@@ -46,7 +48,22 @@ create table if not exists signals (
   unique (symbol, signal_date)
 );
 
+-- Expert layer fields (additive, safe to re-run)
+alter table signals add column if not exists risk_class text;
+alter table signals add column if not exists confidence int;
+alter table signals add column if not exists adv_20 numeric;
+alter table signals add column if not exists atr_pct numeric;
+alter table signals add column if not exists rr_t1 numeric;
+alter table signals add column if not exists rr_t2 numeric;
+alter table signals add column if not exists blended_rr numeric;
+alter table signals add column if not exists suggested_shares_20k int;
+alter table signals add column if not exists suggested_value_20k numeric;
+alter table signals add column if not exists max_loss_20k numeric;
+alter table signals add column if not exists strategy_ar text;
+alter table signals add column if not exists warnings_ar text[];
+
 create index if not exists idx_signals_date_score on signals (signal_date desc, score desc);
+create index if not exists idx_signals_date_confidence on signals (signal_date desc, confidence desc);
 
 create table if not exists run_meta (
   id bigserial primary key,
@@ -76,4 +93,4 @@ create policy "public read signals" on signals for select using (true);
 drop policy if exists "public read run_meta" on run_meta;
 create policy "public read run_meta" on run_meta for select using (true);
 
--- Writes go through the service_role key (used only by the scanner), so no insert policies needed.
+-- Writes go through the service_role key (used only by the scanner).

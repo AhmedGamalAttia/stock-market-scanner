@@ -45,7 +45,10 @@ def replace_signals_for_date(client: Client, signals: Iterable[SignalRow], signa
     # Delete existing rows for this date so we don't get stale ones lingering
     client.table("signals").delete().eq("signal_date", signal_date).execute()
     if rows:
-        client.table("signals").insert(rows).execute()
+        # Chunk inserts to keep payloads small
+        CHUNK = 50
+        for i in range(0, len(rows), CHUNK):
+            client.table("signals").insert(rows[i : i + CHUNK]).execute()
     return len(rows)
 
 

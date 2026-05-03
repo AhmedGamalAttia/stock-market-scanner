@@ -1,3 +1,5 @@
+import type { ShariaStatus } from "./types";
+
 export const SETUP_LABELS_AR: Record<string, string> = {
   breakout_20d: "اختراق 20 جلسة",
   macd_cross_up: "تقاطع MACD صاعد",
@@ -19,6 +21,13 @@ export function fmtNum(n: number | null | undefined, digits = 2): string {
     minimumFractionDigits: digits,
     maximumFractionDigits: digits,
   });
+}
+
+export function fmtMoney(n: number | null | undefined): string {
+  if (n == null || Number.isNaN(n)) return "—";
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(2)}م ج`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}ك ج`;
+  return `${n.toFixed(0)} ج`;
 }
 
 export function fmtDate(s: string): string {
@@ -59,4 +68,63 @@ export function trendBadge(trend: string | null): { label: string; cls: string }
     default:
       return { label: "—", cls: "bg-muted/10 text-muted border-border" };
   }
+}
+
+export function riskBadge(rc: string | null): { label: string; cls: string; emoji: string } {
+  switch (rc) {
+    case "محافظ":
+      return { label: "محافظ", cls: "bg-success/15 text-success border-success/30", emoji: "🟢" };
+    case "متوسط":
+      return { label: "متوسط", cls: "bg-warning/15 text-warning border-warning/30", emoji: "🟡" };
+    case "جرىء":
+      return { label: "جرىء", cls: "bg-danger/15 text-danger border-danger/30", emoji: "🔴" };
+    default:
+      return { label: "—", cls: "bg-muted/10 text-muted border-border", emoji: "⚪" };
+  }
+}
+
+export function shariaBadge(s: ShariaStatus | string | null | undefined): {
+  label: string;
+  cls: string;
+  emoji: string;
+  short: string;
+} {
+  switch (s) {
+    case "halal":
+      return {
+        label: "متوافق مع الشريعة",
+        short: "حلال",
+        cls: "bg-success/15 text-success border-success/30",
+        emoji: "⭐",
+      };
+    case "haram":
+      return {
+        label: "غير متوافق شرعياً",
+        short: "حرام",
+        cls: "bg-danger/15 text-danger border-danger/30",
+        emoji: "✕",
+      };
+    case "mixed":
+      return {
+        label: "مختلط — يحتاج مراجعة",
+        short: "مختلط",
+        cls: "bg-warning/15 text-warning border-warning/30",
+        emoji: "⚠",
+      };
+    default:
+      return {
+        label: "غير مصنّف",
+        short: "—",
+        cls: "bg-muted/10 text-muted border-border",
+        emoji: "—",
+      };
+  }
+}
+
+export function confidenceColor(c: number | null | undefined): string {
+  if (c == null) return "text-muted";
+  if (c >= 75) return "text-success";
+  if (c >= 55) return "text-brand";
+  if (c >= 35) return "text-warning";
+  return "text-danger";
 }

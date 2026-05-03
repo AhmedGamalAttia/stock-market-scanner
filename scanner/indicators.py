@@ -70,4 +70,6 @@ def enrich(df: pd.DataFrame) -> pd.DataFrame:
     out["high20"] = rolling_high(out["high"], 20)
     out["high55"] = rolling_high(out["high"], 55)
     out["low20"] = rolling_low(out["low"], 20)
+    # Average Daily Value in EGP (close × volume) over 20 days — liquidity gate
+    out["adv20"] = (out["close"] * out["volume"]).rolling(20, min_periods=20).mean()
     return out

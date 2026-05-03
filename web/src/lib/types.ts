@@ -1,8 +1,11 @@
+export type ShariaStatus = "halal" | "haram" | "mixed";
+
 export type Stock = {
   symbol: string;
   name_ar: string | null;
   name_en: string | null;
   sector: string | null;
+  sharia_status: ShariaStatus | null;
   is_active: boolean;
   updated_at: string;
 };
@@ -23,6 +26,8 @@ export type Signal = {
   signal_date: string;
   generated_at: string;
   score: number;
+  confidence: number | null;
+  risk_class: string | null;
   setups: string[];
   trend: string | null;
   rsi: number | null;
@@ -31,12 +36,22 @@ export type Signal = {
   ma50: number | null;
   volume_z: number | null;
   atr: number;
+  atr_pct: number | null;
+  adv_20: number | null;
   entry: number;
   stop_loss: number;
   target_1: number;
   target_2: number;
+  rr_t1: number | null;
+  rr_t2: number | null;
+  blended_rr: number | null;
   expected_days: number;
+  suggested_shares_20k: number | null;
+  suggested_value_20k: number | null;
+  max_loss_20k: number | null;
   rationale_ar: string | null;
+  strategy_ar: string | null;
+  warnings_ar: string[] | null;
 };
 
 export type SignalWithStock = Signal & { stock: Stock | null };

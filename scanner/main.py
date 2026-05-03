@@ -83,19 +83,23 @@ def main() -> int:
             continue
 
         enriched = enrich(df)
-        sig = build_signal(sym, enriched)
+        sig = build_signal(sym, enriched, min_score=args.min_score)
         last_close = float(enriched["close"].iloc[-1])
-        if sig and sig.score >= args.min_score:
+        if sig:
             signals.append(sig)
             last_signal_date = sig.signal_date
-            print(f"score={sig.score} setups={','.join(sig.setups)}  close={last_close:.2f}")
+            print(
+                f"score={sig.score} conf={sig.confidence} {sig.risk_class:6} "
+                f"setups={','.join(sig.setups)}  close={last_close:.2f}"
+            )
         else:
             print(f"close={last_close:.2f}  no signal")
 
         all_price_rows.extend(to_price_rows(sym, df, last_n=120))
-        time.sleep(0.25)  # be polite to Yahoo
+        time.sleep(0.25)  # be polite to data source
 
-    signals.sort(key=lambda s: s.score, reverse=True)
+    # Sort by confidence (expert layer's verdict), then by raw technical score
+    signals.sort(key=lambda s: (s.confidence, s.score), reverse=True)
 
     print("\n--- Top opportunities ---")
     if not signals:
@@ -104,13 +108,16 @@ def main() -> int:
         rows = [
             [
                 s.symbol,
+                s.confidence,
                 s.score,
-                s.trend,
-                ", ".join(s.setups),
+                s.risk_class,
+                ", ".join(s.setups)[:30],
                 s.entry,
                 s.stop_loss,
                 s.target_1,
                 s.target_2,
+                s.blended_rr,
+                s.suggested_shares_20k,
                 s.expected_days,
             ]
             for s in signals[:25]
@@ -120,13 +127,16 @@ def main() -> int:
                 rows,
                 headers=[
                     "symbol",
+                    "conf",
                     "score",
-                    "trend",
+                    "risk",
                     "setups",
                     "entry",
                     "stop",
                     "T1",
                     "T2",
+                    "R:R",
+                    "@20k",
                     "days",
                 ],
                 tablefmt="github",
