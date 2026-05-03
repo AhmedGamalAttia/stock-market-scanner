@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background: #0a0d12;
+  color: #e6ecf5;
+  color-scheme: dark;
+}
+
+body {
+  font-family: "Cairo", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .panel {
+    @apply bg-panel border border-border rounded-2xl;
+  }
+  .chip {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs border;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-xl border border-border bg-panel2 text-text hover:bg-border transition;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-xl bg-brand text-bg font-medium hover:opacity-90 transition;
+  }
+  .input {
+    @apply w-full px-3 py-2 rounded-xl bg-panel2 border border-border text-text outline-none focus:border-brand;
+  }
+  .label {
+    @apply block text-sm text-muted mb-1.5;
+  }
+  .stat {
+    @apply flex flex-col gap-1 p-4 rounded-xl bg-panel2 border border-border;
+  }
+  .stat-label {
+    @apply text-xs text-muted;
+  }
+  .stat-value {
+    @apply text-lg font-semibold;
+  }
+}

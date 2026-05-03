@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir D:\\\\General Projects\\\\stock-market *)",
+      "PowerShell(npm *)",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" main.py --dry-run --min-score 20 2>&1 | Select-Object -Last 25)"
+    ]
+  }
+}

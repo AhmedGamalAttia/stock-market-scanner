@@ -1,0 +1,151 @@
+"""EGX scanner entry point.
+
+Usage:
+  python main.py                # full run, writes to Supabase if env is set
+  python main.py --dry-run      # local only, prints top opportunities
+  python main.py --limit 10     # only scan first 10 tickers (debug)
+"""
+
+from __future__ import annotations
+
+import argparse
+import sys
+import time
+
+# Force UTF-8 stdout so Arabic text doesn't crash Windows cp1252 console
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
+from dotenv import load_dotenv
+from tabulate import tabulate
+
+from fetch import fetch_history, to_price_rows
+from indicators import enrich
+from signals import build_signal
+from store import (
+    get_client,
+    log_run,
+    replace_signals_for_date,
+    upsert_daily_prices,
+    upsert_stocks,
+)
+from tickers import EGX_TICKERS, list_symbols, metadata_rows
+
+
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser()
+    p.add_argument("--dry-run", action="store_true", help="Don't write to Supabase")
+    p.add_argument("--limit", type=int, default=0, help="Limit number of tickers (0 = all)")
+    p.add_argument("--min-score", type=int, default=30)
+    return p.parse_args()
+
+
+def main() -> int:
+    load_dotenv()
+    args = parse_args()
+
+    symbols = list_symbols()
+    if args.limit:
+        symbols = symbols[: args.limit]
+
+    print(f"=== EGX Scanner ===  scanning {len(symbols)} tickers")
+
+    client = None if args.dry_run else get_client()
+    if args.dry_run:
+        print("(dry-run mode — no Supabase writes)")
+    elif client is None:
+        print("! SUPABASE env vars missing — falling back to dry-run")
+
+    if client is not None:
+        upsert_stocks(client, metadata_rows())
+
+    failures = 0
+    signals = []
+    all_price_rows: list[dict] = []
+    last_signal_date: str | None = None
+
+    for i, sym in enumerate(symbols, 1):
+        print(f"[{i:>3}/{len(symbols)}] {sym} ... ", end="", flush=True)
+        df = fetch_history(sym)
+        if df is None or df.empty:
+            print("no data")
+            failures += 1
+            continue
+
+        enriched = enrich(df)
+        sig = build_signal(sym, enriched)
+        last_close = float(enriched["close"].iloc[-1])
+        if sig and sig.score >= args.min_score:
+            signals.append(sig)
+            last_signal_date = sig.signal_date
+            print(f"score={sig.score} setups={','.join(sig.setups)}  close={last_close:.2f}")
+        else:
+            print(f"close={last_close:.2f}  no signal")
+
+        all_price_rows.extend(to_price_rows(sym, df, last_n=120))
+        time.sleep(0.25)  # be polite to Yahoo
+
+    signals.sort(key=lambda s: s.score, reverse=True)
+
+    print("\n--- Top opportunities ---")
+    if not signals:
+        print("(no signals today)")
+    else:
+        rows = [
+            [
+                s.symbol,
+                s.score,
+                s.trend,
+                ", ".join(s.setups),
+                s.entry,
+                s.stop_loss,
+                s.target_1,
+                s.target_2,
+                s.expected_days,
+            ]
+            for s in signals[:25]
+        ]
+        print(
+            tabulate(
+                rows,
+                headers=[
+                    "symbol",
+                    "score",
+                    "trend",
+                    "setups",
+                    "entry",
+                    "stop",
+                    "T1",
+                    "T2",
+                    "days",
+                ],
+                tablefmt="github",
+            )
+        )
+
+    emitted = 0
+    if client is not None and last_signal_date:
+        upsert_daily_prices(client, all_price_rows)
+        emitted = replace_signals_for_date(client, signals, last_signal_date)
+        log_run(
+            client,
+            ok=True,
+            symbols_total=len(symbols),
+            symbols_failed=failures,
+            signals_emitted=emitted,
+            notes=f"min_score={args.min_score}",
+        )
+        print(f"\nSupabase: wrote {len(all_price_rows)} prices, {emitted} signals")
+    elif client is None and not args.dry_run:
+        return 1
+
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        print("\ninterrupted")
+        sys.exit(130)
