@@ -3,7 +3,12 @@
     "allow": [
       "Bash(dir D:\\\\General Projects\\\\stock-market *)",
       "PowerShell(npm *)",
-      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" main.py --dry-run --min-score 20 2>&1 | Select-Object -Last 25)"
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" main.py --dry-run --min-score 20 2>&1 | Select-Object -Last 25)",
+      "PowerShell(Get-ChildItem \"D:\\\\General Projects\\\\stock-market\" -File | Where-Object { $_.Extension -in '.png','.jpg','.jpeg','.webp','.gif' } | Select-Object FullName, Length)",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" main.py --dry-run --limit 6 --min-score 20 2>&1 | Select-Object -Last 25)",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" main.py --dry-run --limit 3 2>&1 | Select-Object -Last 10)",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" main.py --min-score 20 2>&1 | Select-Object -Last 30)",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location \"D:\\\\General Projects\\\\stock-market\\\\scanner\"; & \".\\\\.venv\\\\Scripts\\\\python.exe\" _verify.py)"
     ]
   }
 }
