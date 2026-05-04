@@ -43,6 +43,26 @@ export function fmtDate(s: string): string {
   }
 }
 
+export function fmtDateTime(s: string): string {
+  try {
+    const d = new Date(s);
+    const date = d.toLocaleDateString("ar-EG", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+    const time = d.toLocaleTimeString("ar-EG", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+      timeZone: "Africa/Cairo",
+    });
+    return `${date} — ${time}`;
+  } catch {
+    return s;
+  }
+}
+
 export function rrRatio(entry: number, stop: number, target: number): number {
   const risk = entry - stop;
   const reward = target - entry;

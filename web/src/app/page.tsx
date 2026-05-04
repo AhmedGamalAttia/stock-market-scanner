@@ -1,6 +1,6 @@
 import { OpportunitiesGrid } from "@/components/opportunities-grid";
 import { getLastRun, getLatestSignals } from "@/lib/queries";
-import { fmtDate } from "@/lib/utils";
+import { fmtDate, fmtDateTime } from "@/lib/utils";
 import { supabaseConfigured } from "@/lib/supabase";
 
 export const revalidate = 600;
@@ -32,7 +32,7 @@ export default async function Home() {
               </div>
               {lastRun && (
                 <div className="text-xs mt-1">
-                  آخر تشغيل: {fmtDate(lastRun.ran_at)} •{" "}
+                  آخر تشغيل: {fmtDateTime(lastRun.ran_at)} •{" "}
                   {lastRun.symbols_total - lastRun.symbols_failed}/
                   {lastRun.symbols_total} سهم
                 </div>
