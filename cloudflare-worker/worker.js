@@ -28,7 +28,15 @@ export default {
     if (request.method === "OPTIONS") return corsPreflight();
     if (request.method !== "GET") return jsonResp({ error: "method not allowed" }, 405);
 
-    // Auth gate
+    const url = new URL(request.url);
+    const path = url.pathname.replace(/\/$/, "") || "/";
+
+    // Public health check — no auth required (so user can verify worker is up)
+    if (path === "/health") {
+      return jsonResp({ ok: true, worker: "egx-data-proxy" });
+    }
+
+    // Auth gate for everything else
     if (!env.PROXY_TOKEN) {
       return jsonResp({ error: "PROXY_TOKEN not configured on worker" }, 500);
     }
@@ -37,8 +45,6 @@ export default {
       return jsonResp({ error: "unauthorized" }, 401);
     }
 
-    const url = new URL(request.url);
-    const path = url.pathname.replace(/\/$/, "") || "/";
     const iid = url.searchParams.get("iid");
     let points = url.searchParams.get("points") || "160";
     if (!ALLOWED_POINTS.has(points)) points = "160";
@@ -54,8 +60,6 @@ export default {
       const now = Math.floor(Date.now() / 1000);
       const frm = now - parseInt(points, 10) * 60 * 60 * 24 * 1.6;
       target = `https://tvc6.investing.com/4f9f4b3e0a5d5ebf3aa1f8c3eea9e34d/0/0/0/0/history?symbol=${iid}&resolution=D&from=${Math.floor(frm)}&to=${now}`;
-    } else if (path === "/health") {
-      return jsonResp({ ok: true, worker: "egx-data-proxy" });
     } else {
       return jsonResp({ error: "unknown route", path }, 404);
     }
