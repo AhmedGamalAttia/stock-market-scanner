@@ -2,7 +2,12 @@ name: EGX Scanner
 
 on:
   schedule:
-    # Cairo is UTC+2 — EGX closes at 14:30 local. Run at 13:00 UTC = 15:00 Cairo (Sun-Thu)
+    # EGX trading hours: 10:00–14:30 Cairo, Sun–Thu.
+    # Cairo is UTC+2 (winter) / UTC+3 (DST, late Apr–late Oct).
+    # Wider UTC window 07:00–12:30 covers both seasons; runtime guard skips
+    # invocations that fall outside actual Cairo trading hours.
+    - cron: "*/30 7-12 * * 0,1,2,3,4"
+    # Final post-close canonical run at 15:00 Cairo (winter) / 16:00 Cairo (DST).
     - cron: "0 13 * * 0,1,2,3,4"
   workflow_dispatch:
 
@@ -18,7 +23,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Skip if outside Cairo trading hours
+        id: market_window
+        run: |
+          # Allowed: Sun–Thu, 10:00–14:30 Cairo, OR the 15:00/16:00 Cairo post-close run.
+          dow=$(TZ=Africa/Cairo date +%u)   # 1=Mon … 7=Sun
+          hhmm=$(TZ=Africa/Cairo date +%H%M)
+          # Convert: Sun=7, Mon=1, …, Thu=4 → trading days are 7,1,2,3,4
+          case "$dow" in
+            7|1|2|3|4) ;;
+            *) echo "Not a trading day (Cairo dow=$dow). Skipping."; echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0 ;;
+          esac
+          # Trading window 10:00–14:30 inclusive, plus post-close run between 15:00–16:30
+          if [ "$hhmm" -ge 1000 ] && [ "$hhmm" -le 1430 ]; then
+            echo "Within trading window ($hhmm Cairo). Proceeding."
+          elif [ "$hhmm" -ge 1500 ] && [ "$hhmm" -le 1630 ]; then
+            echo "Post-close canonical run ($hhmm Cairo). Proceeding."
+          else
+            echo "Outside trading window ($hhmm Cairo). Skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Setup Python
+        if: steps.market_window.outputs.skip != 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -26,6 +53,7 @@ jobs:
           cache-dependency-path: scanner/requirements.txt
 
       - name: Verify required secrets
+        if: steps.market_window.outputs.skip != 'true'
         run: |
           if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
             echo "::error::Missing GitHub Secrets: SUPABASE_URL and/or SUPABASE_SERVICE_ROLE_KEY."
@@ -38,9 +66,11 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
 
       - name: Install deps
+        if: steps.market_window.outputs.skip != 'true'
         run: pip install -r requirements.txt
 
       - name: Run scanner
+        if: steps.market_window.outputs.skip != 'true'
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
