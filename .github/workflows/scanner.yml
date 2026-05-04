@@ -26,6 +26,12 @@ jobs:
       - name: Skip if outside Cairo trading hours
         id: market_window
         run: |
+          # Manual runs (workflow_dispatch) always proceed — useful for testing
+          # outside market hours. Scheduled runs are gated by the Cairo clock.
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Manual run — bypassing market window guard."
+            exit 0
+          fi
           # Allowed: Sun–Thu, 10:00–14:30 Cairo, OR the 15:00/16:00 Cairo post-close run.
           dow=$(TZ=Africa/Cairo date +%u)   # 1=Mon … 7=Sun
           hhmm=$(TZ=Africa/Cairo date +%H%M)

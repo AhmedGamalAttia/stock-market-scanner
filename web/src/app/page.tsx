@@ -1,9 +1,10 @@
 import { OpportunitiesGrid } from "@/components/opportunities-grid";
 import { getLastRun, getLatestSignals } from "@/lib/queries";
-import { fmtDate, fmtDateTime } from "@/lib/utils";
+import { fmtDate, fmtDateTime, fmtRelative } from "@/lib/utils";
 import { supabaseConfigured } from "@/lib/supabase";
 
-export const revalidate = 600;
+// Refresh fast during the day so new scanner runs surface within ~1 min.
+export const revalidate = 60;
 
 export default async function Home() {
   if (!supabaseConfigured) {
@@ -31,11 +32,25 @@ export default async function Home() {
                 <span className="text-text">{fmtDate(signals[0].signal_date)}</span>
               </div>
               {lastRun && (
-                <div className="text-xs mt-1">
-                  آخر تشغيل: {fmtDateTime(lastRun.ran_at)} •{" "}
-                  {lastRun.symbols_total - lastRun.symbols_failed}/
-                  {lastRun.symbols_total} سهم
-                </div>
+                <>
+                  <div className="text-xs mt-1">
+                    آخر تشغيل:{" "}
+                    <span className="text-text">{fmtDateTime(lastRun.ran_at)}</span>{" "}
+                    <span className="text-muted">({fmtRelative(lastRun.ran_at)})</span>
+                  </div>
+                  <div className="text-xs mt-0.5">
+                    <span
+                      className={
+                        lastRun.ok ? "text-success" : "text-danger"
+                      }
+                    >
+                      {lastRun.ok ? "● ناجح" : "● فشل"}
+                    </span>{" "}
+                    • {lastRun.signals_emitted} إشارة •{" "}
+                    {lastRun.symbols_total - lastRun.symbols_failed}/
+                    {lastRun.symbols_total} سهم
+                  </div>
+                </>
               )}
             </>
           ) : (

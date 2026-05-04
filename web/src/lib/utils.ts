@@ -63,6 +63,24 @@ export function fmtDateTime(s: string): string {
   }
 }
 
+export function fmtRelative(s: string, now: Date = new Date()): string {
+  try {
+    const then = new Date(s).getTime();
+    const diffSec = Math.round((now.getTime() - then) / 1000);
+    if (diffSec < 0) return "الآن";
+    if (diffSec < 60) return "منذ لحظات";
+    const diffMin = Math.round(diffSec / 60);
+    if (diffMin < 60) return `منذ ${diffMin} دقيقة`;
+    const diffH = Math.round(diffMin / 60);
+    if (diffH < 24) return `منذ ${diffH} ساعة`;
+    const diffD = Math.round(diffH / 24);
+    if (diffD < 30) return `منذ ${diffD} يوم`;
+    return fmtDate(s);
+  } catch {
+    return s;
+  }
+}
+
 export function rrRatio(entry: number, stop: number, target: number): number {
   const risk = entry - stop;
   const reward = target - entry;
