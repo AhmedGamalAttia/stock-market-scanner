@@ -20,7 +20,7 @@ if hasattr(sys.stdout, "reconfigure"):
 from dotenv import load_dotenv
 from tabulate import tabulate
 
-from fetch import fetch_history, has_twelvedata, to_price_rows
+from fetch import fetch_history, has_cf_proxy, has_twelvedata, to_price_rows
 from indicators import enrich
 from signals import build_signal
 from store import (
@@ -74,13 +74,16 @@ def main() -> int:
     all_price_rows: list[dict] = []
     last_signal_date: str | None = None
 
-    # TwelveData free tier: 8 calls/min → need ≥7.5s sleep between calls.
-    # investing.com: be polite with 0.25s.
-    sleep_per_call = 8.0 if has_twelvedata() else 0.25
-    if has_twelvedata():
-        print(f"Using TwelveData (free tier rate limit → {sleep_per_call}s/call)")
+    # Pick sleep based on best available source
+    if has_cf_proxy():
+        sleep_per_call = 0.3  # Cloudflare Workers: no relevant rate limit at our volume
+        print("Using Cloudflare Worker proxy")
+    elif has_twelvedata():
+        sleep_per_call = 8.0  # TwelveData free: 8 req/min
+        print(f"Using TwelveData (free tier → {sleep_per_call}s/call)")
     else:
-        print("Using investing.com (no TWELVEDATA_API_KEY set)")
+        sleep_per_call = 0.25
+        print("Using investing.com direct (no proxy/key configured)")
 
     for i, sym in enumerate(symbols, 1):
         print(f"[{i:>3}/{len(symbols)}] {sym} ... ", end="", flush=True)
@@ -88,6 +91,7 @@ def main() -> int:
         if df is None or df.empty:
             print("no data")
             failures += 1
+            time.sleep(sleep_per_call)  # respect rate limit even on failure
             continue
 
         enriched = enrich(df)

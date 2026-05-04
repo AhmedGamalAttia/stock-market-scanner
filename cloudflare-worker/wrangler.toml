@@ -1,0 +1,6 @@
+name = "egx-data-proxy"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# Free tier limits: 100,000 requests/day, 10ms CPU per request — plenty for our 43 req/day.
+# The PROXY_TOKEN secret is set via:  wrangler secret put PROXY_TOKEN
