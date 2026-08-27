@@ -1,87 +1,64 @@
 name: EGX Scanner
 
+# Yahoo publishes the EGX end-of-day bar a few hours after the 14:30 Cairo
+# close, so we run in the evening and once more before the next open as a
+# safety net. Every run is idempotent: it only commits when the data changed,
+# so extra runs cost nothing.
 on:
   schedule:
-    # EGX trading hours: 10:00–14:30 Cairo, Sun–Thu.
-    # Cairo is UTC+2 (winter) / UTC+3 (DST, late Apr–late Oct).
-    # Wider UTC window 07:00–12:30 covers both seasons; runtime guard skips
-    # invocations that fall outside actual Cairo trading hours.
-    - cron: "*/30 7-12 * * 0,1,2,3,4"
-    # Final post-close canonical run at 15:00 Cairo (winter) / 16:00 Cairo (DST).
-    - cron: "0 13 * * 0,1,2,3,4"
+    - cron: "0 16 * * *"   # 19:00 Cairo (DST) / 18:00 (winter)
+    - cron: "30 19 * * *"  # 22:30 Cairo (DST) / 21:30 (winter)
+    - cron: "30 5 * * *"   # 08:30 Cairo (DST) / 07:30 (winter) — pre-open catch-up
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: egx-data
+  cancel-in-progress: false
 
 jobs:
   scan:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     defaults:
       run:
         working-directory: scanner
     steps:
       - uses: actions/checkout@v4
-
-      - name: Skip if outside Cairo trading hours
-        id: market_window
-        run: |
-          # Manual runs (workflow_dispatch) always proceed — useful for testing
-          # outside market hours. Scheduled runs are gated by the Cairo clock.
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "Manual run — bypassing market window guard."
-            exit 0
-          fi
-          # Allowed: Sun–Thu, 10:00–14:30 Cairo, OR the 15:00/16:00 Cairo post-close run.
-          dow=$(TZ=Africa/Cairo date +%u)   # 1=Mon … 7=Sun
-          hhmm=$(TZ=Africa/Cairo date +%H%M)
-          # Convert: Sun=7, Mon=1, …, Thu=4 → trading days are 7,1,2,3,4
-          case "$dow" in
-            7|1|2|3|4) ;;
-            *) echo "Not a trading day (Cairo dow=$dow). Skipping."; echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0 ;;
-          esac
-          # Trading window 10:00–14:30 inclusive, plus post-close run between 15:00–16:30
-          if [ "$hhmm" -ge 1000 ] && [ "$hhmm" -le 1430 ]; then
-            echo "Within trading window ($hhmm Cairo). Proceeding."
-          elif [ "$hhmm" -ge 1500 ] && [ "$hhmm" -le 1630 ]; then
-            echo "Post-close canonical run ($hhmm Cairo). Proceeding."
-          else
-            echo "Outside trading window ($hhmm Cairo). Skipping."
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-          fi
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
-        if: steps.market_window.outputs.skip != 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: scanner/requirements.txt
 
-      - name: Verify required secrets
-        if: steps.market_window.outputs.skip != 'true'
-        run: |
-          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
-            echo "::error::Missing GitHub Secrets: SUPABASE_URL and/or SUPABASE_SERVICE_ROLE_KEY."
-            echo "Add them in: Settings → Secrets and variables → Actions"
-            exit 2
-          fi
-          echo "Secrets present. SUPABASE_URL host: ${SUPABASE_URL#https://}"
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-
       - name: Install deps
-        if: steps.market_window.outputs.skip != 'true'
         run: pip install -r requirements.txt
 
       - name: Run scanner
-        if: steps.market_window.outputs.skip != 'true'
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          CLOUDFLARE_PROXY_URL: ${{ secrets.CLOUDFLARE_PROXY_URL }}
-          CLOUDFLARE_PROXY_TOKEN: ${{ secrets.CLOUDFLARE_PROXY_TOKEN }}
-          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
           PYTHONIOENCODING: utf-8
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python main.py
+
+      - name: Commit & push data
+        working-directory: .
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/public/data
+          if [ -d data ]; then git add data; fi
+          if git diff --staged --quiet; then
+            echo "No data changes — nothing to commit."
+            exit 0
+          fi
+          DATE=$(python3 -c "import json;print(json.load(open('web/public/data/meta.json')).get('data_date') or 'n/a')")
+          git commit -m "chore(data): scan for ${DATE}"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

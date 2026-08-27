@@ -1,9 +1,14 @@
-"""EGX scanner entry point.
+"""EGX scanner entry point — daily post-close run.
 
 Usage:
-  python main.py                # full run, writes to Supabase if env is set
-  python main.py --dry-run      # local only, prints top opportunities
-  python main.py --limit 10     # only scan first 10 tickers (debug)
+  python main.py                 # fetch → signals → write web/public/data/*.json
+  python main.py --dry-run       # fetch + print only, write nothing
+  python main.py --no-fetch      # use cached prices only (fast local iteration)
+  python main.py --limit 10      # only scan first 10 tickers (debug)
+  python main.py --min-score 20  # looser signal threshold
+
+Everything the site shows comes from the JSON files this script writes; the
+GitHub Actions workflow commits them and Vercel redeploys.
 """
 
 from __future__ import annotations
@@ -11,6 +16,8 @@ from __future__ import annotations
 import argparse
 import sys
 import time
+from dataclasses import asdict
+from datetime import datetime, timezone
 
 # Force UTF-8 stdout so Arabic text doesn't crash Windows cp1252 console
 if hasattr(sys.stdout, "reconfigure"):
@@ -20,95 +27,88 @@ if hasattr(sys.stdout, "reconfigure"):
 from dotenv import load_dotenv
 from tabulate import tabulate
 
-from fetch import fetch_history, has_cf_proxy, has_twelvedata, to_price_rows
+from fetch import update_cache
 from indicators import enrich
+from paths import DATA_DIR
 from signals import build_signal
-from store import (
-    get_client,
-    log_run,
-    replace_signals_for_date,
-    upsert_daily_prices,
-    upsert_stocks,
-)
-from tickers import EGX_TICKERS, list_symbols, metadata_rows
+from store_json import write_latest, write_meta, write_stocks
+from tickers import list_symbols, metadata_rows, stock_info
+
+LIVE_STRATEGY = "current_scoring"
+SLEEP_PER_CALL = 0.4  # be polite to Yahoo
 
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser()
-    p.add_argument("--dry-run", action="store_true", help="Don't write to Supabase")
+    p.add_argument("--dry-run", action="store_true", help="Print only, write nothing")
+    p.add_argument("--no-fetch", action="store_true", help="Use cached prices, skip Yahoo")
     p.add_argument("--limit", type=int, default=0, help="Limit number of tickers (0 = all)")
     p.add_argument("--min-score", type=int, default=30)
     return p.parse_args()
 
 
+def _signal_payload(sig) -> dict:
+    d = asdict(sig)
+    info = stock_info(sig.symbol) or {}
+    d["stock"] = {
+        "symbol": sig.symbol,
+        "name_ar": info.get("name_ar"),
+        "name_en": info.get("name_en"),
+        "sector": info.get("sector"),
+        "sharia_status": info.get("sharia_status"),
+    }
+    return d
+
+
 def main() -> int:
     load_dotenv()
     args = parse_args()
+    write = not args.dry_run
 
     symbols = list_symbols()
     if args.limit:
         symbols = symbols[: args.limit]
 
-    print(f"=== EGX Scanner ===  scanning {len(symbols)} tickers")
-
-    client = None if args.dry_run else get_client()
+    print(f"=== EGX Scanner ===  {len(symbols)} tickers  →  {DATA_DIR}")
     if args.dry_run:
-        print("(dry-run mode — no Supabase writes)")
-    elif client is None:
-        print("!! SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY missing — failing fast.")
-        print("   Add them in GitHub: Settings → Secrets and variables → Actions.")
-        return 2
-
-    if client is not None:
-        try:
-            upsert_stocks(client, metadata_rows())
-            print(f"Supabase OK — upserted {len(metadata_rows())} stocks metadata")
-        except Exception as e:  # noqa: BLE001
-            print(f"!! Supabase upsert_stocks FAILED: {type(e).__name__}: {e}")
-            print("   Most likely cause: you used the ANON key instead of the SERVICE_ROLE key,")
-            print("   or the schema.sql wasn't run in Supabase yet.")
-            raise
+        print("(dry-run — nothing will be written)")
+    if args.no_fetch:
+        print("(no-fetch — using cached prices)")
 
     failures = 0
+    stale = 0
     signals = []
-    all_price_rows: list[dict] = []
-    last_signal_date: str | None = None
-
-    # Pick sleep based on best available source
-    if has_cf_proxy():
-        sleep_per_call = 0.3  # Cloudflare Workers: no relevant rate limit at our volume
-        print("Using Cloudflare Worker proxy")
-    elif has_twelvedata():
-        sleep_per_call = 8.0  # TwelveData free: 8 req/min
-        print(f"Using TwelveData (free tier → {sleep_per_call}s/call)")
-    else:
-        sleep_per_call = 0.25
-        print("Using investing.com direct (no proxy/key configured)")
+    last_dates: list[str] = []
 
     for i, sym in enumerate(symbols, 1):
-        print(f"[{i:>3}/{len(symbols)}] {sym} ... ", end="", flush=True)
-        df = fetch_history(sym)
+        print(f"[{i:>3}/{len(symbols)}] {sym:<6} ", end="", flush=True)
+        res = update_cache(sym, fetch=not args.no_fetch, write=write)
+        df = res.df
         if df is None or df.empty:
             print("no data")
             failures += 1
-            time.sleep(sleep_per_call)  # respect rate limit even on failure
+            if not args.no_fetch:
+                time.sleep(SLEEP_PER_CALL)
             continue
+        if res.source == "cache" and not args.no_fetch:
+            stale += 1
 
+        last_dates.append(df.index[-1].date().isoformat())
         enriched = enrich(df)
         sig = build_signal(sym, enriched, min_score=args.min_score)
         last_close = float(enriched["close"].iloc[-1])
+        tag = "" if res.source == "yahoo" else f" [{res.source}]"
         if sig:
             signals.append(sig)
-            last_signal_date = sig.signal_date
             print(
-                f"score={sig.score} conf={sig.confidence} {sig.risk_class:6} "
-                f"setups={','.join(sig.setups)}  close={last_close:.2f}"
+                f"{len(df):>5} bars  close={last_close:>8.2f}  "
+                f"score={sig.score:<3} conf={sig.confidence:<3} {sig.risk_class:<6} "
+                f"{','.join(sig.setups)}{tag}"
             )
         else:
-            print(f"close={last_close:.2f}  no signal")
-
-        all_price_rows.extend(to_price_rows(sym, df, last_n=120))
-        time.sleep(sleep_per_call)
+            print(f"{len(df):>5} bars  close={last_close:>8.2f}  —{tag}")
+        if not args.no_fetch:
+            time.sleep(SLEEP_PER_CALL)
 
     # Sort by confidence (expert layer's verdict), then by raw technical score
     signals.sort(key=lambda s: (s.confidence, s.score), reverse=True)
@@ -119,63 +119,58 @@ def main() -> int:
     else:
         rows = [
             [
-                s.symbol,
-                s.confidence,
-                s.score,
-                s.risk_class,
+                s.symbol, s.confidence, s.score, s.risk_class,
                 ", ".join(s.setups)[:30],
-                s.entry,
-                s.stop_loss,
-                s.target_1,
-                s.target_2,
-                s.blended_rr,
-                s.suggested_shares_20k,
-                s.expected_days,
+                s.entry, s.stop_loss, s.target_1, s.target_2,
+                s.blended_rr, s.suggested_shares_20k, s.expected_days,
             ]
             for s in signals[:25]
         ]
         print(
             tabulate(
                 rows,
-                headers=[
-                    "symbol",
-                    "conf",
-                    "score",
-                    "risk",
-                    "setups",
-                    "entry",
-                    "stop",
-                    "T1",
-                    "T2",
-                    "R:R",
-                    "@20k",
-                    "days",
-                ],
+                headers=["symbol", "conf", "score", "risk", "setups", "entry", "stop",
+                         "T1", "T2", "R:R", "@20k", "days"],
                 tablefmt="github",
             )
         )
 
-    emitted = 0
-    if client is not None:
-        if all_price_rows:
-            upsert_daily_prices(client, all_price_rows)
-        if last_signal_date and signals:
-            emitted = replace_signals_for_date(client, signals, last_signal_date)
-        log_run(
-            client,
-            ok=failures < len(symbols),  # only "ok" if at least one fetch worked
-            symbols_total=len(symbols),
-            symbols_failed=failures,
-            signals_emitted=emitted,
-            notes=f"min_score={args.min_score}",
+    data_date = max(last_dates) if last_dates else None
+    ran_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    ok = failures < len(symbols)
+
+    if write:
+        write_stocks(metadata_rows())
+        write_latest(
+            {
+                "date": data_date,
+                "generated_at": ran_at,
+                "strategy": LIVE_STRATEGY,
+                "buys": [_signal_payload(s) for s in signals],
+                "holds": [],
+                "exits": [],
+            }
+        )
+        write_meta(
+            {
+                "ran_at": ran_at,
+                "ok": ok,
+                "data_date": data_date,
+                "symbols_total": len(symbols),
+                "symbols_failed": failures,
+                "symbols_stale": stale,
+                "signals_emitted": len(signals),
+                "strategy": LIVE_STRATEGY,
+                "notes": f"min_score={args.min_score}",
+            }
         )
         print(
-            f"\nSupabase: wrote {len(all_price_rows)} prices, {emitted} signals "
-            f"({failures}/{len(symbols)} fetch failures)"
+            f"\nWrote {len(signals)} signals for {data_date} "
+            f"({failures} failed, {stale} stale) → {DATA_DIR}"
         )
 
     if failures == len(symbols):
-        print("!! ALL fetches failed. Likely the data source is blocking GitHub IPs.")
+        print("!! ALL fetches failed and no cache available.")
         return 3
     return 0
 
@@ -188,9 +183,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\ninterrupted")
         sys.exit(130)
-    except Exception as e:  # noqa: BLE001
-        print("\n========= UNCAUGHT EXCEPTION =========")
-        print(f"{type(e).__name__}: {e}")
+    except Exception:  # noqa: BLE001
         traceback.print_exc()
-        print("======================================")
         sys.exit(1)

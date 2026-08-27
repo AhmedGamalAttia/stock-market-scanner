@@ -1,0 +1,724 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Hytham Sherif
+
+//@version=5
+indicator(title="Hytham Sherif Pro Scalper - Clean Chart", 
+          shorttitle="HythamScalper Pro", 
+          overlay=true, 
+          max_lines_count=500,
+          max_labels_count=100,
+          max_boxes_count=20)
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// INPUTS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+// Kalman Filter Settings
+var g_kalman = "Kalman Filter Settings"
+i_kalmanGain = input.float(0.7, "Gain", minval=0.1, maxval=0.99, step=0.05, group=g_kalman)
+i_kalmanMomentum = input.float(0.3, "Momentum", minval=0.1, maxval=0.9, step=0.05, group=g_kalman)
+
+// Supertrend Settings
+var g_st = "Supertrend Settings"
+i_atrPeriod = input.int(10, "ATR Period", minval=1, group=g_st)
+i_atrMultiplier = input.float(3.0, "ATR Multiplier", minval=0.1, step=0.1, group=g_st)
+
+// VWMA Bands Settings
+var g_vwma = "VWMA Bands (OB/OS Zones)"
+i_vwmaLength = input.int(20, "VWMA Length", minval=1, group=g_vwma)
+i_obMultiplier = input.float(1.5, "Overbought Multiplier", minval=0.5, step=0.1, group=g_vwma)
+i_osMultiplier = input.float(1.5, "Oversold Multiplier", minval=0.5, step=0.1, group=g_vwma)
+i_bandLookback = input.int(20, "Band Lookback", minval=5, group=g_vwma)
+
+// Take Profit Settings
+var g_tp = "Take Profit Levels"
+i_enableTP = input.bool(true, "Enable Multiple TP Levels", group=g_tp)
+i_tp1RR = input.float(0.5, "TP1 Risk:Reward", minval=0.3, step=0.1, group=g_tp)
+i_tp2RR = input.float(1.0, "TP2 Risk:Reward", minval=0.5, step=0.1, group=g_tp)
+i_tp3RR = input.float(1.5, "TP3 Risk:Reward", minval=0.8, step=0.1, group=g_tp)
+
+// Breakout Settings
+var g_breakout = "Breakout Signals"
+i_enableBreakout = input.bool(true, "Enable Breakout Signals", group=g_breakout)
+i_breakoutLookback = input.int(20, "Breakout Lookback Period", minval=10, group=g_breakout)
+i_breakoutStrength = input.float(1.5, "Breakout Strength (ATR mult)", minval=1.0, step=0.1, group=g_breakout)
+
+// Order Block Settings
+var g_ob = "Order Blocks (Yellow Boxes)"
+i_enableOrderBlocks = input.bool(true, "Enable Order Blocks", group=g_ob)
+i_maxOrderBlocks = input.int(10, "Max Order Blocks on Chart", minval=5, maxval=50, group=g_ob)
+i_obExtension = input.int(30, "Order Block Extension (bars)", minval=10, maxval=100, group=g_ob)
+
+// Display Settings
+var g_display = "Display Settings"
+i_showReversals = input.bool(true, "Show Reversal Signals", group=g_display)
+i_showTPLabels = input.bool(true, "Show TP Labels", group=g_display)
+i_showBreakoutLabels = input.bool(true, "Show Breakout Labels", group=g_display)
+i_showTable = input.bool(true, "Show Entry Price Table", group=g_display)
+i_showZones = input.bool(true, "Show OB/OS Zones", group=g_display)
+i_colorCandles = input.bool(true, "Color Candles", group=g_display)
+
+// Alert Settings
+var g_alerts = "Alert Settings"
+i_enableAlerts = input.bool(false, "Enable All Alerts", group=g_alerts)
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// FUNCTIONS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+f_kalmanFilter(float src, float gain, float momentum) =>
+    var float estimate = na
+    var float velocity = 0.0
+    
+    if na(estimate)
+        estimate := src
+        velocity := 0.0
+    else
+        float prediction = estimate + velocity
+        float error = src - prediction
+        estimate := prediction + gain * error
+        velocity := velocity * momentum + gain * error
+    
+    estimate
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// CALCULATIONS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+// --- Kalman Filtering ---
+float kalmanHL2 = f_kalmanFilter((high + low) / 2, i_kalmanGain, i_kalmanMomentum)
+
+// --- ATR Calculation ---
+float atrValue = ta.rma(ta.tr(true), i_atrPeriod)
+float atrFiltered = f_kalmanFilter(atrValue, i_kalmanGain * 0.5, i_kalmanMomentum)
+
+// --- Supertrend Bands ---
+float upperBand = kalmanHL2 + i_atrMultiplier * atrFiltered
+float lowerBand = kalmanHL2 - i_atrMultiplier * atrFiltered
+
+// --- Final Bands (Trailing) ---
+var float finalUpperBand = na
+var float finalLowerBand = na
+
+finalUpperBand := na(finalUpperBand[1]) or close[1] > finalUpperBand[1] ? upperBand : math.min(upperBand, finalUpperBand[1])
+finalLowerBand := na(finalLowerBand[1]) or close[1] < finalLowerBand[1] ? lowerBand : math.max(lowerBand, finalLowerBand[1])
+
+// --- Trend Detection ---
+var int trend = 1
+int prevTrend = trend
+trend := close > finalUpperBand[1] ? 1 : close < finalLowerBand[1] ? -1 : nz(trend[1], 1)
+float supertrend = trend == 1 ? finalLowerBand : finalUpperBand
+
+// --- Primary Signal Generation ---
+bool buySignal = trend == 1 and prevTrend == -1
+bool sellSignal = trend == -1 and prevTrend == 1
+
+// --- VWMA Bands ---
+float vwma = ta.vwma(close, i_vwmaLength)
+float hh = ta.highest(high, i_bandLookback)
+float ll = ta.lowest(low, i_bandLookback)
+float rangeHigh = hh - vwma
+float rangeLow = vwma - ll
+float obZone = vwma + rangeHigh * i_obMultiplier
+float osZone = vwma - rangeLow * i_osMultiplier
+
+// --- Overbought/Oversold Detection ---
+bool isOB = high >= obZone
+bool isOS = low <= osZone
+bool wasOB = high[1] >= obZone[1]
+bool wasOS = low[1] <= osZone[1]
+
+// --- Reversal Signals ---
+bool reversalDown = wasOB and close < obZone and close < open
+bool reversalUp = wasOS and close > osZone and close > open
+
+// --- Breakout Detection ---
+float highestHigh = ta.highest(high, i_breakoutLookback)
+float lowestLow = ta.lowest(low, i_breakoutLookback)
+
+bool breakoutBuy = i_enableBreakout and trend == 1 and close > highestHigh[1] and (close - open) > atrFiltered * i_breakoutStrength and not buySignal
+bool breakoutSell = i_enableBreakout and trend == -1 and close < lowestLow[1] and (open - close) > atrFiltered * i_breakoutStrength and not sellSignal
+
+// --- Order Blocks Array Management ---
+var array<box> allOrderBlocks = array.new<box>()
+var array<int> obCreationBars = array.new<int>()
+
+// Clean boxes that are too old (beyond extension)
+if array.size(allOrderBlocks) > 0
+    for i = array.size(allOrderBlocks) - 1 to 0
+        if bar_index - array.get(obCreationBars, i) > i_obExtension + 50
+            box.delete(array.get(allOrderBlocks, i))
+            array.remove(allOrderBlocks, i)
+            array.remove(obCreationBars, i)
+
+// Clean if too many boxes
+if array.size(allOrderBlocks) > i_maxOrderBlocks
+    box.delete(array.shift(allOrderBlocks))
+    array.shift(obCreationBars)
+
+// Detect and Draw Order Blocks
+if i_enableOrderBlocks and buySignal
+    // Find last bearish candle before buy signal
+    for i = 1 to 10
+        if close[i] < open[i] and (high[i] - low[i]) > atrFiltered * 0.3
+            newBox = box.new(bar_index - i, high[i], bar_index + i_obExtension, low[i],
+                           border_color=color.new(color.green, 0),
+                           bgcolor=color.new(color.green, 85),
+                           border_width=2,
+                           extend=extend.none)
+            array.push(allOrderBlocks, newBox)
+            array.push(obCreationBars, bar_index)
+            break
+
+if i_enableOrderBlocks and sellSignal
+    // Find last bullish candle before sell signal
+    for i = 1 to 10
+        if close[i] > open[i] and (high[i] - low[i]) > atrFiltered * 0.3
+            newBox = box.new(bar_index - i, high[i], bar_index + i_obExtension, low[i],
+                           border_color=color.new(color.red, 0),
+                           bgcolor=color.new(color.red, 85),
+                           border_width=2,
+                           extend=extend.none)
+            array.push(allOrderBlocks, newBox)
+            array.push(obCreationBars, bar_index)
+            break
+
+// --- TP Levels Management ---
+var float entryPrice = na
+var float stopLoss = na
+var int activeSignal = 0
+var int entryBar = 0
+
+if buySignal
+    entryPrice := close
+    stopLoss := finalLowerBand
+    activeSignal := 1
+    entryBar := bar_index
+
+if sellSignal
+    entryPrice := close
+    stopLoss := finalUpperBand
+    activeSignal := -1
+    entryBar := bar_index
+
+// Reset if trend changes
+if trend != activeSignal
+    activeSignal := 0
+    entryPrice := na
+    stopLoss := na
+
+// Calculate TP levels
+var float tp1Level = na
+var float tp2Level = na
+var float tp3Level = na
+var bool tp1Hit = false
+var bool tp2Hit = false
+var bool tp3Hit = false
+
+if activeSignal == 1 and not na(entryPrice) and not na(stopLoss)
+    float riskDistance = math.abs(entryPrice - stopLoss)
+    tp1Level := entryPrice + riskDistance * i_tp1RR
+    tp2Level := entryPrice + riskDistance * i_tp2RR
+    tp3Level := entryPrice + riskDistance * i_tp3RR
+    
+    if not tp1Hit and high >= tp1Level
+        tp1Hit := true
+    if not tp2Hit and high >= tp2Level
+        tp2Hit := true
+    if not tp3Hit and high >= tp3Level
+        tp3Hit := true
+
+if activeSignal == -1 and not na(entryPrice) and not na(stopLoss)
+    float riskDistance = math.abs(stopLoss - entryPrice)
+    tp1Level := entryPrice - riskDistance * i_tp1RR
+    tp2Level := entryPrice - riskDistance * i_tp2RR
+    tp3Level := entryPrice - riskDistance * i_tp3RR
+    
+    if not tp1Hit and low <= tp1Level
+        tp1Hit := true
+    if not tp2Hit and low <= tp2Level
+        tp2Hit := true
+    if not tp3Hit and low <= tp3Level
+        tp3Hit := true
+
+if buySignal or sellSignal
+    tp1Hit := false
+    tp2Hit := false
+    tp3Hit := false
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// COLORS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+color colorBullish = color.new(color.green, 0)
+color colorBearish = color.new(color.red, 0)
+color colorVWMA = color.new(color.aqua, 30)
+color colorOB = color.new(color.red, 50)
+color colorOS = color.new(color.lime, 50)
+color colorOBFill = color.new(color.red, 93)
+color colorOSFill = color.new(color.lime, 93)
+color stColor = trend == 1 ? colorBullish : colorBearish
+
+color colorTP1 = color.new(color.lime, 0)
+color colorTP2 = color.new(color.orange, 0)
+color colorTP3 = color.new(color.yellow, 0)
+color colorBreakout = color.new(color.blue, 20)
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// PLOTS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+// Supertrend Line
+plot(supertrend, "Supertrend", color=stColor, linewidth=3)
+
+// VWMA and Zones
+plot(i_showZones ? vwma : na, "VWMA", color=colorVWMA, linewidth=2)
+p_ob = plot(i_showZones ? obZone : na, "OB Zone", color=colorOB, linewidth=1)
+p_os = plot(i_showZones ? osZone : na, "OS Zone", color=colorOS, linewidth=1)
+p_vwma = plot(i_showZones ? vwma : na, "", color=na)
+
+fill(p_ob, p_vwma, color=colorOBFill, title="OB Fill")
+fill(p_os, p_vwma, color=colorOSFill, title="OS Fill")
+
+// Primary Signals
+plotshape(buySignal, "Buy", shape.labelup, location.belowbar, colorBullish, text="BUY", textcolor=color.white, size=size.normal)
+plotshape(sellSignal, "Sell", shape.labeldown, location.abovebar, colorBearish, text="SELL", textcolor=color.white, size=size.normal)
+
+// Breakout Signals
+plotshape(breakoutBuy and i_showBreakoutLabels, "Breakout Buy", shape.labelup, location.belowbar, colorBreakout, text="Breakout\nBUY", textcolor=color.white, size=size.small)
+plotshape(breakoutSell and i_showBreakoutLabels, "Breakout Sell", shape.labeldown, location.abovebar, colorBreakout, text="Breakout\nSELL", textcolor=color.white, size=size.small)
+
+// Reversal Signals
+plotshape(i_showReversals and reversalUp, "Rev Up", shape.triangleup, location.belowbar, color.new(color.green, 20), text="R", textcolor=color.white, size=size.tiny)
+plotshape(i_showReversals and reversalDown, "Rev Down", shape.triangledown, location.abovebar, color.new(color.red, 20), text="R", textcolor=color.white, size=size.tiny)
+
+// TP Labels on Chart (Clean and Simple)
+var label tp1Label = na
+var label tp2Label = na
+var label tp3Label = na
+
+if i_showTPLabels and i_enableTP and activeSignal != 0
+    // Delete old labels
+    label.delete(tp1Label)
+    label.delete(tp2Label)
+    label.delete(tp3Label)
+    
+    // Create new labels
+    if not na(tp1Level)
+        tp1Label := label.new(bar_index, tp1Level, "TP1", 
+                             color=tp1Hit ? color.new(colorTP1, 0) : color.new(colorTP1, 70),
+                             textcolor=color.white, 
+                             style=label.style_label_left, 
+                             size=size.small)
+    
+    if not na(tp2Level)
+        tp2Label := label.new(bar_index, tp2Level, "TP2", 
+                             color=tp2Hit ? color.new(colorTP2, 0) : color.new(colorTP2, 70),
+                             textcolor=color.white, 
+                             style=label.style_label_left, 
+                             size=size.small)
+    
+    if not na(tp3Level)
+        tp3Label := label.new(bar_index, tp3Level, "TP3", 
+                             color=tp3Hit ? color.new(colorTP3, 0) : color.new(colorTP3, 70),
+                             textcolor=color.white, 
+                             style=label.style_label_left, 
+                             size=size.small)
+
+// TP Hit Markers (X marks)
+bool showTP1Hit = tp1Hit and not tp1Hit[1]
+bool showTP2Hit = tp2Hit and not tp2Hit[1]
+bool showTP3Hit = tp3Hit and not tp3Hit[1]
+
+plotshape(showTP1Hit, "TP1 Hit", shape.xcross, location.absolute, colorTP1, text="TP1", textcolor=color.white, size=size.small)
+plotshape(showTP2Hit, "TP2 Hit", shape.xcross, location.absolute, colorTP2, text="TP2", textcolor=color.white, size=size.small)
+plotshape(showTP3Hit, "TP3 Hit", shape.xcross, location.absolute, colorTP3, text="TP3", textcolor=color.white, size=size.small)
+
+// TP Hit Labels
+if showTP1Hit
+    label.new(bar_index, tp1Level, "TP1 HIT ✓", 
+             color=color.new(colorTP1, 0),
+             textcolor=color.white, 
+             style=label.style_label_down, 
+             size=size.small)
+
+if showTP2Hit
+    label.new(bar_index, tp2Level, "TP2 HIT ✓", 
+             color=color.new(colorTP2, 0),
+             textcolor=color.white, 
+             style=label.style_label_down, 
+             size=size.small)
+
+if showTP3Hit
+    label.new(bar_index, tp3Level, "TP3 HIT ✓", 
+             color=color.new(colorTP3, 0),
+             textcolor=color.white, 
+             style=label.style_label_down, 
+             size=size.small)
+
+// Candle Coloring
+barcolor(i_colorCandles ? stColor : na, title="Trend Candles")
+
+// Background Highlights
+bgcolor(isOB ? color.new(color.red, 96) : na, title="OB Background")
+bgcolor(isOS ? color.new(color.green, 96) : na, title="OS Background")
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// TABLE
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+if i_showTable
+    var table tbl = table.new(position.top_right, 2, 8, border_width=1, border_color=color.gray, frame_width=1, frame_color=color.gray)
+    
+    table.cell(tbl, 0, 0, "HYTHAM SHERIF", text_color=color.white, bgcolor=color.new(#2962FF, 30), text_size=size.normal)
+    table.cell(tbl, 1, 0, "PRO SCALPER", text_color=color.white, bgcolor=color.new(#2962FF, 30), text_size=size.normal)
+    
+    string trendText = trend == 1 ? "BULLISH ▲" : "BEARISH ▼"
+    color trendColor = trend == 1 ? color.green : color.red
+    table.cell(tbl, 0, 1, "Trend:", text_color=color.white, bgcolor=color.new(color.gray, 70), text_size=size.small)
+    table.cell(tbl, 1, 1, trendText, text_color=trendColor, bgcolor=color.new(color.gray, 80), text_size=size.small)
+    
+    if activeSignal != 0 and not na(entryPrice)
+        string sigType = activeSignal == 1 ? "BUY" : "SELL"
+        color sigColor = activeSignal == 1 ? color.green : color.red
+        
+        table.cell(tbl, 0, 2, "Signal:", text_color=color.white, bgcolor=color.new(color.gray, 70), text_size=size.small)
+        table.cell(tbl, 1, 2, sigType, text_color=sigColor, bgcolor=color.new(color.gray, 80), text_size=size.small)
+        
+        table.cell(tbl, 0, 3, "Entry:", text_color=color.white, bgcolor=color.new(color.gray, 70), text_size=size.small)
+        table.cell(tbl, 1, 3, str.tostring(entryPrice, format.mintick), text_color=color.white, bgcolor=color.new(color.gray, 80), text_size=size.small)
+        
+        if i_enableTP and not na(tp1Level)
+            table.cell(tbl, 0, 4, "TP1:", text_color=color.white, bgcolor=color.new(color.gray, 70), text_size=size.small)
+            table.cell(tbl, 1, 4, str.tostring(tp1Level, format.mintick), text_color=tp1Hit ? colorTP1 : color.white, bgcolor=color.new(color.gray, 80), text_size=size.small)
+            
+            table.cell(tbl, 0, 5, "TP2:", text_color=color.white, bgcolor=color.new(color.gray, 70), text_size=size.small)
+            table.cell(tbl, 1, 5, str.tostring(tp2Level, format.mintick), text_color=tp2Hit ? colorTP2 : color.white, bgcolor=color.new(color.gray, 80), text_size=size.small)
+            
+            table.cell(tbl, 0, 6, "TP3:", text_color=color.white, bgcolor=color.new(color.gray, 70), text_size=size.small)
+            table.cell(tbl, 1, 6, str.tostring(tp3Level, format.mintick), text_color=tp3Hit ? colorTP3 : color.white, bgcolor=color.new(color.gray, 80), text_size=size.small)
+    
+    table.cell(tbl, 0, 7, "© Hytham Sherif", text_color=color.new(color.white, 50), bgcolor=color.new(color.gray, 85), text_size=size.tiny)
+    table.cell(tbl, 1, 7, "v2.2 Clean", text_color=color.new(color.white, 50), bgcolor=color.new(color.gray, 85), text_size=size.tiny)
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// ALERTS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+if i_enableAlerts
+    if buySignal
+        alert("Hytham Sherif Scalper: BUY Signal at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+    
+    if sellSignal
+        alert("Hytham Sherif Scalper: SELL Signal at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+    
+    if breakoutBuy
+        alert("Hytham Sherif Scalper: BREAKOUT BUY at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+    
+    if breakoutSell
+        alert("Hytham Sherif Scalper: BREAKOUT SELL at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+    
+    if tp1Hit and not tp1Hit[1]
+        alert("Hytham Sherif Scalper: TP1 Hit at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+    
+    if tp2Hit and not tp2Hit[1]
+        alert("Hytham Sherif Scalper: TP2 Hit at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+    
+    if tp3Hit and not tp3Hit[1]
+        alert("Hytham Sherif Scalper: TP3 Hit at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================================================================
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Hytham Sherif
+
+//@version=5
+indicator(title="Hytham Sherif Pro Scalper - Kalman Supertrend with Dynamic OB/OS Zones", 
+          shorttitle="HythamScalper", 
+          overlay=true, 
+          max_lines_count=500)
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// CREDITS & INFO
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// Developer: Hytham Sherif
+// Strategy: Advanced Kalman Filter + Supertrend + Dynamic OB/OS Zones
+// Version: 1.0
+// Kalman Filter Algorithm: Based on Rudolf Kalman's mathematical model (1960)
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// INPUTS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+// Kalman Filter Settings
+var g_kalman = "Kalman Filter Settings"
+i_kalmanGain = input.float(0.7, "Gain", minval=0.1, maxval=0.99, step=0.05, tooltip="Higher values = more responsive to price changes", group=g_kalman)
+i_kalmanMomentum = input.float(0.3, "Momentum", minval=0.1, maxval=0.9, step=0.05, tooltip="Controls the smoothing effect", group=g_kalman)
+
+// Supertrend Settings
+var g_st = "Supertrend Settings"
+i_atrPeriod = input.int(10, "ATR Period", minval=1, group=g_st)
+i_atrMultiplier = input.float(3.0, "ATR Multiplier", minval=0.1, step=0.1, group=g_st)
+
+// VWMA Bands Settings
+var g_vwma = "VWMA Bands (OB/OS Zones)"
+i_vwmaLength = input.int(20, "VWMA Length", minval=1, group=g_vwma)
+i_obMultiplier = input.float(1.5, "Overbought Multiplier", minval=0.5, step=0.1, group=g_vwma)
+i_osMultiplier = input.float(1.5, "Oversold Multiplier", minval=0.5, step=0.1, group=g_vwma)
+i_bandLookback = input.int(20, "Band Lookback", minval=5, group=g_vwma)
+
+// Display Settings
+var g_display = "Display Settings"
+i_showReversals = input.bool(true, "Show Reversal Signals", group=g_display, inline="r1")
+i_showTakeProfit = input.bool(true, "Show Take Profit", group=g_display, inline="r2")
+i_showTable = input.bool(true, "Show Entry Price Table", group=g_display, inline="r3")
+i_showZones = input.bool(true, "Show OB/OS Zones", group=g_display, inline="r4")
+i_colorCandles = input.bool(true, "Color Candles", group=g_display, inline="r5")
+
+// Alert Settings
+var g_alerts = "Alert Settings"
+i_enableAlerts = input.bool(false, "Enable All Alerts", group=g_alerts)
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// FUNCTIONS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+// @function Kalman Filter - Reduces noise and smooths price data
+// @param src Source price series
+// @param gain Kalman gain parameter
+// @param momentum Momentum parameter
+// @returns Filtered price value
+f_kalmanFilter(float src, float gain, float momentum) =>
+    var float estimate = na
+    var float velocity = 0.0
+    
+    if na(estimate)
+        estimate := src
+        velocity := 0.0
+    else
+        float prediction = estimate + velocity
+        float error = src - prediction
+        estimate := prediction + gain * error
+        velocity := velocity * momentum + gain * error
+    
+    estimate
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// CALCULATIONS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+// --- Kalman Filtering ---
+float kalmanHL2 = f_kalmanFilter((high + low) / 2, i_kalmanGain, i_kalmanMomentum)
+
+// --- ATR Calculation ---
+float atrValue = ta.rma(ta.tr(true), i_atrPeriod)
+float atrFiltered = f_kalmanFilter(atrValue, i_kalmanGain * 0.5, i_kalmanMomentum)
+
+// --- Supertrend Bands ---
+float upperBand = kalmanHL2 + i_atrMultiplier * atrFiltered
+float lowerBand = kalmanHL2 - i_atrMultiplier * atrFiltered
+
+// --- Final Bands (Trailing) ---
+var float finalUpperBand = na
+var float finalLowerBand = na
+
+finalUpperBand := na(finalUpperBand[1]) or close[1] > finalUpperBand[1] ? upperBand : math.min(upperBand, finalUpperBand[1])
+finalLowerBand := na(finalLowerBand[1]) or close[1] < finalLowerBand[1] ? lowerBand : math.max(lowerBand, finalLowerBand[1])
+
+// --- Trend Detection ---
+var int trend = 1
+int prevTrend = trend
+trend := close > finalUpperBand[1] ? 1 : close < finalLowerBand[1] ? -1 : nz(trend[1], 1)
+float supertrend = trend == 1 ? finalLowerBand : finalUpperBand
+
+// --- Signal Generation ---
+bool buySignal = trend == 1 and prevTrend == -1
+bool sellSignal = trend == -1 and prevTrend == 1
+
+// --- Store Last Entry ---
+var float entryPrice = na
+var string entryType = ""
+
+if buySignal
+    entryPrice := close
+    entryType := "BUY"
+
+if sellSignal
+    entryPrice := close
+    entryType := "SELL"
+
+// --- VWMA Bands (Overbought/Oversold Zones) ---
+float vwma = ta.vwma(close, i_vwmaLength)
+float hh = ta.highest(high, i_bandLookback)
+float ll = ta.lowest(low, i_bandLookback)
+float rangeHigh = hh - vwma
+float rangeLow = vwma - ll
+float obZone = vwma + rangeHigh * i_obMultiplier
+float osZone = vwma - rangeLow * i_osMultiplier
+
+// --- Overbought/Oversold Detection ---
+bool isOB = high >= obZone
+bool isOS = low <= osZone
+bool wasOB = high[1] >= obZone[1]
+bool wasOS = low[1] <= osZone[1]
+
+// --- Reversal Signals ---
+bool reversalDown = wasOB and close < obZone and close < open
+bool reversalUp = wasOS and close > osZone and close > open
+
+// --- Take Profit Logic ---
+var float tpLevelBuy = na
+var float tpLevelSell = na
+var bool tpBuyHit = false
+var bool tpSellHit = false
+
+// Set TP levels on new signals
+if buySignal
+    tpLevelBuy := obZone
+    tpBuyHit := false
+
+if sellSignal
+    tpLevelSell := osZone
+    tpSellHit := false
+
+// Check TP conditions
+bool higherHigh = high > ta.highest(high[1], 2)
+bool lowerLow = low < ta.lowest(low[1], 2)
+bool tpBuy = false
+bool tpSell = false
+
+if trend == 1 and not tpBuyHit and not na(tpLevelBuy)
+    if high >= tpLevelBuy or (isOB and higherHigh)
+        tpBuy := true
+        tpBuyHit := true
+
+if trend == -1 and not tpSellHit and not na(tpLevelSell)
+    if low <= tpLevelSell or (isOS and lowerLow)
+        tpSell := true
+        tpSellHit := true
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// COLORS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+color colorBullish = color.new(color.green, 0)
+color colorBearish = color.new(color.red, 0)
+color colorVWMA = color.new(color.aqua, 30)
+color colorOB = color.new(color.red, 50)
+color colorOS = color.new(color.lime, 50)
+color colorOBFill = color.new(color.red, 93)
+color colorOSFill = color.new(color.lime, 93)
+color stColor = trend == 1 ? colorBullish : colorBearish
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// PLOTS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+// Supertrend Line
+plot(supertrend, "Supertrend", color=stColor, linewidth=3)
+
+// VWMA and Zones
+plot(i_showZones ? vwma : na, "VWMA", color=colorVWMA, linewidth=2)
+p_ob = plot(i_showZones ? obZone : na, "OB Zone", color=colorOB, linewidth=1)
+p_os = plot(i_showZones ? osZone : na, "OS Zone", color=colorOS, linewidth=1)
+p_vwma = plot(i_showZones ? vwma : na, "", color=na)
+
+fill(p_ob, p_vwma, color=colorOBFill, title="OB Fill")
+fill(p_os, p_vwma, color=colorOSFill, title="OS Fill")
+
+// Buy/Sell Signals
+plotshape(buySignal, "Buy", shape.labelup, location.belowbar, colorBullish, text="BUY", textcolor=color.white, size=size.normal)
+plotshape(sellSignal, "Sell", shape.labeldown, location.abovebar, colorBearish, text="SELL", textcolor=color.white, size=size.normal)
+
+// Reversal Signals
+plotshape(i_showReversals and reversalUp, "Rev Up", shape.triangleup, location.belowbar, color.new(color.green, 20), text="R", textcolor=color.white, size=size.tiny)
+plotshape(i_showReversals and reversalDown, "Rev Down", shape.triangledown, location.abovebar, color.new(color.red, 20), text="R", textcolor=color.white, size=size.tiny)
+
+// Reversal Lines
+if i_showReversals and reversalUp
+    line.new(bar_index, low, bar_index, high, color=color.new(color.green, 30), width=2)
+
+if i_showReversals and reversalDown
+    line.new(bar_index, low, bar_index, high, color=color.new(color.red, 30), width=2)
+
+// Take Profit Markers
+plotshape(i_showTakeProfit and tpBuy, "TP Buy", shape.xcross, location.abovebar, color.new(color.lime, 0), size=size.small)
+plotshape(i_showTakeProfit and tpSell, "TP Sell", shape.xcross, location.belowbar, color.new(color.orange, 0), size=size.small)
+
+// Candle Coloring
+barcolor(i_colorCandles ? stColor : na, title="Trend Candles")
+
+// Background Highlights
+bgcolor(isOB ? color.new(color.red, 96) : na, title="OB Background")
+bgcolor(isOS ? color.new(color.green, 96) : na, title="OS Background")
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// TABLE
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+if i_showTable
+    var table tbl = table.new(position.top_right, 2, 5, border_width=1, border_color=color.gray, frame_width=1, frame_color=color.gray)
+    
+    // Header
+    table.cell(tbl, 0, 0, "HYTHAM SHERIF", text_color=color.white, bgcolor=color.new(#2962FF, 30), text_size=size.normal)
+    table.cell(tbl, 1, 0, "PRO SCALPER", text_color=color.white, bgcolor=color.new(#2962FF, 30), text_size=size.normal)
+    
+    // Trend Row
+    string trendText = trend == 1 ? "BULLISH ▲" : "BEARISH ▼"
+    color trendColor = trend == 1 ? color.green : color.red
+    table.cell(tbl, 0, 1, "Trend:", text_color=color.white, bgcolor=color.new(color.gray, 70), text_size=size.small)
+    table.cell(tbl, 1, 1, trendText, text_color=trendColor, bgcolor=color.new(color.gray, 80), text_size=size.small)
+    
+    // Signal Row
+    if not na(entryPrice)
+        color sigColor = entryType == "BUY" ? color.green : color.red
+        table.cell(tbl, 0, 2, "Signal:", text_color=color.white, bgcolor=color.new(color.gray, 70), text_size=size.small)
+        table.cell(tbl, 1, 2, entryType, text_color=sigColor, bgcolor=color.new(color.gray, 80), text_size=size.small)
+        
+        // Entry Price Row
+        table.cell(tbl, 0, 3, "Entry:", text_color=color.white, bgcolor=color.new(color.gray, 70), text_size=size.small)
+        table.cell(tbl, 1, 3, str.tostring(entryPrice, format.mintick), text_color=color.white, bgcolor=color.new(color.gray, 80), text_size=size.small)
+    
+    // Footer
+    table.cell(tbl, 0, 4, "© Hytham Sherif", text_color=color.new(color.white, 50), bgcolor=color.new(color.gray, 85), text_size=size.tiny)
+    table.cell(tbl, 1, 4, "v1.0", text_color=color.new(color.white, 50), bgcolor=color.new(color.gray, 85), text_size=size.tiny)
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// ALERTS
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+if i_enableAlerts
+    if buySignal
+        alert("Hytham Sherif Scalper: BUY Signal at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+    
+    if sellSignal
+        alert("Hytham Sherif Scalper: SELL Signal at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+    
+    if reversalUp
+        alert("Hytham Sherif Scalper: Upward Reversal at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+    
+    if reversalDown
+        alert("Hytham Sherif Scalper: Downward Reversal at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+    
+    if tpBuy
+        alert("Hytham Sherif Scalper: BUY Take Profit Hit at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+    
+    if tpSell
+        alert("Hytham Sherif Scalper: SELL Take Profit Hit at " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+// END
+// ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════

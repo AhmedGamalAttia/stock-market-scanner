@@ -1,0 +1,11 @@
+{
+  "ran_at": "2026-08-27T12:25:00+00:00",
+  "ok": true,
+  "data_date": "2026-08-26",
+  "symbols_total": 42,
+  "symbols_failed": 0,
+  "symbols_stale": 0,
+  "signals_emitted": 0,
+  "strategy": "current_scoring",
+  "notes": "min_score=30"
+}

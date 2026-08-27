@@ -1,17 +1,10 @@
 import { OpportunitiesGrid } from "@/components/opportunities-grid";
-import { getLastRun, getLatestSignals } from "@/lib/queries";
+import { getLatest, getMeta } from "@/lib/data";
 import { fmtDate, fmtDateTime, fmtRelative } from "@/lib/utils";
-import { supabaseConfigured } from "@/lib/supabase";
-
-// Refresh fast during the day so new scanner runs surface within ~1 min.
-export const revalidate = 60;
 
 export default async function Home() {
-  if (!supabaseConfigured) {
-    return <NotConfigured />;
-  }
-
-  const [signals, lastRun] = await Promise.all([getLatestSignals(50), getLastRun()]);
+  const [latest, meta] = await Promise.all([getLatest(), getMeta()]);
+  const signals = latest?.buys ?? [];
 
   return (
     <div className="space-y-4">
@@ -20,35 +13,30 @@ export default async function Home() {
           <h1 className="text-2xl sm:text-3xl font-bold">فرص اليوم على البورصة المصرية</h1>
           <p className="text-muted mt-1 text-sm leading-relaxed max-w-2xl">
             توصيات مرتبة حسب نسبة الثقة، مع تصنيف للمخاطرة، حالة شرعية، خطة دخول/خروج
-            كاملة، وحجم صفقة محسوب لرأس مال 20 ألف جنيه. كل توصية مرّت بـ 6 طبقات فلترة:
+            كاملة، وحجم صفقة محسوب لرأس مال 20 ألف جنيه. كل توصية مرّت بخمس طبقات فلترة:
             قوة الإشارة، السيولة، الاتجاه العام، نسبة العائد/المخاطرة، وتأكيدات متعددة.
           </p>
         </div>
         <div className="text-sm text-muted text-right shrink-0">
-          {signals.length > 0 ? (
+          {latest?.date ? (
             <>
               <div>
-                تاريخ المسح:{" "}
-                <span className="text-text">{fmtDate(signals[0].signal_date)}</span>
+                بيانات جلسة:{" "}
+                <span className="text-text">{fmtDate(latest.date)}</span>
               </div>
-              {lastRun && (
+              {meta && (
                 <>
                   <div className="text-xs mt-1">
                     آخر تشغيل:{" "}
-                    <span className="text-text">{fmtDateTime(lastRun.ran_at)}</span>{" "}
-                    <span className="text-muted">({fmtRelative(lastRun.ran_at)})</span>
+                    <span className="text-text">{fmtDateTime(meta.ran_at)}</span>{" "}
+                    <span className="text-muted">({fmtRelative(meta.ran_at)})</span>
                   </div>
                   <div className="text-xs mt-0.5">
-                    <span
-                      className={
-                        lastRun.ok ? "text-success" : "text-danger"
-                      }
-                    >
-                      {lastRun.ok ? "● ناجح" : "● فشل"}
+                    <span className={meta.ok ? "text-success" : "text-danger"}>
+                      {meta.ok ? "● ناجح" : "● فشل"}
                     </span>{" "}
-                    • {lastRun.signals_emitted} إشارة •{" "}
-                    {lastRun.symbols_total - lastRun.symbols_failed}/
-                    {lastRun.symbols_total} سهم
+                    • {meta.signals_emitted} إشارة •{" "}
+                    {meta.symbols_total - meta.symbols_failed}/{meta.symbols_total} سهم
                   </div>
                 </>
               )}
@@ -59,8 +47,16 @@ export default async function Home() {
         </div>
       </section>
 
-      {signals.length === 0 ? (
-        <EmptyState />
+      {!latest ? (
+        <EmptyState
+          title="البيانات لسه ما وصلتش"
+          body="أول مسح يومى لسه ما اتنفذش. النتايج بتتحدث أوتوماتيك بعد إقفال البورصة."
+        />
+      ) : signals.length === 0 ? (
+        <EmptyState
+          title="لا توجد إشارات جديدة اليوم"
+          body="مفيش سهم حقق شروط الدخول فى جلسة اليوم. ده طبيعى — أغلب الأيام مفيهاش فرص واضحة، والانتظار جزء من الخطة."
+        />
       ) : (
         <OpportunitiesGrid signals={signals} />
       )}
@@ -68,29 +64,11 @@ export default async function Home() {
   );
 }
 
-function EmptyState() {
+function EmptyState({ title, body }: { title: string; body: string }) {
   return (
     <div className="panel p-10 text-center">
-      <h2 className="text-lg font-semibold mb-2">لا توجد إشارات بعد</h2>
-      <p className="text-muted text-sm max-w-lg mx-auto">
-        شغّل الـ Scanner مرة على الأقل لإنشاء بيانات. شوف الـ README للخطوات.
-      </p>
-      <pre className="mt-4 inline-block text-left text-xs bg-panel2 border border-border rounded-xl p-4 text-brand">
-        cd scanner{"\n"}python main.py
-      </pre>
-    </div>
-  );
-}
-
-function NotConfigured() {
-  return (
-    <div className="panel p-10 text-center">
-      <h2 className="text-lg font-semibold mb-2">Supabase غير مهيّأ</h2>
-      <p className="text-muted text-sm max-w-lg mx-auto">
-        ضِف <code className="text-brand">NEXT_PUBLIC_SUPABASE_URL</code> و{" "}
-        <code className="text-brand">NEXT_PUBLIC_SUPABASE_ANON_KEY</code> فى ملف{" "}
-        <code>.env.local</code> ثم أعد التشغيل.
-      </p>
+      <h2 className="text-lg font-semibold mb-2">{title}</h2>
+      <p className="text-muted text-sm max-w-lg mx-auto leading-relaxed">{body}</p>
     </div>
   );
 }

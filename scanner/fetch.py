@@ -1,287 +1,182 @@
-"""EGX historical OHLCV — multi-source with automatic fallback.
+"""EGX daily OHLCV from Yahoo Finance, cached as JSON in the repo.
 
-Source priority:
-  1. Cloudflare Worker proxy (CLOUDFLARE_PROXY_URL + CLOUDFLARE_PROXY_TOKEN set)
-       → fastest, works from cloud IPs (proxies through Cloudflare's own network)
-  2. TwelveData (TWELVEDATA_API_KEY set) — free 800 req/day, slow (8 req/min limit)
-  3. investing.com direct — works locally, blocked from most cloud IPs
-  4. investing.com TVC — sometimes survives blocks
+Why Yahoo: it lists every EGX name we track under the ``.CA`` suffix with ~5
+years of daily bars, updated the same day, and it is reachable from GitHub
+Actions runners (investing.com was not). We call the public chart endpoint
+directly — no API key, no crumb dance.
+
+Caching: every run refetches the full 5y window (42 cheap requests) and merges
+it over ``web/public/data/prices/{SYM}.json``. Fresh data wins on overlapping
+dates (keeps split/dividend back-adjustments current); cache-only history is
+kept; a failed fetch falls back to the cache and is reported as ``stale``.
+
+Adjusted vs raw: ``close`` is the raw traded price (what the user sees on
+Thndr) and is what the live scanner uses. ``adjclose`` is Yahoo's
+split/dividend-adjusted close and is what the backtester scales OHLC by so a
+stock split does not look like a crash.
 """
 
 from __future__ import annotations
 
-import os
-from datetime import datetime, timedelta, timezone
+import time
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
 
-from tickers import id_for
+from store_json import PRICE_COLUMNS, read_prices, write_prices
+from tickers import yahoo_for
 
-API_INV_PRIMARY = "https://api.investing.com/api/financialdata/{iid}/historical/chart/?interval=P1D&pointscount={n}"
-API_INV_TVC = "https://tvc6.investing.com/4f9f4b3e0a5d5ebf3aa1f8c3eea9e34d/0/0/0/0/history?symbol={iid}&resolution=D&from={frm}&to={to}"
-API_TD = "https://api.twelvedata.com/time_series"
+CAIRO = ZoneInfo("Africa/Cairo")
+EGX_CLOSE_HOUR = 15  # session ends 14:30; treat the bar as final from 15:00
 
-INV_HEADERS = {
+YF_HOSTS = ("query1", "query2")
+YF_CHART = "https://{host}.finance.yahoo.com/v8/finance/chart/{ysym}"
+HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/130.0 Safari/537.36"
     ),
     "Accept": "application/json, text/plain, */*",
-    "Accept-Language": "en-US,en;q=0.9,ar;q=0.8",
-    "Referer": "https://www.investing.com/",
-    "Origin": "https://www.investing.com",
+    "Accept-Language": "en-US,en;q=0.9",
 }
-
-TIMEOUT = 12
-_ALLOWED_POINTS = (60, 70, 90, 110, 120, 140, 160)
-
-
-def _is_blocked(text: str) -> bool:
-    head = text[:200].lower()
-    return "<!doctype html" in head or "just a moment" in head or "cloudflare" in head
+TIMEOUT = 15
+MAX_ATTEMPTS = 4
 
 
-def has_twelvedata() -> bool:
-    return bool(os.environ.get("TWELVEDATA_API_KEY"))
+class FetchResult:
+    __slots__ = ("df", "source")
+
+    def __init__(self, df: pd.DataFrame | None, source: str):
+        self.df = df          # None when nothing is available at all
+        self.source = source  # "yahoo" | "cache" | "none"
 
 
-def has_cf_proxy() -> bool:
-    return bool(os.environ.get("CLOUDFLARE_PROXY_URL") and os.environ.get("CLOUDFLARE_PROXY_TOKEN"))
+# ---------- Yahoo ----------
 
-
-# -------- Shared parsers --------
-
-def _parse_inv_primary(payload: dict) -> pd.DataFrame | None:
-    rows = payload.get("data") or []
-    if not rows:
+def _parse_chart(payload: dict) -> pd.DataFrame | None:
+    chart = payload.get("chart") or {}
+    if chart.get("error"):
         return None
-    df = pd.DataFrame(rows, columns=["ts_ms", "open", "high", "low", "close", "volume", "_x"])
-    df["date"] = pd.to_datetime(df["ts_ms"], unit="ms").dt.normalize()
-    return (
-        df.drop(columns=["ts_ms", "_x"])
-        .set_index("date")
-        .sort_index()
-        .astype({"open": float, "high": float, "low": float, "close": float})
-    )
-
-
-def _parse_inv_tvc(payload: dict) -> pd.DataFrame | None:
-    if payload.get("s") != "ok" or not payload.get("t"):
+    results = chart.get("result") or []
+    if not results:
         return None
+    res = results[0]
+    ts = res.get("timestamp") or []
+    ind = res.get("indicators") or {}
+    quote = (ind.get("quote") or [{}])[0]
+    adj_list = ind.get("adjclose") or [{}]
+    adj = adj_list[0].get("adjclose") if adj_list else None
+    if not ts or not quote.get("close"):
+        return None
+
     df = pd.DataFrame(
         {
-            "date": pd.to_datetime(payload["t"], unit="s").normalize(),
-            "open": payload.get("o", []),
-            "high": payload.get("h", []),
-            "low": payload.get("l", []),
-            "close": payload.get("c", []),
-            "volume": payload.get("v", [0] * len(payload["t"])),
+            "open": quote.get("open"),
+            "high": quote.get("high"),
+            "low": quote.get("low"),
+            "close": quote.get("close"),
+            "volume": quote.get("volume"),
+            "adjclose": adj if adj and len(adj) == len(ts) else quote.get("close"),
         }
     )
-    return df.set_index("date").sort_index().astype({"open": float, "high": float, "low": float, "close": float})
-
-
-# -------- Cloudflare Worker proxy (best for cloud IPs) --------
-
-_cf_warnings_shown: set[str] = set()
-
-
-def _try_cf_proxy(iid: int, points: int) -> pd.DataFrame | None:
-    base = os.environ.get("CLOUDFLARE_PROXY_URL", "").rstrip("/")
-    token = os.environ.get("CLOUDFLARE_PROXY_TOKEN")
-    if not base or not token:
+    # Bar timestamps are session opens; convert to the Cairo calendar date.
+    df["date"] = (
+        pd.to_datetime(ts, unit="s", utc=True)
+        .tz_convert(CAIRO)
+        .normalize()
+        .tz_localize(None)
+    )
+    df = (
+        df.dropna(subset=["open", "high", "low", "close"])
+        .drop_duplicates("date", keep="last")
+        .set_index("date")
+        .sort_index()
+    )
+    if df.empty:
         return None
-
-    headers = {"X-Proxy-Token": token, "Accept": "application/json"}
-
-    # Try primary route first
-    try:
-        r = requests.get(f"{base}/?iid={iid}&points={points}", headers=headers, timeout=TIMEOUT)
-        if r.status_code == 200:
-            try:
-                df = _parse_inv_primary(r.json())
-                if df is not None and not df.empty:
-                    return df
-            except (ValueError, KeyError):
-                pass
-        elif r.status_code == 401:
-            if "auth" not in _cf_warnings_shown:
-                _cf_warnings_shown.add("auth")
-                print(f"  ⚠ CF proxy: 401 unauthorized — token mismatch with Worker secret")
-            return None
-        elif r.status_code >= 500:
-            if str(iid) not in _cf_warnings_shown and len(_cf_warnings_shown) < 3:
-                _cf_warnings_shown.add(str(iid))
-                print(f"  ⚠ CF proxy upstream {r.status_code}: {r.text[:140]}")
-    except requests.exceptions.RequestException as e:
-        if "conn" not in _cf_warnings_shown:
-            _cf_warnings_shown.add("conn")
-            print(f"  ⚠ CF proxy connection failed: {str(e)[:120]}")
-        return None
-
-    # Try TVC fallback through proxy
-    try:
-        r = requests.get(f"{base}/tvc?iid={iid}&points={points}", headers=headers, timeout=TIMEOUT)
-        if r.status_code == 200:
-            try:
-                df = _parse_inv_tvc(r.json())
-                if df is not None and not df.empty:
-                    return df
-            except (ValueError, KeyError):
-                pass
-    except requests.exceptions.RequestException:
-        pass
-
-    return None
+    df["adjclose"] = pd.to_numeric(df["adjclose"], errors="coerce").fillna(df["close"])
+    df["volume"] = pd.to_numeric(df["volume"], errors="coerce").fillna(0).astype("int64")
+    return df[PRICE_COLUMNS].astype({c: float for c in PRICE_COLUMNS if c != "volume"})
 
 
-# -------- TwelveData --------
-
-_td_warnings_shown: set[str] = set()
-
-
-def _try_twelvedata(symbol: str, points: int) -> pd.DataFrame | None:
-    key = os.environ.get("TWELVEDATA_API_KEY")
-    if not key:
-        return None
-
-    last_err_msg: str | None = None
-    for sym_fmt in (f"{symbol}:EGX", symbol, f"{symbol}.EG"):
+def fetch_yahoo(yahoo_symbol: str, rng: str = "5y") -> pd.DataFrame | None:
+    params = {"range": rng, "interval": "1d", "includeAdjustedClose": "true"}
+    last_err = "?"
+    for attempt in range(MAX_ATTEMPTS):
+        host = YF_HOSTS[attempt % len(YF_HOSTS)]
+        url = YF_CHART.format(host=host, ysym=yahoo_symbol)
         try:
-            r = requests.get(
-                API_TD,
-                params={
-                    "symbol": sym_fmt,
-                    "interval": "1day",
-                    "outputsize": points,
-                    "apikey": key,
-                    "exchange": "EGX",
-                    "format": "JSON",
-                },
-                timeout=TIMEOUT,
-            )
-            if r.status_code != 200:
-                last_err_msg = f"http {r.status_code}: {r.text[:160]}"
-                continue
-            try:
-                j = r.json()
-            except ValueError:
-                last_err_msg = f"non-json response: {r.text[:160]}"
-                continue
-            if j.get("status") == "error":
-                last_err_msg = f"{sym_fmt}: {j.get('code', '?')} — {j.get('message', '?')}"
-                continue
-            if not j.get("values"):
-                last_err_msg = f"{sym_fmt}: no values"
-                continue
-            df = pd.DataFrame(j["values"])
-            df["date"] = pd.to_datetime(df["datetime"]).dt.normalize()
-            df = df.set_index("date").sort_index()
-            for c in ["open", "high", "low", "close"]:
-                df[c] = pd.to_numeric(df[c], errors="coerce")
-            df["volume"] = pd.to_numeric(df.get("volume", 0), errors="coerce").fillna(0).astype("int64")
-            df = df.dropna(subset=["close"])
-            if not df.empty:
-                return df[["open", "high", "low", "close", "volume"]]
+            r = requests.get(url, params=params, headers=HEADERS, timeout=TIMEOUT)
         except requests.exceptions.RequestException as e:
-            last_err_msg = f"request err: {str(e)[:160]}"
+            last_err = f"conn: {str(e)[:80]}"
+            time.sleep(1.5 * (attempt + 1))
             continue
 
-    if last_err_msg and len(_td_warnings_shown) < 3:
-        _td_warnings_shown.add(symbol)
-        print(f"  ⚠ TwelveData rejected {symbol} → {last_err_msg}")
-    return None
+        if r.status_code == 404:
+            last_err = "404 (symbol unknown to Yahoo)"
+            break
+        if r.status_code == 429:
+            last_err = "429 rate-limited"
+            time.sleep(5 * (attempt + 1))
+            continue
+        if r.status_code != 200:
+            last_err = f"http {r.status_code}"
+            time.sleep(1.5 * (attempt + 1))
+            continue
 
-
-# -------- Investing.com direct --------
-
-def _try_investing_primary(iid: int, points: int) -> pd.DataFrame | None:
-    url = API_INV_PRIMARY.format(iid=iid, n=points)
-    try:
-        r = requests.get(url, headers=INV_HEADERS, timeout=TIMEOUT)
-    except requests.exceptions.RequestException:
-        return None
-    if r.status_code != 200 or _is_blocked(r.text):
-        return None
-    try:
-        return _parse_inv_primary(r.json())
-    except ValueError:
-        return None
-
-
-def _try_investing_tvc(iid: int, points: int) -> pd.DataFrame | None:
-    now = datetime.now(timezone.utc)
-    frm = int((now - timedelta(days=int(points * 1.6))).timestamp())
-    to = int(now.timestamp())
-    url = API_INV_TVC.format(iid=iid, frm=frm, to=to)
-    try:
-        r = requests.get(url, headers=INV_HEADERS, timeout=TIMEOUT)
-    except requests.exceptions.RequestException:
-        return None
-    if r.status_code != 200 or _is_blocked(r.text):
-        return None
-    try:
-        return _parse_inv_tvc(r.json())
-    except ValueError:
-        return None
-
-
-# -------- Public entry --------
-
-def fetch_history(symbol: str, points: int = 160) -> pd.DataFrame | None:
-    iid = id_for(symbol)
-    if points not in _ALLOWED_POINTS:
-        points = next((p for p in _ALLOWED_POINTS if p >= points), 160)
-
-    chain: list[tuple[str, callable]] = []
-
-    # Best for cloud IPs — try first if configured
-    if has_cf_proxy() and iid is not None:
-        chain.append(("cf-proxy", lambda: _try_cf_proxy(iid, points)))
-
-    # Local-friendly — try direct after proxy
-    if iid is not None:
-        chain.append(("investing", lambda: _try_investing_primary(iid, points)))
-        chain.append(("investing-tvc", lambda: _try_investing_tvc(iid, points)))
-
-    # Last-resort fallback
-    if has_twelvedata():
-        chain.append(("twelvedata", lambda: _try_twelvedata(symbol, points)))
-
-    for name, fn in chain:
         try:
-            df = fn()
-            if df is not None and not df.empty:
-                df["volume"] = df["volume"].fillna(0).astype("int64")
-                return df[["open", "high", "low", "close", "volume"]]
-        except Exception as e:  # noqa: BLE001
-            print(f"  ! {symbol} {name} unexpected err: {str(e)[:80]}")
+            payload = r.json()
+        except ValueError:
+            last_err = "non-json body"
             continue
 
+        df = _parse_chart(payload)
+        if df is not None and not df.empty:
+            return df
+        err = (payload.get("chart") or {}).get("error") or {}
+        last_err = f"empty payload {err.get('code', '')} {err.get('description', '')}".strip()
+        break
+
+    print(f"  ⚠ Yahoo {yahoo_symbol}: {last_err}")
     return None
 
 
-def to_price_rows(symbol: str, df: pd.DataFrame, last_n: int = 90) -> list[dict]:
-    tail = df.tail(last_n)
-    rows = []
-    for ts, r in tail.iterrows():
-        rows.append(
-            {
-                "symbol": symbol,
-                "date": ts.date().isoformat(),
-                "open": _safe(r["open"]),
-                "high": _safe(r["high"]),
-                "low": _safe(r["low"]),
-                "close": _safe(r["close"]),
-                "volume": int(r["volume"]) if pd.notna(r["volume"]) else None,
-            }
-        )
-    return rows
+def _drop_partial_today(df: pd.DataFrame) -> pd.DataFrame:
+    """During the session Yahoo returns today's bar half-formed; drop it."""
+    if df.empty:
+        return df
+    now = datetime.now(CAIRO)
+    if df.index[-1].date() == now.date() and now.hour < EGX_CLOSE_HOUR:
+        return df.iloc[:-1]
+    return df
 
 
-def _safe(x) -> float | None:
-    try:
-        return float(x) if pd.notna(x) else None
-    except Exception:  # noqa: BLE001
-        return None
+# ---------- Public entry ----------
+
+def update_cache(symbol: str, *, fetch: bool = True, write: bool = True) -> FetchResult:
+    """Fetch → merge over cache → (optionally) write. Never loses good data."""
+    cached = read_prices(symbol)
+
+    if not fetch:
+        return FetchResult(cached, "cache" if cached is not None else "none")
+
+    fresh = fetch_yahoo(yahoo_for(symbol))
+    if fresh is None or fresh.empty:
+        return FetchResult(cached, "cache" if cached is not None else "none")
+
+    fresh = _drop_partial_today(fresh)
+    if cached is not None and not cached.empty:
+        merged = pd.concat([cached[~cached.index.isin(fresh.index)], fresh]).sort_index()
+    else:
+        merged = fresh
+
+    if write:
+        write_prices(symbol, merged, yahoo_for(symbol))
+    return FetchResult(merged, "yahoo")
+
+
+def fetch_history(symbol: str) -> pd.DataFrame | None:
+    """Convenience for one-off use: fresh data if possible, else cache."""
+    return update_cache(symbol, write=False).df

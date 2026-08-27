@@ -1,0 +1,380 @@
+[
+  {
+    "symbol": "ABUK",
+    "yahoo_symbol": "ABUK.CA",
+    "name_ar": "أبو قير للاسمدة",
+    "name_en": "Abu Qir Fertilizers",
+    "sector": "Materials",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "ADIB",
+    "yahoo_symbol": "ADIB.CA",
+    "name_ar": "مصرف ابوظبى الاسلامى",
+    "name_en": "ADIB Egypt",
+    "sector": "Banks",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "ALCN",
+    "yahoo_symbol": "ALCN.CA",
+    "name_ar": "الاسكندرية للحاويات",
+    "name_en": "Alexandria Containers",
+    "sector": "Industrial",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "AMOC",
+    "yahoo_symbol": "AMOC.CA",
+    "name_ar": "الاسكندرية للزيوت المعدنية",
+    "name_en": "Alexandria Mineral Oils",
+    "sector": "Energy",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "ATQA",
+    "yahoo_symbol": "ATQA.CA",
+    "name_ar": "مصر الوطنية للصلب",
+    "name_en": "Misr National Steel",
+    "sector": "Materials",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "CANA",
+    "yahoo_symbol": "CANA.CA",
+    "name_ar": "بنك قناة السويس",
+    "name_en": "Suez Canal Bank",
+    "sector": "Banks",
+    "sharia_status": "haram",
+    "is_active": true
+  },
+  {
+    "symbol": "CCAP",
+    "yahoo_symbol": "CCAP.CA",
+    "name_ar": "قلعة القابضة",
+    "name_en": "Qalaa Holdings",
+    "sector": "Financials",
+    "sharia_status": "mixed",
+    "is_active": true
+  },
+  {
+    "symbol": "CIEB",
+    "yahoo_symbol": "CIEB.CA",
+    "name_ar": "كريدى أجريكول مصر",
+    "name_en": "Credit Agricole Egypt",
+    "sector": "Banks",
+    "sharia_status": "haram",
+    "is_active": true
+  },
+  {
+    "symbol": "CIRA",
+    "yahoo_symbol": "CIRA.CA",
+    "name_ar": "كايرو للاستثمار التعليمى",
+    "name_en": "CIRA Education",
+    "sector": "Education",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "COMI",
+    "yahoo_symbol": "COMI.CA",
+    "name_ar": "البنك التجارى الدولى",
+    "name_en": "Commercial International Bank",
+    "sector": "Banks",
+    "sharia_status": "haram",
+    "is_active": true
+  },
+  {
+    "symbol": "DOMT",
+    "yahoo_symbol": "DOMT.CA",
+    "name_ar": "دومتى",
+    "name_en": "Domty",
+    "sector": "Consumer",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "EAST",
+    "yahoo_symbol": "EAST.CA",
+    "name_ar": "الشرقية للدخان",
+    "name_en": "Eastern Tobacco",
+    "sector": "Consumer",
+    "sharia_status": "haram",
+    "is_active": true
+  },
+  {
+    "symbol": "EFIC",
+    "yahoo_symbol": "EFIC.CA",
+    "name_ar": "المالية والصناعية",
+    "name_en": "Egyptian Financial & Industrial",
+    "sector": "Materials",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "EFID",
+    "yahoo_symbol": "EFID.CA",
+    "name_ar": "إديتا للصناعات الغذائية",
+    "name_en": "Edita Food Industries",
+    "sector": "Consumer",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "EFIH",
+    "yahoo_symbol": "EFIH.CA",
+    "name_ar": "إى فاينانس للاستثمارات",
+    "name_en": "e-Finance Investment",
+    "sector": "Technology",
+    "sharia_status": "mixed",
+    "is_active": true
+  },
+  {
+    "symbol": "EGTS",
+    "yahoo_symbol": "EGTS.CA",
+    "name_ar": "المصرية للمنتجعات السياحية",
+    "name_en": "Egyptian Tourism Resorts",
+    "sector": "Real Estate",
+    "sharia_status": "mixed",
+    "is_active": true
+  },
+  {
+    "symbol": "ETEL",
+    "yahoo_symbol": "ETEL.CA",
+    "name_ar": "المصرية للاتصالات",
+    "name_en": "Telecom Egypt",
+    "sector": "Telecom",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "EXPA",
+    "yahoo_symbol": "EXPA.CA",
+    "name_ar": "بنك تنمية الصادرات",
+    "name_en": "Export Development Bank Egypt",
+    "sector": "Banks",
+    "sharia_status": "haram",
+    "is_active": true
+  },
+  {
+    "symbol": "FAITA",
+    "yahoo_symbol": "FAITA.CA",
+    "name_ar": "فيصل الاسلامى المصرى",
+    "name_en": "Faisal Islamic Bank Egypt",
+    "sector": "Banks",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "FWRY",
+    "yahoo_symbol": "FWRY.CA",
+    "name_ar": "فورى لتكنولوجيا البنوك",
+    "name_en": "Fawry",
+    "sector": "Technology",
+    "sharia_status": "mixed",
+    "is_active": true
+  },
+  {
+    "symbol": "HDBK",
+    "yahoo_symbol": "HDBK.CA",
+    "name_ar": "بنك التعمير والاسكان",
+    "name_en": "Housing & Development Bank",
+    "sector": "Banks",
+    "sharia_status": "haram",
+    "is_active": true
+  },
+  {
+    "symbol": "HELI",
+    "yahoo_symbol": "HELI.CA",
+    "name_ar": "مصر الجديدة للاسكان",
+    "name_en": "Heliopolis Housing",
+    "sector": "Real Estate",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "HRHO",
+    "yahoo_symbol": "HRHO.CA",
+    "name_ar": "المجموعة المالية هيرميس",
+    "name_en": "EFG Hermes Holding",
+    "sector": "Financials",
+    "sharia_status": "haram",
+    "is_active": true
+  },
+  {
+    "symbol": "ISPH",
+    "yahoo_symbol": "ISPH.CA",
+    "name_ar": "ابن سينا فارما",
+    "name_en": "Ibnsina Pharma",
+    "sector": "Healthcare",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "JUFO",
+    "yahoo_symbol": "JUFO.CA",
+    "name_ar": "جهينة للصناعات الغذائية",
+    "name_en": "Juhayna Food Industries",
+    "sector": "Consumer",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "MASR",
+    "yahoo_symbol": "MASR.CA",
+    "name_ar": "مدينة مصر للاسكان",
+    "name_en": "Madinet Masr Housing",
+    "sector": "Real Estate",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "MCQE",
+    "yahoo_symbol": "MCQE.CA",
+    "name_ar": "مصر لانتاج الاسمنت قنا",
+    "name_en": "Misr Cement Qena",
+    "sector": "Materials",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "MFPC",
+    "yahoo_symbol": "MFPC.CA",
+    "name_ar": "مصر للاسمدة (موبكو)",
+    "name_en": "Misr Fertilizers (MOPCO)",
+    "sector": "Materials",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "MTIE",
+    "yahoo_symbol": "MTIE.CA",
+    "name_ar": "إم إم جروب للصناعة",
+    "name_en": "MM Group for Industry",
+    "sector": "Industrial",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "OCDI",
+    "yahoo_symbol": "OCDI.CA",
+    "name_ar": "السادس من أكتوبر للتنمية",
+    "name_en": "SODIC",
+    "sector": "Real Estate",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "OIH",
+    "yahoo_symbol": "OIH.CA",
+    "name_ar": "أوراسكوم للاستثمار القابضة",
+    "name_en": "Orascom Investment Holding",
+    "sector": "Financials",
+    "sharia_status": "mixed",
+    "is_active": true
+  },
+  {
+    "symbol": "OLFI",
+    "yahoo_symbol": "OLFI.CA",
+    "name_ar": "أوبور لاند",
+    "name_en": "Obour Land",
+    "sector": "Consumer",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "ORHD",
+    "yahoo_symbol": "ORHD.CA",
+    "name_ar": "أوراسكوم للتنمية مصر",
+    "name_en": "Orascom Development Egypt",
+    "sector": "Real Estate",
+    "sharia_status": "mixed",
+    "is_active": true
+  },
+  {
+    "symbol": "ORWE",
+    "yahoo_symbol": "ORWE.CA",
+    "name_ar": "النساجون الشرقيون",
+    "name_en": "Oriental Weavers",
+    "sector": "Industrial",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "PHDC",
+    "yahoo_symbol": "PHDC.CA",
+    "name_ar": "بالم هيلز للتعمير",
+    "name_en": "Palm Hills Developments",
+    "sector": "Real Estate",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "PRDC",
+    "yahoo_symbol": "PRDC.CA",
+    "name_ar": "بايونيرز",
+    "name_en": "Pioneers Holding",
+    "sector": "Financials",
+    "sharia_status": "mixed",
+    "is_active": true
+  },
+  {
+    "symbol": "RAYA",
+    "yahoo_symbol": "RAYA.CA",
+    "name_ar": "راية القابضة",
+    "name_en": "Raya Holding",
+    "sector": "Industrial",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "RMDA",
+    "yahoo_symbol": "RMDA.CA",
+    "name_ar": "راميدا",
+    "name_en": "Rameda Pharma",
+    "sector": "Healthcare",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "SKPC",
+    "yahoo_symbol": "SKPC.CA",
+    "name_ar": "سيدى كرير للبتروكيماويات",
+    "name_en": "Sidi Kerir Petrochemicals",
+    "sector": "Materials",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "SWDY",
+    "yahoo_symbol": "SWDY.CA",
+    "name_ar": "السويدى اليكتريك",
+    "name_en": "El Sewedy Electric",
+    "sector": "Industrial",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "TMGH",
+    "yahoo_symbol": "TMGH.CA",
+    "name_ar": "مجموعة طلعت مصطفى",
+    "name_en": "Talaat Moustafa Group",
+    "sector": "Real Estate",
+    "sharia_status": "halal",
+    "is_active": true
+  },
+  {
+    "symbol": "UEFM",
+    "yahoo_symbol": "UEFM.CA",
+    "name_ar": "صعيد مصر لمطاحن الدقيق",
+    "name_en": "Upper Egypt Flour Mills",
+    "sector": "Consumer",
+    "sharia_status": "halal",
+    "is_active": true
+  }
+]

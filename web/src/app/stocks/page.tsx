@@ -1,14 +1,8 @@
 import Link from "next/link";
-import { getAllStocks } from "@/lib/queries";
-import { supabaseConfigured } from "@/lib/supabase";
+import { getAllStocks } from "@/lib/data";
 import { shariaBadge } from "@/lib/utils";
 
-export const revalidate = 3600;
-
 export default async function StocksPage() {
-  if (!supabaseConfigured) {
-    return <div className="panel p-6 text-muted">Supabase غير مهيّأ.</div>;
-  }
   const stocks = await getAllStocks();
 
   const halal = stocks.filter((s) => s.sharia_status === "halal").length;
@@ -24,7 +18,7 @@ export default async function StocksPage() {
         </p>
       </header>
 
-      <div className="panel overflow-hidden">
+      <div className="panel overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="bg-panel2 text-muted text-xs uppercase">
             <tr>

@@ -2,16 +2,36 @@ export type ShariaStatus = "halal" | "haram" | "mixed";
 
 export type Stock = {
   symbol: string;
+  yahoo_symbol?: string | null;
   name_ar: string | null;
   name_en: string | null;
   sector: string | null;
   sharia_status: ShariaStatus | null;
   is_active: boolean;
-  updated_at: string;
+};
+
+export type StockLite = Pick<Stock, "symbol" | "name_ar" | "name_en" | "sector" | "sharia_status">;
+
+/** Compact bar as stored in /data/prices/{SYM}.json */
+export type Bar = {
+  d: string; // YYYY-MM-DD (Cairo)
+  o: number;
+  h: number;
+  l: number;
+  c: number; // raw close (what you trade)
+  a: number; // adjusted close (splits/dividends)
+  v: number;
+};
+
+export type PriceFile = {
+  symbol: string;
+  yahoo: string | null;
+  updated: string | null;
+  count: number;
+  bars: Bar[];
 };
 
 export type DailyPrice = {
-  symbol: string;
   date: string;
   open: number | null;
   high: number | null;
@@ -21,10 +41,8 @@ export type DailyPrice = {
 };
 
 export type Signal = {
-  id: number;
   symbol: string;
   signal_date: string;
-  generated_at: string;
   score: number;
   confidence: number | null;
   risk_class: string | null;
@@ -52,16 +70,30 @@ export type Signal = {
   rationale_ar: string | null;
   strategy_ar: string | null;
   warnings_ar: string[] | null;
+  close?: number | null;
+  stock: StockLite | null;
 };
 
-export type SignalWithStock = Signal & { stock: Stock | null };
+/** Kept for component compatibility — signals now embed their stock. */
+export type SignalWithStock = Signal;
 
-export type RunMeta = {
-  id: number;
+export type Latest = {
+  date: string | null;
+  generated_at: string;
+  strategy: string;
+  buys: Signal[];
+  holds: unknown[];
+  exits: unknown[];
+};
+
+export type Meta = {
   ran_at: string;
   ok: boolean;
+  data_date: string | null;
   symbols_total: number;
   symbols_failed: number;
+  symbols_stale?: number;
   signals_emitted: number;
+  strategy?: string;
   notes: string | null;
 };

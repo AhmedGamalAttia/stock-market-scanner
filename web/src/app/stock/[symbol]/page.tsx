@@ -5,7 +5,8 @@ import {
   getPriceHistory,
   getSignalForSymbol,
   getStock,
-} from "@/lib/queries";
+  listSymbols,
+} from "@/lib/data";
 import {
   confidenceColor,
   fmtDate,
@@ -17,7 +18,13 @@ import {
   trendBadge,
 } from "@/lib/utils";
 
-export const revalidate = 600;
+// Fully static: one page per tracked symbol, rebuilt on every data commit.
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const symbols = await listSymbols();
+  return symbols.map((symbol) => ({ symbol }));
+}
 
 export default async function StockPage({
   params,

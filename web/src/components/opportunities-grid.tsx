@@ -105,7 +105,7 @@ export function OpportunitiesGrid({ signals }: { signals: SignalWithStock[] }) {
       ) : (
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {filtered.map((s) => (
-            <OpportunityCard key={s.id} s={s} />
+            <OpportunityCard key={s.symbol} s={s} />
           ))}
         </section>
       )}
