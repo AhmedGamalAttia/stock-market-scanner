@@ -5,10 +5,62 @@ export const SETUP_LABELS_AR: Record<string, string> = {
   macd_cross_up: "تقاطع MACD صاعد",
   golden_cross_20_50: "تقاطع ذهبى",
   pullback_bounce: "ارتداد من تشبع البيع",
+  kalman_flip: "انقلاب سوبرترند صاعد",
+  above_ma50: "فوق متوسط 50",
+  above_ma200: "فوق متوسط 200",
+  volume_confirm: "تأكيد بالحجم",
+  macd_positive: "زخم MACD إيجابى",
 };
 
 export function setupLabel(s: string): string {
   return SETUP_LABELS_AR[s] ?? s;
+}
+
+export const EXIT_REASON_AR: Record<string, string> = {
+  stop_hit: "ضرب وقف الخسارة",
+  breakeven_stop: "خرج على سعر الدخول",
+  tp_final: "تحقق الهدف الأخير",
+  tp1: "هدف 1",
+  tp2: "هدف 2",
+  tp3: "هدف 3",
+  trend_flip: "انقلاب الاتجاه",
+  time_stop: "انتهاء المدة",
+  end_of_data: "ما زالت مفتوحة",
+  invalid: "أُلغيت",
+};
+
+export function exitReasonLabel(r: string | null | undefined): string {
+  if (!r) return "—";
+  return EXIT_REASON_AR[r] ?? r;
+}
+
+export const STRATEGY_LABELS_AR: Record<string, string> = {
+  current_scoring: "نظام النقاط",
+  kalman_supertrend: "كالمان سوبرترند",
+  kalman_ma200: "كالمان + فلتر 200",
+  kalman_ride: "كالمان — ركوب الاتجاه",
+};
+
+export function strategyLabel(s: string | null | undefined): string {
+  if (!s) return "—";
+  return STRATEGY_LABELS_AR[s] ?? s;
+}
+
+export function fmtSignedPct(n: number | null | undefined, digits = 1): string {
+  if (n == null || Number.isNaN(n)) return "—";
+  return `${n > 0 ? "+" : ""}${n.toFixed(digits)}%`;
+}
+
+export function fmtR(n: number | null | undefined): string {
+  if (n == null || Number.isNaN(n)) return "—";
+  return `${n > 0 ? "+" : ""}${n.toFixed(2)}R`;
+}
+
+export function pnlColor(n: number | null | undefined): string {
+  if (n == null) return "text-muted";
+  if (n > 0) return "text-success";
+  if (n < 0) return "text-danger";
+  return "text-muted";
 }
 
 export function fmtPct(n: number, digits = 2): string {

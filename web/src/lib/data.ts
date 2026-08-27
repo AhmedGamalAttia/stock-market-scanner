@@ -10,12 +10,16 @@
 import { promises as fs } from "fs";
 import path from "path";
 import type {
+  BacktestIndex,
+  BacktestReport,
   DailyPrice,
+  Hold,
   Latest,
   Meta,
   PriceFile,
   Signal,
   Stock,
+  TradeLive,
 } from "./types";
 
 const DATA_DIR = path.join(process.cwd(), "public", "data");
@@ -74,6 +78,26 @@ export async function getPriceFile(symbol: string): Promise<PriceFile | null> {
   const s = safeSymbol(symbol);
   if (!s) return null;
   return readJson<PriceFile>(`prices/${s}.json`);
+}
+
+export async function getHoldForSymbol(symbol: string): Promise<Hold | null> {
+  const s = safeSymbol(symbol);
+  if (!s) return null;
+  const latest = await getLatest();
+  return latest?.holds.find((x) => x.symbol === s) ?? null;
+}
+
+export async function getTradesLive(): Promise<TradeLive[]> {
+  return (await readJson<TradeLive[]>("trades_live.json")) ?? [];
+}
+
+export async function getBacktestIndex(): Promise<BacktestIndex | null> {
+  return readJson<BacktestIndex>("backtest/index.json");
+}
+
+export async function getBacktest(strategy: string): Promise<BacktestReport | null> {
+  if (!/^[a-z0-9_]{1,40}$/.test(strategy)) return null;
+  return readJson<BacktestReport>(`backtest/${strategy}.json`);
 }
 
 export async function getPriceHistory(symbol: string, days = 120): Promise<DailyPrice[]> {

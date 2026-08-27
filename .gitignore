@@ -10,6 +10,10 @@ dist
 .env.local
 .env*.local
 
+# Regenerable backtest trade logs (large) + local scanner logs
+data/backtest_detail/
+scanner/logs/
+
 # Python
 __pycache__/
 *.pyc

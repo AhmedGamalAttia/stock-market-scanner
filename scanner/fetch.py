@@ -25,6 +25,7 @@ from zoneinfo import ZoneInfo
 import pandas as pd
 import requests
 
+from series import repair_splits
 from store_json import PRICE_COLUMNS, read_prices, write_prices
 from tickers import yahoo_for
 
@@ -167,8 +168,16 @@ def update_cache(symbol: str, *, fetch: bool = True, write: bool = True) -> Fetc
         return FetchResult(cached, "cache" if cached is not None else "none")
 
     fresh = _drop_partial_today(fresh)
+    fresh, split_log = repair_splits(fresh)
+    if split_log:
+        print(f"  ↺ {symbol}: adjusted {len(split_log)} corporate action(s) "
+              + ", ".join(f"{e['date']}×{e['factor']:.3f}" for e in split_log) + " ", end="")
     if cached is not None and not cached.empty:
+        # Fresh (repaired) data wins on overlapping dates; older cache-only bars
+        # are kept. A repair factor changes the whole history, so re-run the
+        # repair over the merged frame to keep any cache-only tail consistent.
         merged = pd.concat([cached[~cached.index.isin(fresh.index)], fresh]).sort_index()
+        merged, _ = repair_splits(merged)
     else:
         merged = fresh
 

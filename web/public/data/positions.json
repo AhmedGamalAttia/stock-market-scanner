@@ -1,0 +1,592 @@
+{
+  "updated": "2026-08-27T12:43:29+00:00",
+  "positions": [
+    {
+      "id": "COMI-2026-07-06",
+      "symbol": "COMI",
+      "name_ar": "البنك التجارى الدولى",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-07-06",
+      "status": "open",
+      "entry_ref": 134.5,
+      "entry": 134.5,
+      "entry_date": "2026-07-07",
+      "stop": 124.48,
+      "initial_stop": 124.48,
+      "tps": [
+        139.51,
+        144.52,
+        149.53
+      ],
+      "tp_hit": [
+        true,
+        false,
+        false
+      ],
+      "shares": 39,
+      "shares_open": 26,
+      "risk_egp": 390.78,
+      "max_hold": null,
+      "bars_held": 36,
+      "high_water": 142.88,
+      "exits": [
+        {
+          "date": "2026-07-21",
+          "price": 139.51,
+          "shares": 13,
+          "reason": "tp1"
+        }
+      ],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 139.28,
+      "unrealized_pnl": 160.67,
+      "unrealized_r": 0.41,
+      "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "EFIH-2026-07-06",
+      "symbol": "EFIH",
+      "name_ar": "إى فاينانس للاستثمارات",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-07-06",
+      "status": "open",
+      "entry_ref": 23.43,
+      "entry": 23.43,
+      "entry_date": "2026-07-07",
+      "stop": 20.55,
+      "initial_stop": 20.55,
+      "tps": [
+        24.87,
+        26.31,
+        27.76
+      ],
+      "tp_hit": [
+        true,
+        false,
+        false
+      ],
+      "shares": 138,
+      "shares_open": 92,
+      "risk_egp": 397.44,
+      "max_hold": null,
+      "bars_held": 36,
+      "high_water": 25.4,
+      "exits": [
+        {
+          "date": "2026-08-05",
+          "price": 24.87,
+          "shares": 46,
+          "reason": "tp1"
+        }
+      ],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 24.0,
+      "unrealized_pnl": 100.96,
+      "unrealized_r": 0.25,
+      "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "TMGH-2026-07-15",
+      "symbol": "TMGH",
+      "name_ar": "مجموعة طلعت مصطفى",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-07-15",
+      "status": "open",
+      "entry_ref": 101.01,
+      "entry": 101.01,
+      "entry_date": "2026-07-16",
+      "stop": 93.46,
+      "initial_stop": 93.46,
+      "tps": [
+        104.79,
+        108.56,
+        112.34
+      ],
+      "tp_hit": [
+        false,
+        false,
+        false
+      ],
+      "shares": 52,
+      "shares_open": 52,
+      "risk_egp": 392.6,
+      "max_hold": null,
+      "bars_held": 29,
+      "high_water": 103.87,
+      "exits": [],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 97.51,
+      "unrealized_pnl": -202.28,
+      "unrealized_r": -0.52,
+      "note_ar": "دخول سابق بتاريخ 2026-07-16 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "PHDC-2026-08-17",
+      "symbol": "PHDC",
+      "name_ar": "بالم هيلز للتعمير",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-08-17",
+      "status": "open",
+      "entry_ref": 15.68,
+      "entry": 15.68,
+      "entry_date": "2026-08-18",
+      "stop": 14.46,
+      "initial_stop": 14.46,
+      "tps": [
+        16.29,
+        16.9,
+        17.5
+      ],
+      "tp_hit": [
+        false,
+        false,
+        false
+      ],
+      "shares": 327,
+      "shares_open": 327,
+      "risk_egp": 398.94,
+      "max_hold": null,
+      "bars_held": 7,
+      "high_water": 16.2,
+      "exits": [],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 14.67,
+      "unrealized_pnl": -349.46,
+      "unrealized_r": -0.88,
+      "note_ar": "دخول سابق بتاريخ 2026-08-18 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "JUFO-2026-08-04",
+      "symbol": "JUFO",
+      "name_ar": "جهينة للصناعات الغذائية",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-08-04",
+      "status": "open",
+      "entry_ref": 26.96,
+      "entry": 26.96,
+      "entry_date": "2026-08-05",
+      "stop": 22.32,
+      "initial_stop": 22.32,
+      "tps": [
+        29.28,
+        31.6,
+        33.91
+      ],
+      "tp_hit": [
+        false,
+        false,
+        false
+      ],
+      "shares": 86,
+      "shares_open": 86,
+      "risk_egp": 399.04,
+      "max_hold": null,
+      "bars_held": 16,
+      "high_water": 28.79,
+      "exits": [],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 27.25,
+      "unrealized_pnl": 15.57,
+      "unrealized_r": 0.04,
+      "note_ar": "دخول سابق بتاريخ 2026-08-05 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "ABUK-2026-07-14",
+      "symbol": "ABUK",
+      "name_ar": "أبو قير للاسمدة",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-07-14",
+      "status": "open",
+      "entry_ref": 73.31,
+      "entry": 73.31,
+      "entry_date": "2026-07-15",
+      "stop": 65.63,
+      "initial_stop": 65.63,
+      "tps": [
+        77.15,
+        80.99,
+        84.83
+      ],
+      "tp_hit": [
+        true,
+        false,
+        false
+      ],
+      "shares": 52,
+      "shares_open": 35,
+      "risk_egp": 399.36,
+      "max_hold": null,
+      "bars_held": 30,
+      "high_water": 80.3,
+      "exits": [
+        {
+          "date": "2026-08-13",
+          "price": 77.15,
+          "shares": 17,
+          "reason": "tp1"
+        }
+      ],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 75.76,
+      "unrealized_pnl": 130.19,
+      "unrealized_r": 0.33,
+      "note_ar": "دخول سابق بتاريخ 2026-07-15 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "MFPC-2026-07-14",
+      "symbol": "MFPC",
+      "name_ar": "مصر للاسمدة (موبكو)",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-07-14",
+      "status": "open",
+      "entry_ref": 38.6,
+      "entry": 38.6,
+      "entry_date": "2026-07-15",
+      "stop": 34.81,
+      "initial_stop": 34.81,
+      "tps": [
+        40.5,
+        42.39,
+        44.29
+      ],
+      "tp_hit": [
+        true,
+        false,
+        false
+      ],
+      "shares": 105,
+      "shares_open": 70,
+      "risk_egp": 397.95,
+      "max_hold": null,
+      "bars_held": 30,
+      "high_water": 41.0,
+      "exits": [
+        {
+          "date": "2026-08-17",
+          "price": 40.8,
+          "shares": 35,
+          "reason": "tp1"
+        }
+      ],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 39.34,
+      "unrealized_pnl": 106.66,
+      "unrealized_r": 0.27,
+      "note_ar": "دخول سابق بتاريخ 2026-07-15 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "SKPC-2026-08-12",
+      "symbol": "SKPC",
+      "name_ar": "سيدى كرير للبتروكيماويات",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-08-12",
+      "status": "open",
+      "entry_ref": 16.75,
+      "entry": 16.75,
+      "entry_date": "2026-08-13",
+      "stop": 15.65,
+      "initial_stop": 15.65,
+      "tps": [
+        17.3,
+        17.85,
+        18.39
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 363,
+      "shares_open": 121,
+      "risk_egp": 399.3,
+      "max_hold": null,
+      "bars_held": 10,
+      "high_water": 18.15,
+      "exits": [
+        {
+          "date": "2026-08-19",
+          "price": 17.3,
+          "shares": 121,
+          "reason": "tp1"
+        },
+        {
+          "date": "2026-08-19",
+          "price": 17.85,
+          "shares": 121,
+          "reason": "tp2"
+        }
+      ],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 17.21,
+      "unrealized_pnl": 213.75,
+      "unrealized_r": 0.54,
+      "note_ar": "دخول سابق بتاريخ 2026-08-13 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "CIEB-2026-07-05",
+      "symbol": "CIEB",
+      "name_ar": "كريدى أجريكول مصر",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-07-05",
+      "status": "open",
+      "entry_ref": 24.44,
+      "entry": 24.44,
+      "entry_date": "2026-07-06",
+      "stop": 23.34,
+      "initial_stop": 23.34,
+      "tps": [
+        24.99,
+        25.54,
+        26.09
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 327,
+      "shares_open": 109,
+      "risk_egp": 359.7,
+      "max_hold": null,
+      "bars_held": 37,
+      "high_water": 25.6,
+      "exits": [
+        {
+          "date": "2026-08-18",
+          "price": 24.99,
+          "shares": 109,
+          "reason": "tp1"
+        },
+        {
+          "date": "2026-08-18",
+          "price": 25.54,
+          "shares": 109,
+          "reason": "tp2"
+        }
+      ],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 24.99,
+      "unrealized_pnl": 185.56,
+      "unrealized_r": 0.52,
+      "note_ar": "دخول سابق بتاريخ 2026-07-06 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "CANA-2026-05-13",
+      "symbol": "CANA",
+      "name_ar": "بنك قناة السويس",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-05-13",
+      "status": "open",
+      "entry_ref": 37.26,
+      "entry": 37.26,
+      "entry_date": "2026-05-14",
+      "stop": 31.51,
+      "initial_stop": 31.51,
+      "tps": [
+        40.13,
+        43.01,
+        45.88
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 69,
+      "shares_open": 23,
+      "risk_egp": 396.75,
+      "max_hold": null,
+      "bars_held": 72,
+      "high_water": 43.9,
+      "exits": [
+        {
+          "date": "2026-08-11",
+          "price": 40.75,
+          "shares": 23,
+          "reason": "tp1"
+        },
+        {
+          "date": "2026-08-13",
+          "price": 43.01,
+          "shares": 23,
+          "reason": "tp2"
+        }
+      ],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 41.92,
+      "unrealized_pnl": 301.28,
+      "unrealized_r": 0.76,
+      "note_ar": "دخول سابق بتاريخ 2026-05-14 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "PRDC-2026-07-06",
+      "symbol": "PRDC",
+      "name_ar": "بايونيرز",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-07-06",
+      "status": "open",
+      "entry_ref": 8.31,
+      "entry": 8.31,
+      "entry_date": "2026-07-07",
+      "stop": 6.8,
+      "initial_stop": 6.8,
+      "tps": [
+        9.06,
+        9.82,
+        10.57
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 264,
+      "shares_open": 88,
+      "risk_egp": 398.64,
+      "max_hold": null,
+      "bars_held": 36,
+      "high_water": 10.4,
+      "exits": [
+        {
+          "date": "2026-07-14",
+          "price": 9.06,
+          "shares": 88,
+          "reason": "tp1"
+        },
+        {
+          "date": "2026-07-15",
+          "price": 9.82,
+          "shares": 88,
+          "reason": "tp2"
+        }
+      ],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 9.4,
+      "unrealized_pnl": 278.99,
+      "unrealized_r": 0.7,
+      "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "ALCN-2026-08-02",
+      "symbol": "ALCN",
+      "name_ar": "الاسكندرية للحاويات",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-08-02",
+      "status": "open",
+      "entry_ref": 30.19,
+      "entry": 30.19,
+      "entry_date": "2026-08-03",
+      "stop": 27.97,
+      "initial_stop": 27.97,
+      "tps": [
+        31.3,
+        32.41,
+        33.53
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 180,
+      "shares_open": 60,
+      "risk_egp": 399.6,
+      "max_hold": null,
+      "bars_held": 18,
+      "high_water": 32.61,
+      "exits": [
+        {
+          "date": "2026-08-06",
+          "price": 31.3,
+          "shares": 60,
+          "reason": "tp1"
+        },
+        {
+          "date": "2026-08-23",
+          "price": 32.41,
+          "shares": 60,
+          "reason": "tp2"
+        }
+      ],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 30.26,
+      "unrealized_pnl": 166.96,
+      "unrealized_r": 0.42,
+      "note_ar": "دخول سابق بتاريخ 2026-08-03 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    },
+    {
+      "id": "CCAP-2026-07-13",
+      "symbol": "CCAP",
+      "name_ar": "قلعة القابضة",
+      "strategy": "kalman_supertrend",
+      "signal_date": "2026-07-13",
+      "status": "open",
+      "entry_ref": 5.36,
+      "entry": 5.36,
+      "entry_date": "2026-07-14",
+      "stop": 4.88,
+      "initial_stop": 4.88,
+      "tps": [
+        5.6,
+        5.84,
+        6.08
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 833,
+      "shares_open": 277,
+      "risk_egp": 399.84,
+      "max_hold": null,
+      "bars_held": 31,
+      "high_water": 5.91,
+      "exits": [
+        {
+          "date": "2026-07-14",
+          "price": 5.6,
+          "shares": 278,
+          "reason": "tp1"
+        },
+        {
+          "date": "2026-08-23",
+          "price": 5.84,
+          "shares": 278,
+          "reason": "tp2"
+        }
+      ],
+      "pending_exit": null,
+      "last_evaluated": "2026-08-26",
+      "last_close": 5.75,
+      "unrealized_pnl": 277.18,
+      "unrealized_r": 0.69,
+      "note_ar": "دخول سابق بتاريخ 2026-07-14 — للمتابعة فقط، مش دخول جديد",
+      "bootstrap": true
+    }
+  ]
+}

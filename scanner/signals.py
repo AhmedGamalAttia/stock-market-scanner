@@ -3,13 +3,16 @@
 We don't predict the future. We identify configurations that historically
 precede meaningful moves, gate them by liquidity & risk/reward, classify
 risk, and translate into a complete trade plan in plain Arabic.
+
+``assemble_signal`` is the shared "expert layer": any strategy that can name
+an entry, a stop and a target ladder gets the same risk class, confidence,
+position sizing and Arabic narrative.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 
-import numpy as np
 import pandas as pd
 
 # Risk management constants (well-documented retail trading defaults)
@@ -30,6 +33,7 @@ MIN_ADV_EGP = 50_000
 class SignalRow:
     symbol: str
     signal_date: str
+    strategy: str
     score: int
     confidence: int
     risk_class: str
@@ -47,10 +51,12 @@ class SignalRow:
     stop_loss: float
     target_1: float
     target_2: float
+    target_3: float | None
     rr_t1: float
     rr_t2: float
     blended_rr: float
     expected_days: int
+    max_hold: int | None
     suggested_shares_20k: int
     suggested_value_20k: float
     max_loss_20k: float
@@ -200,13 +206,22 @@ def _position_size(entry: float, stop: float, capital: float, risk_pct: float) -
     return shares, position_value, actual_loss
 
 
+def _lead_for_setups(setups: list[str], vol_z: float | None) -> str:
+    if "breakout_20d" in setups:
+        vol_text = f"بحجم تداول يفوق المتوسط بـ {vol_z:.1f} انحراف معيارى" if vol_z else "بحجم قوى"
+        return f"السهم اخترق أعلى 20 جلسة {vol_text}، وهو نمط فنى يسبق غالباً موجة صعود قصيرة."
+    if "macd_cross_up" in setups:
+        return "MACD تحوّل لإشارة شراء بعد فترة من الضعف، ما يدل على تحسن الزخم الإيجابى."
+    if "golden_cross_20_50" in setups:
+        return "المتوسط المتحرك القصير (20) قطع المتوسط المتوسط (50) صعوداً — إشارة كلاسيكية لبداية اتجاه صاعد."
+    if "pullback_bounce" in setups:
+        return "السهم ارتد من منطقة تشبع البيع داخل اتجاه صاعد قائم — فرصة دخول بسعر أفضل من القمم."
+    return "إشارة فنية."
+
+
 def _strategy_narrative(
-    symbol: str,
-    setups: list[str],
+    lead_ar: str,
     trend: str,
-    rsi_v: float | None,
-    macd_v: float | None,
-    vol_z: float | None,
     adv: float,
     atr_pct: float,
     rr_t1: float,
@@ -216,18 +231,7 @@ def _strategy_narrative(
     confidence: int,
 ) -> str:
     """Plain-Arabic explanation a coach would give."""
-    parts: list[str] = []
-
-    # Lead with the strongest setup
-    if "breakout_20d" in setups:
-        vol_text = f"بحجم تداول يفوق المتوسط بـ {vol_z:.1f} انحراف معيارى" if vol_z else "بحجم قوى"
-        parts.append(f"السهم اخترق أعلى 20 جلسة {vol_text}، وهو نمط فنى يسبق غالباً موجة صعود قصيرة.")
-    elif "macd_cross_up" in setups:
-        parts.append("MACD تحوّل لإشارة شراء بعد فترة من الضعف، ما يدل على تحسن الزخم الإيجابى.")
-    elif "golden_cross_20_50" in setups:
-        parts.append("المتوسط المتحرك القصير (20) قطع المتوسط المتوسط (50) صعوداً — إشارة كلاسيكية لبداية اتجاه صاعد.")
-    elif "pullback_bounce" in setups:
-        parts.append("السهم ارتد من منطقة تشبع البيع داخل اتجاه صاعد قائم — فرصة دخول بسعر أفضل من القمم.")
+    parts: list[str] = [lead_ar]
 
     # Trend context
     if trend == "صاعد":
@@ -254,7 +258,7 @@ def _strategy_narrative(
     # Risk/Reward summary
     parts.append(
         f"خطة الخروج تعطى نسبة عائد/مخاطرة {rr_t1:.2f}:1 على الهدف الأول و{rr_t2:.2f}:1 على الثانى — "
-        f"إجمالى متوسط مرجّح ≈ {(rr_t1 + rr_t2) / 2:.1f}:1 وهى نسبة محترمة."
+        f"إجمالى متوسط مرجّح ≈ {(rr_t1 + rr_t2) / 2:.1f}:1."
     )
 
     # Time horizon
@@ -279,12 +283,96 @@ def _warnings(adv: float, atr_pct: float, trend: str, rr_t1: float) -> list[str]
         w.append("تذبذب مرتفع جداً — احتمال ضرب وقف الخسارة بالـ noise اليومى وارد.")
     if trend == "هابط":
         w.append("الاتجاه العام للسهم هابط — تداول ضد التيار الكبير.")
-    if rr_t1 < 1.3:
-        w.append("نسبة العائد على الهدف الأول منخفضة — فكر مرتين.")
+    if rr_t1 < 1.0:
+        w.append("الهدف الأول قريب (أقل من 1R) — بعد عمولة ثاندر (~0.8%) ربحه محدود، الهدفان التاليان هما اللى بيصنعوا الفرق.")
     return w
 
 
+def _f(x) -> float | None:
+    return float(x) if x is not None and not pd.isna(x) else None
+
+
+def assemble_signal(
+    *,
+    symbol: str,
+    last: pd.Series,
+    strategy: str,
+    setups: list[str],
+    score: int,
+    rationale: list[str],
+    lead_ar: str,
+    entry: float,
+    stop: float,
+    targets: list[float | None],
+    max_hold: int | None,
+) -> SignalRow | None:
+    """Shared expert layer: risk class, confidence, sizing, narrative."""
+    if pd.isna(last.get("atr14")) or last["atr14"] <= 0 or stop >= entry:
+        return None
+    adv = float(last["adv20"]) if not pd.isna(last.get("adv20")) else 0.0
+    atr_v = float(last["atr14"])
+    atr_pct = atr_v / entry if entry else 0.0
+
+    targets = [t for t in targets if t is not None and not pd.isna(t)]
+    while len(targets) < 2:  # UI always shows two targets
+        targets.append(targets[-1] if targets else entry)
+    t1, t2 = round(targets[0], 2), round(targets[1], 2)
+    t3 = round(targets[2], 2) if len(targets) > 2 else None
+    stop = round(stop, 2)
+    risk_per_share = entry - stop
+    rr_t1 = round((t1 - entry) / risk_per_share, 2) if risk_per_share > 0 else 0.0
+    rr_t2 = round((t2 - entry) / risk_per_share, 2) if risk_per_share > 0 else 0.0
+    rr_all = [(t - entry) / risk_per_share for t in targets] if risk_per_share > 0 else [0.0]
+    blended_rr = round(sum(rr_all) / len(rr_all), 2)
+
+    days = _expected_days(atr_pct)
+    trend = _trend(last)
+    risk_class = _risk_class(atr_pct, adv, score, trend)
+    confidence = _confidence(score, len(setups), trend, adv)
+    shares, pos_val, max_loss = _position_size(entry, stop, DEFAULT_CAPITAL, DEFAULT_RISK_PCT)
+
+    strategy_ar = _strategy_narrative(
+        lead_ar, trend, adv, atr_pct, rr_t1, rr_t2, risk_class, days, confidence
+    )
+    return SignalRow(
+        symbol=symbol,
+        signal_date=str(last.name.date() if hasattr(last.name, "date") else last.name),
+        strategy=strategy,
+        score=int(score),
+        confidence=confidence,
+        risk_class=risk_class,
+        setups=setups,
+        trend=trend,
+        rsi=_f(last.get("rsi14")),
+        macd_hist=_f(last.get("macd_hist")),
+        ma20=_f(last.get("ma20")),
+        ma50=_f(last.get("ma50")),
+        volume_z=_f(last.get("vol_z20")),
+        atr=round(atr_v, 4),
+        atr_pct=round(atr_pct, 4),
+        adv_20=round(adv, 2),
+        entry=round(entry, 2),
+        stop_loss=stop,
+        target_1=t1,
+        target_2=t2,
+        target_3=t3,
+        rr_t1=rr_t1,
+        rr_t2=rr_t2,
+        blended_rr=blended_rr,
+        expected_days=days,
+        max_hold=max_hold,
+        suggested_shares_20k=shares,
+        suggested_value_20k=pos_val,
+        max_loss_20k=max_loss,
+        rationale_ar=" • ".join(rationale) if rationale else "إشارة فنية",
+        strategy_ar=strategy_ar,
+        warnings_ar=_warnings(adv, atr_pct, trend, rr_t1),
+        close=round(float(last["close"]), 2),
+    )
+
+
 def build_signal(symbol: str, df: pd.DataFrame, min_score: int = 30) -> SignalRow | None:
+    """The original scoring strategy's live signal (kept for compatibility)."""
     if df is None or df.empty or len(df) < 60:
         return None
 
@@ -295,8 +383,6 @@ def build_signal(symbol: str, df: pd.DataFrame, min_score: int = 30) -> SignalRo
     last = df.iloc[-1]
     if pd.isna(last["atr14"]) or last["atr14"] <= 0:
         return None
-
-    # Liquidity gate (kill bad setups before they reach the user)
     adv = float(last["adv20"]) if not pd.isna(last["adv20"]) else 0.0
     if adv < MIN_ADV_EGP:
         return None  # too thin to trade
@@ -304,61 +390,16 @@ def build_signal(symbol: str, df: pd.DataFrame, min_score: int = 30) -> SignalRo
     entry = float(last["close"])
     atr_v = float(last["atr14"])
     atr_pct = atr_v / entry if entry else 0.0
-
-    stop = round(entry - STOP_ATR_MULT * atr_v, 2)
-    t1 = round(entry + TARGET_1_ATR_MULT * atr_v, 2)
-    t2 = round(entry + TARGET_2_ATR_MULT * atr_v, 2)
-    risk_per_share = entry - stop
-    rr_t1 = round((t1 - entry) / risk_per_share, 2) if risk_per_share > 0 else 0.0
-    rr_t2 = round((t2 - entry) / risk_per_share, 2) if risk_per_share > 0 else 0.0
-    blended_rr = round((rr_t1 + rr_t2) / 2, 2)
-
-    days = _expected_days(atr_pct)
-    trend = _trend(last)
-    risk_class = _risk_class(atr_pct, adv, score, trend)
-    confidence = _confidence(score, len(setups), trend, adv)
-
-    shares, pos_val, max_loss = _position_size(entry, stop, DEFAULT_CAPITAL, DEFAULT_RISK_PCT)
-
-    rationale_ar = " • ".join(rationale) if rationale else "إشارة فنية"
-    strategy_ar = _strategy_narrative(
-        symbol, setups, trend,
-        float(last["rsi14"]) if not pd.isna(last["rsi14"]) else None,
-        float(last["macd_hist"]) if not pd.isna(last["macd_hist"]) else None,
-        float(last["vol_z20"]) if not pd.isna(last["vol_z20"]) else None,
-        adv, atr_pct, rr_t1, rr_t2, risk_class, days, confidence,
-    )
-    warnings_ar = _warnings(adv, atr_pct, trend, rr_t1)
-
-    return SignalRow(
+    return assemble_signal(
         symbol=symbol,
-        signal_date=str(last.name.date() if hasattr(last.name, "date") else last.name),
-        score=int(score),
-        confidence=confidence,
-        risk_class=risk_class,
+        last=last,
+        strategy="current_scoring",
         setups=setups,
-        trend=trend,
-        rsi=float(last["rsi14"]) if not pd.isna(last["rsi14"]) else None,
-        macd_hist=float(last["macd_hist"]) if not pd.isna(last["macd_hist"]) else None,
-        ma20=float(last["ma20"]) if not pd.isna(last["ma20"]) else None,
-        ma50=float(last["ma50"]) if not pd.isna(last["ma50"]) else None,
-        volume_z=float(last["vol_z20"]) if not pd.isna(last["vol_z20"]) else None,
-        atr=round(atr_v, 4),
-        atr_pct=round(atr_pct, 4),
-        adv_20=round(adv, 2),
-        entry=round(entry, 2),
-        stop_loss=stop,
-        target_1=t1,
-        target_2=t2,
-        rr_t1=rr_t1,
-        rr_t2=rr_t2,
-        blended_rr=blended_rr,
-        expected_days=days,
-        suggested_shares_20k=shares,
-        suggested_value_20k=pos_val,
-        max_loss_20k=max_loss,
-        rationale_ar=rationale_ar,
-        strategy_ar=strategy_ar,
-        warnings_ar=warnings_ar,
-        close=round(entry, 2),
+        score=score,
+        rationale=rationale,
+        lead_ar=_lead_for_setups(setups, _f(last.get("vol_z20"))),
+        entry=entry,
+        stop=entry - STOP_ATR_MULT * atr_v,
+        targets=[entry + TARGET_1_ATR_MULT * atr_v, entry + TARGET_2_ATR_MULT * atr_v],
+        max_hold=2 * _expected_days(atr_pct),
     )

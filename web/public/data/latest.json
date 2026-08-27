@@ -1,8 +1,400 @@
 {
   "date": "2026-08-26",
-  "generated_at": "2026-08-27T12:25:00+00:00",
-  "strategy": "current_scoring",
+  "generated_at": "2026-08-27T12:43:29+00:00",
+  "strategy": "kalman_supertrend",
+  "strategy_label_ar": "كالمان سوبرترند (هيثم شريف)",
   "buys": [],
-  "holds": [],
+  "holds": [
+    {
+      "id": "ABUK-2026-07-14",
+      "symbol": "ABUK",
+      "name_ar": "أبو قير للاسمدة",
+      "status": "open",
+      "signal_date": "2026-07-14",
+      "entry_date": "2026-07-15",
+      "entry": 73.31,
+      "stop": 65.63,
+      "tps": [
+        77.15,
+        80.99,
+        84.83
+      ],
+      "tp_hit": [
+        true,
+        false,
+        false
+      ],
+      "shares": 52,
+      "shares_open": 35,
+      "last_close": 75.76,
+      "change_pct": 3.34,
+      "stop_distance_pct": 13.37,
+      "unrealized_pnl": 130.19,
+      "unrealized_r": 0.33,
+      "bars_held": 30,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-07-15 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "ALCN-2026-08-02",
+      "symbol": "ALCN",
+      "name_ar": "الاسكندرية للحاويات",
+      "status": "open",
+      "signal_date": "2026-08-02",
+      "entry_date": "2026-08-03",
+      "entry": 30.19,
+      "stop": 27.97,
+      "tps": [
+        31.3,
+        32.41,
+        33.53
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 180,
+      "shares_open": 60,
+      "last_close": 30.26,
+      "change_pct": 0.23,
+      "stop_distance_pct": 7.57,
+      "unrealized_pnl": 166.96,
+      "unrealized_r": 0.42,
+      "bars_held": 18,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-08-03 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "CANA-2026-05-13",
+      "symbol": "CANA",
+      "name_ar": "بنك قناة السويس",
+      "status": "open",
+      "signal_date": "2026-05-13",
+      "entry_date": "2026-05-14",
+      "entry": 37.26,
+      "stop": 31.51,
+      "tps": [
+        40.13,
+        43.01,
+        45.88
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 69,
+      "shares_open": 23,
+      "last_close": 41.92,
+      "change_pct": 12.51,
+      "stop_distance_pct": 24.83,
+      "unrealized_pnl": 301.28,
+      "unrealized_r": 0.76,
+      "bars_held": 72,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-05-14 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "CCAP-2026-07-13",
+      "symbol": "CCAP",
+      "name_ar": "قلعة القابضة",
+      "status": "open",
+      "signal_date": "2026-07-13",
+      "entry_date": "2026-07-14",
+      "entry": 5.36,
+      "stop": 4.88,
+      "tps": [
+        5.6,
+        5.84,
+        6.08
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 833,
+      "shares_open": 277,
+      "last_close": 5.75,
+      "change_pct": 7.28,
+      "stop_distance_pct": 15.13,
+      "unrealized_pnl": 277.18,
+      "unrealized_r": 0.69,
+      "bars_held": 31,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-07-14 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "CIEB-2026-07-05",
+      "symbol": "CIEB",
+      "name_ar": "كريدى أجريكول مصر",
+      "status": "open",
+      "signal_date": "2026-07-05",
+      "entry_date": "2026-07-06",
+      "entry": 24.44,
+      "stop": 23.34,
+      "tps": [
+        24.99,
+        25.54,
+        26.09
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 327,
+      "shares_open": 109,
+      "last_close": 24.99,
+      "change_pct": 2.25,
+      "stop_distance_pct": 6.6,
+      "unrealized_pnl": 185.56,
+      "unrealized_r": 0.52,
+      "bars_held": 37,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-07-06 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "COMI-2026-07-06",
+      "symbol": "COMI",
+      "name_ar": "البنك التجارى الدولى",
+      "status": "open",
+      "signal_date": "2026-07-06",
+      "entry_date": "2026-07-07",
+      "entry": 134.5,
+      "stop": 124.48,
+      "tps": [
+        139.51,
+        144.52,
+        149.53
+      ],
+      "tp_hit": [
+        true,
+        false,
+        false
+      ],
+      "shares": 39,
+      "shares_open": 26,
+      "last_close": 139.28,
+      "change_pct": 3.55,
+      "stop_distance_pct": 10.63,
+      "unrealized_pnl": 160.67,
+      "unrealized_r": 0.41,
+      "bars_held": 36,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "EFIH-2026-07-06",
+      "symbol": "EFIH",
+      "name_ar": "إى فاينانس للاستثمارات",
+      "status": "open",
+      "signal_date": "2026-07-06",
+      "entry_date": "2026-07-07",
+      "entry": 23.43,
+      "stop": 20.55,
+      "tps": [
+        24.87,
+        26.31,
+        27.76
+      ],
+      "tp_hit": [
+        true,
+        false,
+        false
+      ],
+      "shares": 138,
+      "shares_open": 92,
+      "last_close": 24.0,
+      "change_pct": 2.43,
+      "stop_distance_pct": 14.37,
+      "unrealized_pnl": 100.96,
+      "unrealized_r": 0.25,
+      "bars_held": 36,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "JUFO-2026-08-04",
+      "symbol": "JUFO",
+      "name_ar": "جهينة للصناعات الغذائية",
+      "status": "open",
+      "signal_date": "2026-08-04",
+      "entry_date": "2026-08-05",
+      "entry": 26.96,
+      "stop": 22.32,
+      "tps": [
+        29.28,
+        31.6,
+        33.91
+      ],
+      "tp_hit": [
+        false,
+        false,
+        false
+      ],
+      "shares": 86,
+      "shares_open": 86,
+      "last_close": 27.25,
+      "change_pct": 1.08,
+      "stop_distance_pct": 18.09,
+      "unrealized_pnl": 15.57,
+      "unrealized_r": 0.04,
+      "bars_held": 16,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-08-05 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "MFPC-2026-07-14",
+      "symbol": "MFPC",
+      "name_ar": "مصر للاسمدة (موبكو)",
+      "status": "open",
+      "signal_date": "2026-07-14",
+      "entry_date": "2026-07-15",
+      "entry": 38.6,
+      "stop": 34.81,
+      "tps": [
+        40.5,
+        42.39,
+        44.29
+      ],
+      "tp_hit": [
+        true,
+        false,
+        false
+      ],
+      "shares": 105,
+      "shares_open": 70,
+      "last_close": 39.34,
+      "change_pct": 1.92,
+      "stop_distance_pct": 11.51,
+      "unrealized_pnl": 106.66,
+      "unrealized_r": 0.27,
+      "bars_held": 30,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-07-15 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "PHDC-2026-08-17",
+      "symbol": "PHDC",
+      "name_ar": "بالم هيلز للتعمير",
+      "status": "open",
+      "signal_date": "2026-08-17",
+      "entry_date": "2026-08-18",
+      "entry": 15.68,
+      "stop": 14.46,
+      "tps": [
+        16.29,
+        16.9,
+        17.5
+      ],
+      "tp_hit": [
+        false,
+        false,
+        false
+      ],
+      "shares": 327,
+      "shares_open": 327,
+      "last_close": 14.67,
+      "change_pct": -6.44,
+      "stop_distance_pct": 1.43,
+      "unrealized_pnl": -349.46,
+      "unrealized_r": -0.88,
+      "bars_held": 7,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-08-18 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "PRDC-2026-07-06",
+      "symbol": "PRDC",
+      "name_ar": "بايونيرز",
+      "status": "open",
+      "signal_date": "2026-07-06",
+      "entry_date": "2026-07-07",
+      "entry": 8.31,
+      "stop": 6.8,
+      "tps": [
+        9.06,
+        9.82,
+        10.57
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 264,
+      "shares_open": 88,
+      "last_close": 9.4,
+      "change_pct": 13.12,
+      "stop_distance_pct": 27.66,
+      "unrealized_pnl": 278.99,
+      "unrealized_r": 0.7,
+      "bars_held": 36,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "SKPC-2026-08-12",
+      "symbol": "SKPC",
+      "name_ar": "سيدى كرير للبتروكيماويات",
+      "status": "open",
+      "signal_date": "2026-08-12",
+      "entry_date": "2026-08-13",
+      "entry": 16.75,
+      "stop": 15.65,
+      "tps": [
+        17.3,
+        17.85,
+        18.39
+      ],
+      "tp_hit": [
+        true,
+        true,
+        false
+      ],
+      "shares": 363,
+      "shares_open": 121,
+      "last_close": 17.21,
+      "change_pct": 2.75,
+      "stop_distance_pct": 9.06,
+      "unrealized_pnl": 213.75,
+      "unrealized_r": 0.54,
+      "bars_held": 10,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-08-13 — للمتابعة فقط، مش دخول جديد"
+    },
+    {
+      "id": "TMGH-2026-07-15",
+      "symbol": "TMGH",
+      "name_ar": "مجموعة طلعت مصطفى",
+      "status": "open",
+      "signal_date": "2026-07-15",
+      "entry_date": "2026-07-16",
+      "entry": 101.01,
+      "stop": 93.46,
+      "tps": [
+        104.79,
+        108.56,
+        112.34
+      ],
+      "tp_hit": [
+        false,
+        false,
+        false
+      ],
+      "shares": 52,
+      "shares_open": 52,
+      "last_close": 97.51,
+      "change_pct": -3.47,
+      "stop_distance_pct": 4.15,
+      "unrealized_pnl": -202.28,
+      "unrealized_r": -0.52,
+      "bars_held": 29,
+      "pending_exit": null,
+      "note_ar": "دخول سابق بتاريخ 2026-07-16 — للمتابعة فقط، مش دخول جديد"
+    }
+  ],
   "exits": []
 }

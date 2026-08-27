@@ -16,6 +16,15 @@ type Trade = {
 };
 
 const KEY = "egx:journal";
+// Same round-trip commission the calculator and the backtest assume (Thndr ≈ 0.8%).
+const COMMISSION_RT = 0.008;
+
+function tradePnl(t: Trade): number | null {
+  if (t.exit_price == null) return null;
+  const gross = (t.exit_price - t.entry_price) * t.quantity;
+  const fees = ((t.entry_price + t.exit_price) * t.quantity * COMMISSION_RT) / 2;
+  return gross - fees;
+}
 
 function read(): Trade[] {
   if (typeof window === "undefined") return [];
@@ -66,7 +75,8 @@ export default function JournalPage() {
         <div>
           <h1 className="text-2xl font-bold">دفتر الصفقات</h1>
           <p className="text-muted text-sm mt-1">
-            سجّل كل صفقة عشان تتعلم من نفسك. البيانات محفوظة محلياً.
+            سجّل كل صفقة عشان تتعلم من نفسك. البيانات محفوظة محلياً على المتصفح. الربح/الخسارة بعد خصم عمولة
+            0.8% رايح جاى.
           </p>
         </div>
         <button onClick={() => setOpen(true)} className="btn-primary">+ صفقة جديدة</button>
@@ -101,7 +111,7 @@ export default function JournalPage() {
             </thead>
             <tbody>
               {trades.map((t) => {
-                const pnl = t.exit_price != null ? (t.exit_price - t.entry_price) * t.quantity : null;
+                const pnl = tradePnl(t);
                 return (
                   <tr key={t.id} className="border-t border-border">
                     <td className="px-3 py-3 font-mono text-brand">{t.symbol}</td>
@@ -136,11 +146,8 @@ export default function JournalPage() {
 
 function computeStats(trades: Trade[]) {
   const closed = trades.filter((t) => t.exit_price != null);
-  const wins = closed.filter((t) => (t.exit_price! - t.entry_price) * t.quantity > 0);
-  const netPnl = closed.reduce(
-    (acc, t) => acc + (t.exit_price! - t.entry_price) * t.quantity,
-    0,
-  );
+  const wins = closed.filter((t) => (tradePnl(t) ?? 0) > 0);
+  const netPnl = closed.reduce((acc, t) => acc + (tradePnl(t) ?? 0), 0);
   return {
     total: trades.length,
     closed: closed.length,
@@ -186,7 +193,7 @@ function NewTradeForm({ onAdd, onCancel }: { onAdd: (t: Trade) => void; onCancel
     <form onSubmit={submit} className="panel p-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
       <div>
         <label className="label">السهم</label>
-        <input className="input font-mono" value={symbol} onChange={(e) => setSymbol(e.target.value)} placeholder="COMI.CA" />
+        <input className="input font-mono" value={symbol} onChange={(e) => setSymbol(e.target.value)} placeholder="COMI" />
       </div>
       <div>
         <label className="label">تاريخ الدخول</label>

@@ -45,7 +45,7 @@ export function OpportunityCard({ s }: { s: SignalWithStock }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-1.5 mb-4">
+      <div className="flex flex-wrap gap-1.5 mb-3">
         {s.setups.map((x) => (
           <span key={x} className="chip bg-brand/10 text-brand border-brand/30">
             {setupLabel(x)}
@@ -53,7 +53,11 @@ export function OpportunityCard({ s }: { s: SignalWithStock }) {
         ))}
       </div>
 
-      <div className="grid grid-cols-4 gap-2 text-center text-sm">
+      {s.rationale_ar && (
+        <div className="text-xs text-muted mb-3 leading-relaxed">💡 {s.rationale_ar}</div>
+      )}
+
+      <div className={`grid ${s.target_3 ? "grid-cols-5" : "grid-cols-4"} gap-2 text-center text-sm`}>
         <div>
           <div className="text-[10px] text-muted">دخول</div>
           <div className="font-semibold">{fmtNum(s.entry)}</div>
@@ -70,6 +74,12 @@ export function OpportunityCard({ s }: { s: SignalWithStock }) {
           <div className="text-[10px] text-muted">هدف 2</div>
           <div className="font-semibold text-success">{fmtNum(s.target_2)}</div>
         </div>
+        {s.target_3 && (
+          <div>
+            <div className="text-[10px] text-muted">هدف 3</div>
+            <div className="font-semibold text-success">{fmtNum(s.target_3)}</div>
+          </div>
+        )}
       </div>
 
       {s.suggested_shares_20k != null && s.suggested_shares_20k > 0 && (
