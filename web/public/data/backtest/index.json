@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T12:41:07+00:00",
+  "generated_at": "2026-08-28T18:19:10+00:00",
   "period": {
     "from": "2021-08-29",
     "to": "2026-08-26",
@@ -16,7 +16,7 @@
         "win_rate": 0.5169,
         "avg_r": 0.071,
         "profit_factor": 1.17,
-        "total_pnl": 55481.28
+        "total_pnl": 55481.25
       },
       "out_of_sample": {
         "n_trades": 561,
@@ -26,7 +26,7 @@
         "total_pnl": 22673.45
       },
       "portfolio_full": {
-        "total_pnl": 14906.28,
+        "total_pnl": 14906.27,
         "cagr_pct": 0.1209,
         "max_drawdown_pct": 0.3032,
         "n_trades": 520,
@@ -49,7 +49,7 @@
         "win_rate": 0.6085,
         "avg_r": 0.191,
         "profit_factor": 1.71,
-        "total_pnl": 45209.89
+        "total_pnl": 45209.91
       },
       "out_of_sample": {
         "n_trades": 185,
@@ -115,7 +115,7 @@
         "win_rate": 0.4526,
         "avg_r": 0.923,
         "profit_factor": 3.41,
-        "total_pnl": 208231.45
+        "total_pnl": 208231.47
       },
       "out_of_sample": {
         "n_trades": 170,

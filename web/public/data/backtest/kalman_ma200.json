@@ -1,7 +1,7 @@
 {
   "strategy": "kalman_ma200",
   "label_ar": "كالمان سوبرترند + فلتر متوسط 200",
-  "generated_at": "2026-08-27T12:41:07+00:00",
+  "generated_at": "2026-08-28T18:19:10+00:00",
   "config": {
     "capital": 20000.0,
     "risk_pct": 0.02,
