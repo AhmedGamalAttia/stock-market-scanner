@@ -1,6 +1,6 @@
 {
   "date": "2026-08-26",
-  "generated_at": "2026-08-29T11:45:10+00:00",
+  "generated_at": "2026-08-29T19:04:22+00:00",
   "strategy": "kalman_supertrend",
   "strategy_label_ar": "كالمان سوبرترند (هيثم شريف)",
   "buys": [],
