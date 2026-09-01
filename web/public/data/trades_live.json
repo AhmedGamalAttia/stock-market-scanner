@@ -1,0 +1,64 @@
+[
+  {
+    "id": "CCAP-2026-07-13",
+    "symbol": "CCAP",
+    "name_ar": "قلعة القابضة",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-07-13",
+    "status": "closed",
+    "entry_ref": 5.36,
+    "entry": 5.36,
+    "entry_date": "2026-07-14",
+    "stop": 4.88,
+    "initial_stop": 4.88,
+    "tps": [
+      5.6,
+      5.84,
+      6.08
+    ],
+    "tp_hit": [
+      true,
+      true,
+      true
+    ],
+    "shares": 833,
+    "shares_open": 0,
+    "risk_egp": 399.84,
+    "max_hold": null,
+    "bars_held": 33,
+    "high_water": 6.119999885559082,
+    "exits": [
+      {
+        "date": "2026-07-14",
+        "price": 5.6,
+        "shares": 278,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-08-23",
+        "price": 5.84,
+        "shares": 278,
+        "reason": "tp2"
+      },
+      {
+        "date": "2026-08-31",
+        "price": 6.08,
+        "shares": 277,
+        "reason": "tp3"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-08-31",
+    "last_close": 6.05,
+    "unrealized_pnl": 285.46,
+    "unrealized_r": 0.71,
+    "note_ar": "تحقق الهدف الأخير ✅",
+    "bootstrap": true,
+    "closed_date": "2026-08-31",
+    "reason": "tp_final",
+    "reason_ar": "تحقق الهدف الأخير ✅",
+    "realized_pnl": 362.28,
+    "realized_r": 0.906,
+    "exit_price": 6.08
+  }
+]

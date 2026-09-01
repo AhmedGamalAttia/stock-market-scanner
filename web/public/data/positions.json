@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-31T23:18:07+00:00",
+  "updated": "2026-09-01T10:20:20+00:00",
   "positions": [
     {
       "id": "COMI-2026-07-06",
@@ -27,7 +27,7 @@
       "shares_open": 26,
       "risk_egp": 390.78,
       "max_hold": null,
-      "bars_held": 37,
+      "bars_held": 38,
       "high_water": 142.88,
       "exits": [
         {
@@ -38,10 +38,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 138.1,
-      "unrealized_pnl": 130.12,
-      "unrealized_r": 0.33,
+      "last_evaluated": "2026-08-31",
+      "last_close": 136.3,
+      "unrealized_pnl": 83.5,
+      "unrealized_r": 0.21,
       "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -71,7 +71,7 @@
       "shares_open": 92,
       "risk_egp": 397.44,
       "max_hold": null,
-      "bars_held": 37,
+      "bars_held": 38,
       "high_water": 25.4,
       "exits": [
         {
@@ -82,10 +82,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 23.35,
-      "unrealized_pnl": 41.4,
-      "unrealized_r": 0.1,
+      "last_evaluated": "2026-08-31",
+      "last_close": 22.9,
+      "unrealized_pnl": 0.16,
+      "unrealized_r": 0.0,
       "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -115,14 +115,14 @@
       "shares_open": 52,
       "risk_egp": 392.6,
       "max_hold": null,
-      "bars_held": 30,
+      "bars_held": 31,
       "high_water": 103.87,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 96.2,
-      "unrealized_pnl": -270.13,
-      "unrealized_r": -0.69,
+      "last_evaluated": "2026-08-31",
+      "last_close": 97.0,
+      "unrealized_pnl": -228.7,
+      "unrealized_r": -0.58,
       "note_ar": "دخول سابق بتاريخ 2026-07-16 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -152,14 +152,14 @@
       "shares_open": 327,
       "risk_egp": 398.94,
       "max_hold": null,
-      "bars_held": 8,
+      "bars_held": 9,
       "high_water": 16.2,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 14.86,
-      "unrealized_pnl": -287.58,
-      "unrealized_r": -0.72,
+      "last_evaluated": "2026-08-31",
+      "last_close": 14.79,
+      "unrealized_pnl": -310.38,
+      "unrealized_r": -0.78,
       "note_ar": "دخول سابق بتاريخ 2026-08-18 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -189,14 +189,14 @@
       "shares_open": 86,
       "risk_egp": 399.04,
       "max_hold": null,
-      "bars_held": 17,
+      "bars_held": 18,
       "high_water": 28.79,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 27.39,
-      "unrealized_pnl": 27.56,
-      "unrealized_r": 0.07,
+      "last_evaluated": "2026-08-31",
+      "last_close": 26.5,
+      "unrealized_pnl": -48.68,
+      "unrealized_r": -0.12,
       "note_ar": "دخول سابق بتاريخ 2026-08-05 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -226,8 +226,8 @@
       "shares_open": 35,
       "risk_egp": 399.36,
       "max_hold": null,
-      "bars_held": 31,
-      "high_water": 80.3,
+      "bars_held": 32,
+      "high_water": 80.9000015258789,
       "exits": [
         {
           "date": "2026-08-13",
@@ -237,10 +237,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 79.4,
-      "unrealized_pnl": 257.08,
-      "unrealized_r": 0.64,
+      "last_evaluated": "2026-08-31",
+      "last_close": 80.9,
+      "unrealized_pnl": 309.37,
+      "unrealized_r": 0.77,
       "note_ar": "دخول سابق بتاريخ 2026-07-15 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -270,8 +270,8 @@
       "shares_open": 70,
       "risk_egp": 397.95,
       "max_hold": null,
-      "bars_held": 31,
-      "high_water": 41.220001220703125,
+      "bars_held": 32,
+      "high_water": 41.5,
       "exits": [
         {
           "date": "2026-08-17",
@@ -281,10 +281,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 40.86,
-      "unrealized_pnl": 212.64,
-      "unrealized_r": 0.53,
+      "last_evaluated": "2026-08-31",
+      "last_close": 41.5,
+      "unrealized_pnl": 257.26,
+      "unrealized_r": 0.65,
       "note_ar": "دخول سابق بتاريخ 2026-07-15 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -314,7 +314,7 @@
       "shares_open": 121,
       "risk_egp": 399.3,
       "max_hold": null,
-      "bars_held": 11,
+      "bars_held": 12,
       "high_water": 18.15,
       "exits": [
         {
@@ -331,10 +331,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 17.33,
-      "unrealized_pnl": 228.21,
-      "unrealized_r": 0.57,
+      "last_evaluated": "2026-08-31",
+      "last_close": 17.79,
+      "unrealized_pnl": 283.65,
+      "unrealized_r": 0.71,
       "note_ar": "دخول سابق بتاريخ 2026-08-13 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -364,7 +364,7 @@
       "shares_open": 109,
       "risk_egp": 359.7,
       "max_hold": null,
-      "bars_held": 37,
+      "bars_held": 39,
       "high_water": 25.6,
       "exits": [
         {
@@ -381,10 +381,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-08-26",
-      "last_close": 24.99,
-      "unrealized_pnl": 185.56,
-      "unrealized_r": 0.52,
+      "last_evaluated": "2026-08-31",
+      "last_close": 25.45,
+      "unrealized_pnl": 235.5,
+      "unrealized_r": 0.65,
       "note_ar": "دخول سابق بتاريخ 2026-07-06 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -414,7 +414,7 @@
       "shares_open": 23,
       "risk_egp": 396.75,
       "max_hold": null,
-      "bars_held": 73,
+      "bars_held": 74,
       "high_water": 43.9,
       "exits": [
         {
@@ -431,10 +431,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 41.87,
-      "unrealized_pnl": 300.14,
-      "unrealized_r": 0.76,
+      "last_evaluated": "2026-08-31",
+      "last_close": 41.61,
+      "unrealized_pnl": 294.18,
+      "unrealized_r": 0.74,
       "note_ar": "دخول سابق بتاريخ 2026-05-14 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -464,7 +464,7 @@
       "shares_open": 88,
       "risk_egp": 398.64,
       "max_hold": null,
-      "bars_held": 37,
+      "bars_held": 38,
       "high_water": 10.4,
       "exits": [
         {
@@ -481,10 +481,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 9.35,
-      "unrealized_pnl": 274.61,
-      "unrealized_r": 0.69,
+      "last_evaluated": "2026-08-31",
+      "last_close": 9.77,
+      "unrealized_pnl": 311.42,
+      "unrealized_r": 0.78,
       "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -514,7 +514,7 @@
       "shares_open": 60,
       "risk_egp": 399.6,
       "max_hold": null,
-      "bars_held": 19,
+      "bars_held": 20,
       "high_water": 32.61,
       "exits": [
         {
@@ -531,61 +531,11 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 30.51,
-      "unrealized_pnl": 181.9,
-      "unrealized_r": 0.46,
+      "last_evaluated": "2026-08-31",
+      "last_close": 30.05,
+      "unrealized_pnl": 154.41,
+      "unrealized_r": 0.39,
       "note_ar": "دخول سابق بتاريخ 2026-08-03 — للمتابعة فقط، مش دخول جديد",
-      "bootstrap": true
-    },
-    {
-      "id": "CCAP-2026-07-13",
-      "symbol": "CCAP",
-      "name_ar": "قلعة القابضة",
-      "strategy": "kalman_supertrend",
-      "signal_date": "2026-07-13",
-      "status": "open",
-      "entry_ref": 5.36,
-      "entry": 5.36,
-      "entry_date": "2026-07-14",
-      "stop": 4.88,
-      "initial_stop": 4.88,
-      "tps": [
-        5.6,
-        5.84,
-        6.08
-      ],
-      "tp_hit": [
-        true,
-        true,
-        false
-      ],
-      "shares": 833,
-      "shares_open": 277,
-      "risk_egp": 399.84,
-      "max_hold": null,
-      "bars_held": 32,
-      "high_water": 5.91,
-      "exits": [
-        {
-          "date": "2026-07-14",
-          "price": 5.6,
-          "shares": 278,
-          "reason": "tp1"
-        },
-        {
-          "date": "2026-08-23",
-          "price": 5.84,
-          "shares": 278,
-          "reason": "tp2"
-        }
-      ],
-      "pending_exit": null,
-      "last_evaluated": "2026-08-30",
-      "last_close": 5.78,
-      "unrealized_pnl": 285.46,
-      "unrealized_r": 0.71,
-      "note_ar": "دخول سابق بتاريخ 2026-07-14 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     }
   ]
