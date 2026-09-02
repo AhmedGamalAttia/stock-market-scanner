@@ -60,5 +60,67 @@
     "realized_pnl": 362.28,
     "realized_r": 0.906,
     "exit_price": 6.08
+  },
+  {
+    "id": "ABUK-2026-07-14",
+    "symbol": "ABUK",
+    "name_ar": "أبو قير للاسمدة",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-07-14",
+    "status": "closed",
+    "entry_ref": 73.31,
+    "entry": 73.31,
+    "entry_date": "2026-07-15",
+    "stop": 65.63,
+    "initial_stop": 65.63,
+    "tps": [
+      77.15,
+      80.99,
+      84.83
+    ],
+    "tp_hit": [
+      true,
+      true,
+      true
+    ],
+    "shares": 52,
+    "shares_open": 0,
+    "risk_egp": 399.36,
+    "max_hold": null,
+    "bars_held": 33,
+    "high_water": 88.0,
+    "exits": [
+      {
+        "date": "2026-08-13",
+        "price": 77.15,
+        "shares": 17,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-09-01",
+        "price": 80.99,
+        "shares": 17,
+        "reason": "tp2"
+      },
+      {
+        "date": "2026-09-01",
+        "price": 84.83,
+        "shares": 18,
+        "reason": "tp3"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-01",
+    "last_close": 88.0,
+    "unrealized_pnl": 309.37,
+    "unrealized_r": 0.77,
+    "note_ar": "تحقق الهدف الأخير ✅",
+    "bootstrap": true,
+    "closed_date": "2026-09-01",
+    "reason": "tp_final",
+    "reason_ar": "تحقق الهدف الأخير ✅",
+    "realized_pnl": 371.09,
+    "realized_r": 0.929,
+    "exit_price": 84.83
   }
 ]
