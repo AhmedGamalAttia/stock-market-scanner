@@ -122,5 +122,179 @@
     "realized_pnl": 371.09,
     "realized_r": 0.929,
     "exit_price": 84.83
+  },
+  {
+    "id": "PHDC-2026-08-17",
+    "symbol": "PHDC",
+    "name_ar": "بالم هيلز للتعمير",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-08-17",
+    "status": "closed",
+    "entry_ref": 15.68,
+    "entry": 15.68,
+    "entry_date": "2026-08-18",
+    "stop": 14.46,
+    "initial_stop": 14.46,
+    "tps": [
+      16.29,
+      16.9,
+      17.5
+    ],
+    "tp_hit": [
+      false,
+      false,
+      false
+    ],
+    "shares": 327,
+    "shares_open": 0,
+    "risk_egp": 398.94,
+    "max_hold": null,
+    "bars_held": 11,
+    "high_water": 16.2,
+    "exits": [
+      {
+        "date": "2026-09-02",
+        "price": 14.46,
+        "shares": 327,
+        "reason": "stop_hit"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-02",
+    "last_close": 14.4,
+    "unrealized_pnl": -336.43,
+    "unrealized_r": -0.84,
+    "note_ar": "ضرب وقف الخسارة",
+    "bootstrap": true,
+    "closed_date": "2026-09-02",
+    "reason": "stop_hit",
+    "reason_ar": "ضرب وقف الخسارة",
+    "realized_pnl": -438.36,
+    "realized_r": -1.099,
+    "exit_price": 14.46
+  },
+  {
+    "id": "MFPC-2026-07-14",
+    "symbol": "MFPC",
+    "name_ar": "مصر للاسمدة (موبكو)",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-07-14",
+    "status": "closed",
+    "entry_ref": 38.6,
+    "entry": 38.6,
+    "entry_date": "2026-07-15",
+    "stop": 34.81,
+    "initial_stop": 34.81,
+    "tps": [
+      40.5,
+      42.39,
+      44.29
+    ],
+    "tp_hit": [
+      true,
+      true,
+      true
+    ],
+    "shares": 105,
+    "shares_open": 0,
+    "risk_egp": 397.95,
+    "max_hold": null,
+    "bars_held": 34,
+    "high_water": 46.56999969482422,
+    "exits": [
+      {
+        "date": "2026-08-17",
+        "price": 40.8,
+        "shares": 35,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-09-01",
+        "price": 42.39,
+        "shares": 35,
+        "reason": "tp2"
+      },
+      {
+        "date": "2026-09-02",
+        "price": 44.29,
+        "shares": 35,
+        "reason": "tp3"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-02",
+    "last_close": 46.5,
+    "unrealized_pnl": 322.98,
+    "unrealized_r": 0.81,
+    "note_ar": "تحقق الهدف الأخير ✅",
+    "bootstrap": true,
+    "closed_date": "2026-09-02",
+    "reason": "tp_final",
+    "reason_ar": "تحقق الهدف الأخير ✅",
+    "realized_pnl": 374.74,
+    "realized_r": 0.942,
+    "exit_price": 44.29
+  },
+  {
+    "id": "SKPC-2026-08-12",
+    "symbol": "SKPC",
+    "name_ar": "سيدى كرير للبتروكيماويات",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-08-12",
+    "status": "closed",
+    "entry_ref": 16.75,
+    "entry": 16.75,
+    "entry_date": "2026-08-13",
+    "stop": 15.65,
+    "initial_stop": 15.65,
+    "tps": [
+      17.3,
+      17.85,
+      18.39
+    ],
+    "tp_hit": [
+      true,
+      true,
+      true
+    ],
+    "shares": 363,
+    "shares_open": 0,
+    "risk_egp": 399.3,
+    "max_hold": null,
+    "bars_held": 14,
+    "high_water": 19.010000228881836,
+    "exits": [
+      {
+        "date": "2026-08-19",
+        "price": 17.3,
+        "shares": 121,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-08-19",
+        "price": 17.85,
+        "shares": 121,
+        "reason": "tp2"
+      },
+      {
+        "date": "2026-09-02",
+        "price": 18.39,
+        "shares": 121,
+        "reason": "tp3"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-02",
+    "last_close": 18.97,
+    "unrealized_pnl": 284.85,
+    "unrealized_r": 0.71,
+    "note_ar": "تحقق الهدف الأخير ✅",
+    "bootstrap": true,
+    "closed_date": "2026-09-02",
+    "reason": "tp_final",
+    "reason_ar": "تحقق الهدف الأخير ✅",
+    "realized_pnl": 347.86,
+    "realized_r": 0.871,
+    "exit_price": 18.39
   }
 ]
