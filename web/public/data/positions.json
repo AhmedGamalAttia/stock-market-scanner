@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T21:50:10+00:00",
+  "updated": "2026-09-04T09:51:13+00:00",
   "positions": [
     {
       "id": "COMI-2026-07-06",
@@ -27,7 +27,7 @@
       "shares_open": 26,
       "risk_egp": 390.78,
       "max_hold": null,
-      "bars_held": 40,
+      "bars_held": 41,
       "high_water": 142.88,
       "exits": [
         {
@@ -38,10 +38,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-02",
-      "last_close": 138.98,
-      "unrealized_pnl": 152.91,
-      "unrealized_r": 0.39,
+      "last_evaluated": "2026-09-03",
+      "last_close": 141.0,
+      "unrealized_pnl": 205.22,
+      "unrealized_r": 0.53,
       "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -71,7 +71,7 @@
       "shares_open": 92,
       "risk_egp": 397.44,
       "max_hold": null,
-      "bars_held": 40,
+      "bars_held": 41,
       "high_water": 25.4,
       "exits": [
         {
@@ -82,10 +82,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-02",
-      "last_close": 22.97,
-      "unrealized_pnl": 6.58,
-      "unrealized_r": 0.02,
+      "last_evaluated": "2026-09-03",
+      "last_close": 23.5,
+      "unrealized_pnl": 55.14,
+      "unrealized_r": 0.14,
       "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -115,14 +115,14 @@
       "shares_open": 52,
       "risk_egp": 392.6,
       "max_hold": null,
-      "bars_held": 33,
+      "bars_held": 34,
       "high_water": 103.87,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-02",
-      "last_close": 96.6,
-      "unrealized_pnl": -249.41,
-      "unrealized_r": -0.64,
+      "last_evaluated": "2026-09-03",
+      "last_close": 97.8,
+      "unrealized_pnl": -187.26,
+      "unrealized_r": -0.48,
       "note_ar": "دخول سابق بتاريخ 2026-07-16 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -152,14 +152,14 @@
       "shares_open": 86,
       "risk_egp": 399.04,
       "max_hold": null,
-      "bars_held": 20,
+      "bars_held": 21,
       "high_water": 28.79,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-02",
-      "last_close": 27.06,
-      "unrealized_pnl": -0.71,
-      "unrealized_r": -0.0,
+      "last_evaluated": "2026-09-03",
+      "last_close": 27.4,
+      "unrealized_pnl": 28.41,
+      "unrealized_r": 0.07,
       "note_ar": "دخول سابق بتاريخ 2026-08-05 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -189,7 +189,7 @@
       "shares_open": 109,
       "risk_egp": 359.7,
       "max_hold": null,
-      "bars_held": 41,
+      "bars_held": 42,
       "high_water": 25.6,
       "exits": [
         {
@@ -206,10 +206,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-02",
-      "last_close": 25.19,
-      "unrealized_pnl": 207.28,
-      "unrealized_r": 0.58,
+      "last_evaluated": "2026-09-03",
+      "last_close": 25.49,
+      "unrealized_pnl": 239.85,
+      "unrealized_r": 0.67,
       "note_ar": "دخول سابق بتاريخ 2026-07-06 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -239,7 +239,7 @@
       "shares_open": 23,
       "risk_egp": 396.75,
       "max_hold": null,
-      "bars_held": 76,
+      "bars_held": 77,
       "high_water": 43.9,
       "exits": [
         {
@@ -256,10 +256,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-02",
-      "last_close": 42.64,
-      "unrealized_pnl": 317.78,
-      "unrealized_r": 0.8,
+      "last_evaluated": "2026-09-03",
+      "last_close": 42.9,
+      "unrealized_pnl": 323.73,
+      "unrealized_r": 0.82,
       "note_ar": "دخول سابق بتاريخ 2026-05-14 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -289,7 +289,7 @@
       "shares_open": 88,
       "risk_egp": 398.64,
       "max_hold": null,
-      "bars_held": 40,
+      "bars_held": 41,
       "high_water": 10.4,
       "exits": [
         {
@@ -306,62 +306,48 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-02",
-      "last_close": 9.15,
-      "unrealized_pnl": 257.08,
-      "unrealized_r": 0.64,
+      "last_evaluated": "2026-09-03",
+      "last_close": 8.88,
+      "unrealized_pnl": 233.41,
+      "unrealized_r": 0.59,
       "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
     {
-      "id": "ALCN-2026-08-02",
-      "symbol": "ALCN",
-      "name_ar": "الاسكندرية للحاويات",
+      "id": "EXPA-2026-09-03",
+      "symbol": "EXPA",
+      "name_ar": "بنك تنمية الصادرات",
       "strategy": "kalman_supertrend",
-      "signal_date": "2026-08-02",
-      "status": "open",
-      "entry_ref": 30.19,
-      "entry": 30.19,
-      "entry_date": "2026-08-03",
-      "stop": 27.97,
-      "initial_stop": 27.97,
+      "signal_date": "2026-09-03",
+      "status": "pending",
+      "entry_ref": 21.59,
+      "entry": null,
+      "entry_date": null,
+      "stop": 19.91,
+      "initial_stop": 19.91,
       "tps": [
-        31.3,
-        32.41,
-        33.53
+        22.43,
+        23.27,
+        24.11
       ],
       "tp_hit": [
-        true,
-        true,
+        false,
+        false,
         false
       ],
-      "shares": 180,
-      "shares_open": 60,
-      "risk_egp": 399.6,
+      "shares": 238,
+      "shares_open": 238,
+      "risk_egp": null,
       "max_hold": null,
-      "bars_held": 22,
-      "high_water": 32.79999923706055,
-      "exits": [
-        {
-          "date": "2026-08-06",
-          "price": 31.3,
-          "shares": 60,
-          "reason": "tp1"
-        },
-        {
-          "date": "2026-08-23",
-          "price": 32.41,
-          "shares": 60,
-          "reason": "tp2"
-        }
-      ],
+      "bars_held": 0,
+      "high_water": null,
+      "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-02",
-      "last_close": 32.74,
-      "unrealized_pnl": 315.16,
-      "unrealized_r": 0.79,
-      "note_ar": "دخول سابق بتاريخ 2026-08-03 — للمتابعة فقط، مش دخول جديد",
-      "bootstrap": true
+      "last_evaluated": "2026-09-03",
+      "last_close": 21.59,
+      "unrealized_pnl": 0.0,
+      "unrealized_r": 0.0,
+      "note_ar": "فى انتظار الافتتاح لتنفيذ الدخول"
     }
   ]
 }

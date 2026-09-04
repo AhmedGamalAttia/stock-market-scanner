@@ -296,5 +296,67 @@
     "realized_pnl": 347.86,
     "realized_r": 0.871,
     "exit_price": 18.39
+  },
+  {
+    "id": "ALCN-2026-08-02",
+    "symbol": "ALCN",
+    "name_ar": "الاسكندرية للحاويات",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-08-02",
+    "status": "closed",
+    "entry_ref": 30.19,
+    "entry": 30.19,
+    "entry_date": "2026-08-03",
+    "stop": 27.97,
+    "initial_stop": 27.97,
+    "tps": [
+      31.3,
+      32.41,
+      33.53
+    ],
+    "tp_hit": [
+      true,
+      true,
+      true
+    ],
+    "shares": 180,
+    "shares_open": 0,
+    "risk_egp": 399.6,
+    "max_hold": null,
+    "bars_held": 23,
+    "high_water": 34.18000030517578,
+    "exits": [
+      {
+        "date": "2026-08-06",
+        "price": 31.3,
+        "shares": 60,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-08-23",
+        "price": 32.41,
+        "shares": 60,
+        "reason": "tp2"
+      },
+      {
+        "date": "2026-09-03",
+        "price": 33.53,
+        "shares": 60,
+        "reason": "tp3"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-03",
+    "last_close": 33.2,
+    "unrealized_pnl": 315.16,
+    "unrealized_r": 0.79,
+    "note_ar": "تحقق الهدف الأخير ✅",
+    "bootstrap": true,
+    "closed_date": "2026-09-03",
+    "reason": "tp_final",
+    "reason_ar": "تحقق الهدف الأخير ✅",
+    "realized_pnl": 355.13,
+    "realized_r": 0.889,
+    "exit_price": 33.53
   }
 ]
