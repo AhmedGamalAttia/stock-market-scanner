@@ -1,7 +1,7 @@
 {
   "strategy": "kalman_ma200",
   "label_ar": "كالمان سوبرترند + فلتر متوسط 200",
-  "generated_at": "2026-08-28T18:19:10+00:00",
+  "generated_at": "2026-09-04T10:50:22+00:00",
   "config": {
     "capital": 20000.0,
     "risk_pct": 0.02,
@@ -19,66 +19,66 @@
   },
   "period": {
     "from": "2021-08-29",
-    "to": "2026-08-26",
-    "in_sample_until": "2025-02-26"
+    "to": "2026-09-03",
+    "in_sample_until": "2025-03-04"
   },
   "aggregate": {
     "full": {
-      "n_trades": 382,
-      "win_rate": 0.6571,
-      "avg_r": 0.274,
+      "n_trades": 387,
+      "win_rate": 0.6615,
+      "avg_r": 0.283,
       "avg_win_r": 0.774,
-      "avg_loss_r": -0.684,
-      "profit_factor": 2.2,
-      "expectancy_egp": 109.91,
-      "total_pnl": 41987.09,
-      "avg_hold_bars": 24.4,
+      "avg_loss_r": -0.675,
+      "profit_factor": 2.27,
+      "expectancy_egp": 113.63,
+      "total_pnl": 43972.9,
+      "avg_hold_bars": 24.5,
       "best_r": 1.8,
-      "worst_r": -1.96,
+      "worst_r": -1.88,
       "exit_reasons": {
-        "tp_final": 195,
-        "trend_flip": 145,
+        "tp_final": 199,
+        "trend_flip": 146,
         "stop_hit": 42
       },
-      "tp1_hit_rate": 0.7775
+      "tp1_hit_rate": 0.7829
     },
     "in_sample": {
-      "n_trades": 239,
-      "win_rate": 0.6569,
-      "avg_r": 0.284,
-      "avg_win_r": 0.782,
-      "avg_loss_r": -0.671,
-      "profit_factor": 2.26,
-      "expectancy_egp": 113.97,
-      "total_pnl": 27238.84,
-      "avg_hold_bars": 24.7,
+      "n_trades": 242,
+      "win_rate": 0.657,
+      "avg_r": 0.283,
+      "avg_win_r": 0.783,
+      "avg_loss_r": -0.676,
+      "profit_factor": 2.25,
+      "expectancy_egp": 113.56,
+      "total_pnl": 27480.31,
+      "avg_hold_bars": 24.8,
       "best_r": 1.71,
       "worst_r": -1.58,
       "exit_reasons": {
-        "tp_final": 123,
+        "tp_final": 125,
         "trend_flip": 91,
-        "stop_hit": 25
+        "stop_hit": 26
       },
-      "tp1_hit_rate": 0.7824
+      "tp1_hit_rate": 0.781
     },
     "out_of_sample": {
-      "n_trades": 143,
-      "win_rate": 0.6573,
-      "avg_r": 0.257,
-      "avg_win_r": 0.759,
-      "avg_loss_r": -0.706,
-      "profit_factor": 2.09,
-      "expectancy_egp": 103.13,
-      "total_pnl": 14748.25,
-      "avg_hold_bars": 23.9,
+      "n_trades": 145,
+      "win_rate": 0.669,
+      "avg_r": 0.284,
+      "avg_win_r": 0.757,
+      "avg_loss_r": -0.674,
+      "profit_factor": 2.31,
+      "expectancy_egp": 113.74,
+      "total_pnl": 16492.59,
+      "avg_hold_bars": 24.0,
       "best_r": 1.8,
-      "worst_r": -1.96,
+      "worst_r": -1.88,
       "exit_reasons": {
-        "tp_final": 72,
-        "stop_hit": 17,
-        "trend_flip": 54
+        "tp_final": 74,
+        "trend_flip": 55,
+        "stop_hit": 16
       },
-      "tp1_hit_rate": 0.7692
+      "tp1_hit_rate": 0.7862
     }
   },
   "portfolio": {
@@ -88,10 +88,10 @@
         "win_rate": 0.6565,
         "avg_r": 0.261,
         "avg_win_r": 0.76,
-        "avg_loss_r": -0.693,
+        "avg_loss_r": -0.694,
         "profit_factor": 2.09,
-        "expectancy_egp": 103.42,
-        "total_pnl": 13547.52,
+        "expectancy_egp": 103.26,
+        "total_pnl": 13527.65,
         "avg_hold_bars": 24.3,
         "best_r": 1.71,
         "worst_r": -1.16,
@@ -101,11 +101,11 @@
           "stop_hit": 13
         },
         "tp1_hit_rate": 0.7481,
-        "total_return_pct": 0.6774,
+        "total_return_pct": 0.6764,
         "max_drawdown_pct": 0.0617,
-        "years": 4.07,
-        "cagr_pct": 0.1354,
-        "skipped_signals": 251,
+        "years": 4.11,
+        "cagr_pct": 0.134,
+        "skipped_signals": 256,
         "max_concurrent": 4
       },
       "equity_curve": [
@@ -626,43 +626,43 @@
           "equity": 34532.14
         },
         {
-          "date": "2026-08-19",
-          "equity": 34109.41
+          "date": "2026-08-20",
+          "equity": 34166.98
         },
         {
           "date": "2026-08-20",
-          "equity": 33744.25
+          "equity": 33970.25
         },
         {
-          "date": "2026-08-20",
-          "equity": 33547.52
+          "date": "2026-09-02",
+          "equity": 33527.65
         }
       ]
     },
     "out_of_sample": {
       "stats": {
         "n_trades": 52,
-        "win_rate": 0.6346,
-        "avg_r": 0.217,
-        "avg_win_r": 0.775,
-        "avg_loss_r": -0.751,
-        "profit_factor": 1.78,
-        "expectancy_egp": 85.34,
-        "total_pnl": 4437.43,
-        "avg_hold_bars": 22.6,
+        "win_rate": 0.6538,
+        "avg_r": 0.234,
+        "avg_win_r": 0.747,
+        "avg_loss_r": -0.734,
+        "profit_factor": 1.91,
+        "expectancy_egp": 91.64,
+        "total_pnl": 4765.49,
+        "avg_hold_bars": 22.3,
         "best_r": 0.94,
         "worst_r": -1.16,
         "exit_reasons": {
-          "tp_final": 27,
-          "stop_hit": 7,
-          "trend_flip": 18
+          "tp_final": 26,
+          "trend_flip": 20,
+          "stop_hit": 6
         },
-        "tp1_hit_rate": 0.7115,
-        "total_return_pct": 0.2219,
-        "max_drawdown_pct": 0.0387,
-        "years": 1.45,
-        "cagr_pct": 0.1487,
-        "skipped_signals": 91,
+        "tp1_hit_rate": 0.7308,
+        "total_return_pct": 0.2383,
+        "max_drawdown_pct": 0.039,
+        "years": 1.48,
+        "cagr_pct": 0.1552,
+        "skipped_signals": 93,
         "max_concurrent": 4
       },
       "equity_curve": [
@@ -675,208 +675,208 @@
           "equity": 20366.67
         },
         {
-          "date": "2025-03-24",
-          "equity": 20686.52
-        },
-        {
-          "date": "2025-04-06",
-          "equity": 20241.58
+          "date": "2025-04-08",
+          "equity": 20477.74
         },
         {
           "date": "2025-04-08",
-          "equity": 20075.58
+          "equity": 20613.92
+        },
+        {
+          "date": "2025-04-08",
+          "equity": 20447.92
         },
         {
           "date": "2025-04-27",
-          "equity": 20399.45
+          "equity": 20771.79
         },
         {
           "date": "2025-05-13",
-          "equity": 20766.01
+          "equity": 20952.56
         },
         {
-          "date": "2025-05-13",
-          "equity": 20946.78
+          "date": "2025-05-19",
+          "equity": 21294.71
         },
         {
           "date": "2025-06-03",
-          "equity": 21296.65
+          "equity": 21644.58
         },
         {
           "date": "2025-06-10",
-          "equity": 21637.78
+          "equity": 21985.71
         },
         {
           "date": "2025-06-15",
-          "equity": 21663.14
+          "equity": 22011.07
         },
         {
           "date": "2025-06-15",
-          "equity": 21228.45
+          "equity": 21576.38
         },
         {
           "date": "2025-06-29",
-          "equity": 21559.67
+          "equity": 21907.6
         },
         {
           "date": "2025-07-02",
-          "equity": 21934.53
+          "equity": 22282.46
         },
         {
           "date": "2025-07-27",
-          "equity": 22257.01
+          "equity": 22604.94
         },
         {
           "date": "2025-08-20",
-          "equity": 22041.3
+          "equity": 22389.23
         },
         {
           "date": "2025-09-07",
-          "equity": 22084.25
+          "equity": 22432.18
         },
         {
           "date": "2025-09-08",
-          "equity": 21847.29
+          "equity": 22195.22
         },
         {
           "date": "2025-09-08",
-          "equity": 21474.56
+          "equity": 21822.49
         },
         {
           "date": "2025-10-02",
-          "equity": 21838.92
+          "equity": 22186.85
         },
         {
           "date": "2025-10-15",
-          "equity": 22178.4
+          "equity": 22526.33
         },
         {
           "date": "2025-10-22",
-          "equity": 22517.27
+          "equity": 22865.2
         },
         {
           "date": "2025-10-23",
-          "equity": 22230.63
+          "equity": 22578.56
         },
         {
           "date": "2025-11-05",
-          "equity": 21767.5
+          "equity": 22115.43
         },
         {
           "date": "2025-11-09",
-          "equity": 22093.48
+          "equity": 22441.41
         },
         {
           "date": "2025-11-30",
-          "equity": 22277.69
+          "equity": 22625.62
         },
         {
           "date": "2025-12-07",
-          "equity": 22612.42
+          "equity": 22960.35
         },
         {
           "date": "2025-12-15",
-          "equity": 22960.26
+          "equity": 23308.19
         },
         {
           "date": "2025-12-22",
-          "equity": 23206.33
+          "equity": 23554.26
         },
         {
           "date": "2026-01-11",
-          "equity": 23568.33
+          "equity": 23916.26
         },
         {
           "date": "2026-01-18",
-          "equity": 23214.22
+          "equity": 23562.15
         },
         {
           "date": "2026-02-01",
-          "equity": 23122.66
+          "equity": 23470.59
         },
         {
           "date": "2026-02-03",
-          "equity": 23469.24
+          "equity": 23817.17
         },
         {
           "date": "2026-02-19",
-          "equity": 23400.18
+          "equity": 23748.11
         },
         {
           "date": "2026-03-04",
-          "equity": 23585.12
+          "equity": 23933.05
         },
         {
           "date": "2026-03-12",
-          "equity": 23359.18
+          "equity": 23707.11
         },
         {
           "date": "2026-03-29",
-          "equity": 22932.57
+          "equity": 23280.5
         },
         {
           "date": "2026-04-19",
-          "equity": 23283.89
+          "equity": 23631.82
         },
         {
           "date": "2026-04-23",
-          "equity": 23651.37
+          "equity": 23999.3
         },
         {
           "date": "2026-05-03",
-          "equity": 24002.96
+          "equity": 24350.89
         },
         {
           "date": "2026-05-06",
-          "equity": 24370.44
+          "equity": 24718.37
         },
         {
           "date": "2026-05-21",
-          "equity": 24585.35
+          "equity": 24933.28
         },
         {
           "date": "2026-06-02",
-          "equity": 24941.71
+          "equity": 25289.64
         },
         {
           "date": "2026-06-11",
-          "equity": 24501.67
+          "equity": 24849.6
         },
         {
           "date": "2026-06-14",
-          "equity": 24478.91
+          "equity": 24826.84
         },
         {
           "date": "2026-06-25",
-          "equity": 24824.79
+          "equity": 25172.72
         },
         {
           "date": "2026-06-28",
-          "equity": 24389.73
+          "equity": 24737.66
         },
         {
           "date": "2026-08-04",
-          "equity": 24735.17
+          "equity": 25083.1
         },
         {
           "date": "2026-08-06",
-          "equity": 25086.75
+          "equity": 25434.68
         },
         {
           "date": "2026-08-06",
-          "equity": 25422.05
-        },
-        {
-          "date": "2026-08-19",
-          "equity": 24999.32
+          "equity": 25769.98
         },
         {
           "date": "2026-08-20",
-          "equity": 24634.16
+          "equity": 25404.82
         },
         {
           "date": "2026-08-20",
-          "equity": 24437.43
+          "equity": 25208.09
+        },
+        {
+          "date": "2026-09-02",
+          "equity": 24765.49
         }
       ]
     }
@@ -2372,47 +2372,67 @@
     },
     {
       "date": "2026-08-04",
-      "equity": 60979.22
+      "equity": 62090.19
     },
     {
-      "date": "2026-08-04",
-      "equity": 61306.44
-    },
-    {
-      "date": "2026-08-06",
-      "equity": 61658.02
+      "date": "2026-08-05",
+      "equity": 61794.39
     },
     {
       "date": "2026-08-06",
-      "equity": 61971.98
+      "equity": 62145.97
     },
     {
       "date": "2026-08-06",
-      "equity": 62307.28
+      "equity": 62459.93
+    },
+    {
+      "date": "2026-08-06",
+      "equity": 62795.23
     },
     {
       "date": "2026-08-11",
-      "equity": 62633.01
+      "equity": 63120.96
     },
     {
       "date": "2026-08-12",
-      "equity": 62597.27
+      "equity": 63085.22
     },
     {
       "date": "2026-08-18",
-      "equity": 62971.71
-    },
-    {
-      "date": "2026-08-19",
-      "equity": 62548.98
+      "equity": 63459.66
     },
     {
       "date": "2026-08-20",
-      "equity": 62183.82
+      "equity": 63094.5
     },
     {
       "date": "2026-08-20",
-      "equity": 61987.09
+      "equity": 62897.77
+    },
+    {
+      "date": "2026-08-27",
+      "equity": 63012.07
+    },
+    {
+      "date": "2026-08-31",
+      "equity": 63362.64
+    },
+    {
+      "date": "2026-09-01",
+      "equity": 63715.19
+    },
+    {
+      "date": "2026-09-02",
+      "equity": 64077.21
+    },
+    {
+      "date": "2026-09-02",
+      "equity": 63634.61
+    },
+    {
+      "date": "2026-09-03",
+      "equity": 63972.9
     }
   ],
   "per_ticker": [
@@ -2534,43 +2554,43 @@
       }
     },
     {
-      "symbol": "PHDC",
+      "symbol": "ABUK",
       "full": {
-        "n_trades": 13,
-        "win_rate": 0.6923,
-        "avg_r": 0.409,
-        "avg_win_r": 0.829,
-        "avg_loss_r": -0.535,
-        "profit_factor": 3.48,
-        "expectancy_egp": 163.51,
-        "total_pnl": 2125.59,
-        "avg_hold_bars": 20.1,
-        "best_r": 0.93,
-        "worst_r": -0.7,
+        "n_trades": 8,
+        "win_rate": 0.875,
+        "avg_r": 0.649,
+        "avg_win_r": 0.907,
+        "avg_loss_r": -1.16,
+        "profit_factor": 5.36,
+        "expectancy_egp": 252.31,
+        "total_pnl": 2018.47,
+        "avg_hold_bars": 19,
+        "best_r": 1.71,
+        "worst_r": -1.16,
         "exit_reasons": {
-          "tp_final": 8,
-          "trend_flip": 4,
+          "trend_flip": 1,
+          "tp_final": 6,
           "stop_hit": 1
         },
-        "tp1_hit_rate": 0.8462
+        "tp1_hit_rate": 0.875
       },
       "out_of_sample": {
-        "n_trades": 5,
-        "win_rate": 0.8,
-        "avg_r": 0.441,
-        "avg_win_r": 0.726,
-        "avg_loss_r": -0.698,
-        "profit_factor": 4.16,
-        "expectancy_egp": 176.35,
-        "total_pnl": 881.77,
-        "avg_hold_bars": 16.6,
-        "best_r": 0.91,
-        "worst_r": -0.7,
+        "n_trades": 3,
+        "win_rate": 0.6667,
+        "avg_r": 0.154,
+        "avg_win_r": 0.812,
+        "avg_loss_r": -1.16,
+        "profit_factor": 1.29,
+        "expectancy_egp": 45.16,
+        "total_pnl": 135.49,
+        "avg_hold_bars": 17.7,
+        "best_r": 0.89,
+        "worst_r": -1.16,
         "exit_reasons": {
-          "trend_flip": 2,
-          "tp_final": 3
+          "stop_hit": 1,
+          "tp_final": 2
         },
-        "tp1_hit_rate": 0.8
+        "tp1_hit_rate": 0.6667
       }
     },
     {
@@ -2652,6 +2672,46 @@
       }
     },
     {
+      "symbol": "MFPC",
+      "full": {
+        "n_trades": 9,
+        "win_rate": 0.8889,
+        "avg_r": 0.507,
+        "avg_win_r": 0.706,
+        "avg_loss_r": -1.088,
+        "profit_factor": 5.18,
+        "expectancy_egp": 201.86,
+        "total_pnl": 1816.76,
+        "avg_hold_bars": 17.9,
+        "best_r": 0.93,
+        "worst_r": -1.09,
+        "exit_reasons": {
+          "trend_flip": 3,
+          "stop_hit": 1,
+          "tp_final": 5
+        },
+        "tp1_hit_rate": 0.8889
+      },
+      "out_of_sample": {
+        "n_trades": 2,
+        "win_rate": 1.0,
+        "avg_r": 0.682,
+        "avg_win_r": 0.682,
+        "avg_loss_r": 0.0,
+        "profit_factor": null,
+        "expectancy_egp": 271.4,
+        "total_pnl": 542.79,
+        "avg_hold_bars": 25.5,
+        "best_r": 0.91,
+        "worst_r": 0.45,
+        "exit_reasons": {
+          "trend_flip": 1,
+          "tp_final": 1
+        },
+        "tp1_hit_rate": 1.0
+      }
+    },
+    {
       "symbol": "CANA",
       "full": {
         "n_trades": 5,
@@ -2671,61 +2731,101 @@
         "tp1_hit_rate": 1.0
       },
       "out_of_sample": {
-        "n_trades": 3,
+        "n_trades": 2,
         "win_rate": 1.0,
-        "avg_r": 0.884,
-        "avg_win_r": 0.884,
+        "avg_r": 0.867,
+        "avg_win_r": 0.867,
         "avg_loss_r": 0.0,
         "profit_factor": null,
-        "expectancy_egp": 353.01,
-        "total_pnl": 1059.03,
-        "avg_hold_bars": 22.7,
-        "best_r": 0.92,
+        "expectancy_egp": 346.24,
+        "total_pnl": 692.47,
+        "avg_hold_bars": 11,
+        "best_r": 0.9,
         "worst_r": 0.83,
         "exit_reasons": {
-          "tp_final": 3
+          "tp_final": 2
         },
         "tp1_hit_rate": 1.0
       }
     },
     {
-      "symbol": "ABUK",
+      "symbol": "ISPH",
       "full": {
-        "n_trades": 7,
-        "win_rate": 0.8571,
-        "avg_r": 0.614,
-        "avg_win_r": 0.91,
-        "avg_loss_r": -1.16,
-        "profit_factor": 4.6,
-        "expectancy_egp": 237.99,
-        "total_pnl": 1665.92,
-        "avg_hold_bars": 16.9,
-        "best_r": 1.71,
-        "worst_r": -1.16,
+        "n_trades": 10,
+        "win_rate": 0.7,
+        "avg_r": 0.424,
+        "avg_win_r": 0.724,
+        "avg_loss_r": -0.277,
+        "profit_factor": 6.1,
+        "expectancy_egp": 169.33,
+        "total_pnl": 1693.34,
+        "avg_hold_bars": 23.8,
+        "best_r": 0.92,
+        "worst_r": -0.72,
         "exit_reasons": {
-          "trend_flip": 1,
           "tp_final": 5,
-          "stop_hit": 1
+          "trend_flip": 5
         },
-        "tp1_hit_rate": 0.8571
+        "tp1_hit_rate": 0.9
       },
       "out_of_sample": {
-        "n_trades": 2,
-        "win_rate": 0.5,
-        "avg_r": -0.214,
-        "avg_win_r": 0.732,
-        "avg_loss_r": -1.16,
-        "profit_factor": 0.53,
-        "expectancy_egp": -108.53,
-        "total_pnl": -217.06,
-        "avg_hold_bars": 9.5,
-        "best_r": 0.73,
-        "worst_r": -1.16,
+        "n_trades": 6,
+        "win_rate": 0.8333,
+        "avg_r": 0.427,
+        "avg_win_r": 0.656,
+        "avg_loss_r": -0.717,
+        "profit_factor": 4.57,
+        "expectancy_egp": 170.5,
+        "total_pnl": 1023.02,
+        "avg_hold_bars": 28.5,
+        "best_r": 0.92,
+        "worst_r": -0.72,
         "exit_reasons": {
-          "stop_hit": 1,
-          "tp_final": 1
+          "tp_final": 3,
+          "trend_flip": 3
         },
-        "tp1_hit_rate": 0.5
+        "tp1_hit_rate": 0.8333
+      }
+    },
+    {
+      "symbol": "PHDC",
+      "full": {
+        "n_trades": 14,
+        "win_rate": 0.6429,
+        "avg_r": 0.301,
+        "avg_win_r": 0.829,
+        "avg_loss_r": -0.65,
+        "profit_factor": 2.3,
+        "expectancy_egp": 120.21,
+        "total_pnl": 1682.99,
+        "avg_hold_bars": 19.5,
+        "best_r": 0.93,
+        "worst_r": -1.11,
+        "exit_reasons": {
+          "tp_final": 8,
+          "trend_flip": 4,
+          "stop_hit": 2
+        },
+        "tp1_hit_rate": 0.7857
+      },
+      "out_of_sample": {
+        "n_trades": 6,
+        "win_rate": 0.6667,
+        "avg_r": 0.183,
+        "avg_win_r": 0.726,
+        "avg_loss_r": -0.904,
+        "profit_factor": 1.61,
+        "expectancy_egp": 73.2,
+        "total_pnl": 439.17,
+        "avg_hold_bars": 15.8,
+        "best_r": 0.91,
+        "worst_r": -1.11,
+        "exit_reasons": {
+          "trend_flip": 2,
+          "tp_final": 3,
+          "stop_hit": 1
+        },
+        "tp1_hit_rate": 0.6667
       }
     },
     {
@@ -2808,45 +2908,6 @@
       }
     },
     {
-      "symbol": "ISPH",
-      "full": {
-        "n_trades": 9,
-        "win_rate": 0.6667,
-        "avg_r": 0.439,
-        "avg_win_r": 0.797,
-        "avg_loss_r": -0.277,
-        "profit_factor": 5.76,
-        "expectancy_egp": 175.45,
-        "total_pnl": 1579.04,
-        "avg_hold_bars": 24.6,
-        "best_r": 0.92,
-        "worst_r": -0.72,
-        "exit_reasons": {
-          "tp_final": 5,
-          "trend_flip": 4
-        },
-        "tp1_hit_rate": 0.8889
-      },
-      "out_of_sample": {
-        "n_trades": 5,
-        "win_rate": 0.8,
-        "avg_r": 0.455,
-        "avg_win_r": 0.748,
-        "avg_loss_r": -0.717,
-        "profit_factor": 4.17,
-        "expectancy_egp": 181.74,
-        "total_pnl": 908.72,
-        "avg_hold_bars": 30.8,
-        "best_r": 0.92,
-        "worst_r": -0.72,
-        "exit_reasons": {
-          "tp_final": 3,
-          "trend_flip": 2
-        },
-        "tp1_hit_rate": 0.8
-      }
-    },
-    {
       "symbol": "COMI",
       "full": {
         "n_trades": 14,
@@ -2883,45 +2944,6 @@
           "tp_final": 3
         },
         "tp1_hit_rate": 0.8333
-      }
-    },
-    {
-      "symbol": "MFPC",
-      "full": {
-        "n_trades": 8,
-        "win_rate": 0.875,
-        "avg_r": 0.456,
-        "avg_win_r": 0.677,
-        "avg_loss_r": -1.088,
-        "profit_factor": 4.34,
-        "expectancy_egp": 181.84,
-        "total_pnl": 1454.74,
-        "avg_hold_bars": 15.8,
-        "best_r": 0.93,
-        "worst_r": -1.09,
-        "exit_reasons": {
-          "trend_flip": 3,
-          "stop_hit": 1,
-          "tp_final": 4
-        },
-        "tp1_hit_rate": 0.875
-      },
-      "out_of_sample": {
-        "n_trades": 1,
-        "win_rate": 1.0,
-        "avg_r": 0.453,
-        "avg_win_r": 0.453,
-        "avg_loss_r": 0.0,
-        "profit_factor": null,
-        "expectancy_egp": 180.77,
-        "total_pnl": 180.77,
-        "avg_hold_bars": 16,
-        "best_r": 0.45,
-        "worst_r": 0.45,
-        "exit_reasons": {
-          "trend_flip": 1
-        },
-        "tp1_hit_rate": 1.0
       }
     },
     {
@@ -2984,19 +3006,19 @@
         "tp1_hit_rate": 1.0
       },
       "out_of_sample": {
-        "n_trades": 3,
+        "n_trades": 2,
         "win_rate": 1.0,
-        "avg_r": 0.832,
-        "avg_win_r": 0.832,
+        "avg_r": 0.847,
+        "avg_win_r": 0.847,
         "avg_loss_r": 0.0,
         "profit_factor": null,
-        "expectancy_egp": 331.87,
-        "total_pnl": 995.61,
-        "avg_hold_bars": 23.7,
+        "expectancy_egp": 337.88,
+        "total_pnl": 675.76,
+        "avg_hold_bars": 26,
         "best_r": 0.88,
-        "worst_r": 0.8,
+        "worst_r": 0.82,
         "exit_reasons": {
-          "tp_final": 3
+          "tp_final": 2
         },
         "tp1_hit_rate": 1.0
       }
@@ -3126,23 +3148,22 @@
         "tp1_hit_rate": 0.7778
       },
       "out_of_sample": {
-        "n_trades": 5,
-        "win_rate": 0.6,
-        "avg_r": 0.306,
+        "n_trades": 4,
+        "win_rate": 0.75,
+        "avg_r": 0.661,
         "avg_win_r": 0.9,
-        "avg_loss_r": -0.586,
-        "profit_factor": 2.3,
-        "expectancy_egp": 122.05,
-        "total_pnl": 610.26,
-        "avg_hold_bars": 19.6,
+        "avg_loss_r": -0.057,
+        "profit_factor": 47.36,
+        "expectancy_egp": 263.8,
+        "total_pnl": 1055.2,
+        "avg_hold_bars": 18.5,
         "best_r": 0.91,
-        "worst_r": -1.12,
+        "worst_r": -0.06,
         "exit_reasons": {
-          "stop_hit": 1,
           "tp_final": 3,
           "trend_flip": 1
         },
-        "tp1_hit_rate": 0.8
+        "tp1_hit_rate": 1.0
       }
     },
     {
@@ -3660,6 +3681,47 @@
       }
     },
     {
+      "symbol": "ALCN",
+      "full": {
+        "n_trades": 14,
+        "win_rate": 0.5714,
+        "avg_r": 0.079,
+        "avg_win_r": 0.687,
+        "avg_loss_r": -0.731,
+        "profit_factor": 1.25,
+        "expectancy_egp": 31.65,
+        "total_pnl": 443.16,
+        "avg_hold_bars": 23.9,
+        "best_r": 0.95,
+        "worst_r": -1.14,
+        "exit_reasons": {
+          "tp_final": 5,
+          "trend_flip": 6,
+          "stop_hit": 3
+        },
+        "tp1_hit_rate": 0.7857
+      },
+      "out_of_sample": {
+        "n_trades": 4,
+        "win_rate": 0.5,
+        "avg_r": -0.084,
+        "avg_win_r": 0.586,
+        "avg_loss_r": -0.753,
+        "profit_factor": 0.78,
+        "expectancy_egp": -33.09,
+        "total_pnl": -132.35,
+        "avg_hold_bars": 25.5,
+        "best_r": 0.85,
+        "worst_r": -0.94,
+        "exit_reasons": {
+          "trend_flip": 2,
+          "stop_hit": 1,
+          "tp_final": 1
+        },
+        "tp1_hit_rate": 0.75
+      }
+    },
+    {
       "symbol": "SKPC",
       "full": {
         "n_trades": 10,
@@ -3738,43 +3800,85 @@
       }
     },
     {
-      "symbol": "ALCN",
+      "symbol": "MTIE",
       "full": {
-        "n_trades": 13,
-        "win_rate": 0.5385,
-        "avg_r": 0.02,
-        "avg_win_r": 0.664,
-        "avg_loss_r": -0.731,
-        "profit_factor": 1.06,
-        "expectancy_egp": 8.07,
-        "total_pnl": 104.87,
-        "avg_hold_bars": 23.8,
+        "n_trades": 11,
+        "win_rate": 0.5455,
+        "avg_r": -0.028,
+        "avg_win_r": 0.536,
+        "avg_loss_r": -0.704,
+        "profit_factor": 0.91,
+        "expectancy_egp": -11.03,
+        "total_pnl": -121.3,
+        "avg_hold_bars": 28.3,
         "best_r": 0.95,
-        "worst_r": -1.14,
+        "worst_r": -1.05,
         "exit_reasons": {
-          "tp_final": 4,
-          "trend_flip": 6,
-          "stop_hit": 3
+          "tp_final": 3,
+          "stop_hit": 2,
+          "trend_flip": 6
         },
-        "tp1_hit_rate": 0.7692
+        "tp1_hit_rate": 0.7273
       },
       "out_of_sample": {
-        "n_trades": 3,
-        "win_rate": 0.3333,
-        "avg_r": -0.394,
-        "avg_win_r": 0.323,
-        "avg_loss_r": -0.753,
-        "profit_factor": 0.21,
-        "expectancy_egp": -156.88,
-        "total_pnl": -470.64,
-        "avg_hold_bars": 26,
-        "best_r": 0.32,
-        "worst_r": -0.94,
+        "n_trades": 4,
+        "win_rate": 0.75,
+        "avg_r": 0.124,
+        "avg_win_r": 0.412,
+        "avg_loss_r": -0.74,
+        "profit_factor": 1.67,
+        "expectancy_egp": 49.63,
+        "total_pnl": 198.52,
+        "avg_hold_bars": 25.2,
+        "best_r": 0.88,
+        "worst_r": -0.74,
         "exit_reasons": {
           "trend_flip": 2,
+          "tp_final": 1,
           "stop_hit": 1
         },
-        "tp1_hit_rate": 0.6667
+        "tp1_hit_rate": 1.0
+      }
+    },
+    {
+      "symbol": "CCAP",
+      "full": {
+        "n_trades": 13,
+        "win_rate": 0.4615,
+        "avg_r": -0.042,
+        "avg_win_r": 0.833,
+        "avg_loss_r": -0.792,
+        "profit_factor": 0.9,
+        "expectancy_egp": -16.83,
+        "total_pnl": -218.85,
+        "avg_hold_bars": 23.5,
+        "best_r": 0.94,
+        "worst_r": -1.21,
+        "exit_reasons": {
+          "tp_final": 5,
+          "trend_flip": 5,
+          "stop_hit": 3
+        },
+        "tp1_hit_rate": 0.6154
+      },
+      "out_of_sample": {
+        "n_trades": 5,
+        "win_rate": 0.6,
+        "avg_r": 0.023,
+        "avg_win_r": 0.751,
+        "avg_loss_r": -1.07,
+        "profit_factor": 1.05,
+        "expectancy_egp": 8.98,
+        "total_pnl": 44.88,
+        "avg_hold_bars": 26.2,
+        "best_r": 0.92,
+        "worst_r": -1.09,
+        "exit_reasons": {
+          "stop_hit": 2,
+          "trend_flip": 1,
+          "tp_final": 2
+        },
+        "tp1_hit_rate": 0.6
       }
     },
     {
@@ -3900,47 +4004,6 @@
       }
     },
     {
-      "symbol": "CCAP",
-      "full": {
-        "n_trades": 12,
-        "win_rate": 0.4167,
-        "avg_r": -0.119,
-        "avg_win_r": 0.824,
-        "avg_loss_r": -0.792,
-        "profit_factor": 0.74,
-        "expectancy_egp": -47.45,
-        "total_pnl": -569.42,
-        "avg_hold_bars": 22.7,
-        "best_r": 0.94,
-        "worst_r": -1.21,
-        "exit_reasons": {
-          "tp_final": 4,
-          "trend_flip": 5,
-          "stop_hit": 3
-        },
-        "tp1_hit_rate": 0.5833
-      },
-      "out_of_sample": {
-        "n_trades": 4,
-        "win_rate": 0.5,
-        "avg_r": -0.191,
-        "avg_win_r": 0.688,
-        "avg_loss_r": -1.07,
-        "profit_factor": 0.64,
-        "expectancy_egp": -76.42,
-        "total_pnl": -305.69,
-        "avg_hold_bars": 24.2,
-        "best_r": 0.92,
-        "worst_r": -1.09,
-        "exit_reasons": {
-          "stop_hit": 2,
-          "trend_flip": 1,
-          "tp_final": 1
-        },
-        "tp1_hit_rate": 0.5
-      }
-    },
-    {
       "symbol": "FAITA",
       "full": {
         "n_trades": 7,
@@ -3977,47 +4040,6 @@
           "stop_hit": 1
         },
         "tp1_hit_rate": 0.0
-      }
-    },
-    {
-      "symbol": "MTIE",
-      "full": {
-        "n_trades": 12,
-        "win_rate": 0.5,
-        "avg_r": -0.215,
-        "avg_win_r": 0.536,
-        "avg_loss_r": -0.967,
-        "profit_factor": 0.55,
-        "expectancy_egp": -86.0,
-        "total_pnl": -1031.98,
-        "avg_hold_bars": 26.2,
-        "best_r": 0.95,
-        "worst_r": -1.96,
-        "exit_reasons": {
-          "tp_final": 3,
-          "stop_hit": 3,
-          "trend_flip": 6
-        },
-        "tp1_hit_rate": 0.5833
-      },
-      "out_of_sample": {
-        "n_trades": 5,
-        "win_rate": 0.6,
-        "avg_r": -0.357,
-        "avg_win_r": 0.412,
-        "avg_loss_r": -1.51,
-        "profit_factor": 0.41,
-        "expectancy_egp": -142.43,
-        "total_pnl": -712.16,
-        "avg_hold_bars": 21,
-        "best_r": 0.88,
-        "worst_r": -1.96,
-        "exit_reasons": {
-          "trend_flip": 2,
-          "tp_final": 1,
-          "stop_hit": 2
-        },
-        "tp1_hit_rate": 0.6
       }
     },
     {
