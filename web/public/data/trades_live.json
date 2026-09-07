@@ -358,5 +358,67 @@
     "realized_pnl": 355.13,
     "realized_r": 0.889,
     "exit_price": 33.53
+  },
+  {
+    "id": "CIEB-2026-07-05",
+    "symbol": "CIEB",
+    "name_ar": "كريدى أجريكول مصر",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-07-05",
+    "status": "closed",
+    "entry_ref": 24.44,
+    "entry": 24.44,
+    "entry_date": "2026-07-06",
+    "stop": 23.34,
+    "initial_stop": 23.34,
+    "tps": [
+      24.99,
+      25.54,
+      26.09
+    ],
+    "tp_hit": [
+      true,
+      true,
+      true
+    ],
+    "shares": 327,
+    "shares_open": 0,
+    "risk_egp": 359.7,
+    "max_hold": null,
+    "bars_held": 43,
+    "high_water": 26.270000457763672,
+    "exits": [
+      {
+        "date": "2026-08-18",
+        "price": 24.99,
+        "shares": 109,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-08-18",
+        "price": 25.54,
+        "shares": 109,
+        "reason": "tp2"
+      },
+      {
+        "date": "2026-09-06",
+        "price": 26.09,
+        "shares": 109,
+        "reason": "tp3"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-06",
+    "last_close": 26.0,
+    "unrealized_pnl": 239.85,
+    "unrealized_r": 0.67,
+    "note_ar": "تحقق الهدف الأخير ✅",
+    "bootstrap": true,
+    "closed_date": "2026-09-06",
+    "reason": "tp_final",
+    "reason_ar": "تحقق الهدف الأخير ✅",
+    "realized_pnl": 294.33,
+    "realized_r": 0.818,
+    "exit_price": 26.09
   }
 ]
