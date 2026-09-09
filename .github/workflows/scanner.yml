@@ -49,7 +49,9 @@ jobs:
           LIVE_STRATEGY: kalman_ma200
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python main.py --bootstrap
+        # Manual "Run workflow" always sends a Telegram message (easy to test);
+        # scheduled runs only message when the data date advances (no spam).
+        run: python main.py --bootstrap ${{ github.event_name == 'workflow_dispatch' && '--notify' || '' }}
 
       - name: Commit & push data
         working-directory: .
