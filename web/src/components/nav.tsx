@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HalalToggle } from "./halal-context";
 
 const items = [
   { href: "/", label: "اليوم" },
@@ -18,18 +19,21 @@ export function Nav() {
           <span className="inline-block w-2.5 h-2.5 rounded-full bg-brand" />
           EGX Scanner
         </Link>
-        <ul className="flex items-center gap-0.5 text-sm overflow-x-auto">
-          {items.map((it) => (
-            <li key={it.href}>
-              <Link
-                href={it.href}
-                className="px-2.5 py-1.5 rounded-lg text-muted hover:text-text hover:bg-panel2 transition whitespace-nowrap"
-              >
-                {it.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center gap-2 min-w-0">
+          <ul className="flex items-center gap-0.5 text-sm overflow-x-auto">
+            {items.map((it) => (
+              <li key={it.href}>
+                <Link
+                  href={it.href}
+                  className="px-2.5 py-1.5 rounded-lg text-muted hover:text-text hover:bg-panel2 transition whitespace-nowrap"
+                >
+                  {it.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <HalalToggle />
+        </div>
       </nav>
     </header>
   );

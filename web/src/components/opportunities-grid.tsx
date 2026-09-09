@@ -4,54 +4,26 @@ import { useMemo, useState } from "react";
 import type { SignalWithStock } from "@/lib/types";
 import { OpportunityCard } from "./opportunity-card";
 
-type SharaFilter = "all" | "halal_only" | "exclude_haram";
 type RiskFilter = "all" | "محافظ" | "متوسط" | "جرىء";
 
+// ملاحظة: الفلترة الشرعية بتتم على مستوى الصفحة عبر المفتاح العام "حلال فقط"،
+// فالإشارات اللى بتوصل هنا متوافقة بالفعل. هنا بنفلتر بالمخاطرة والثقة فقط.
 export function OpportunitiesGrid({ signals }: { signals: SignalWithStock[] }) {
-  const [sharia, setSharia] = useState<SharaFilter>("all");
   const [risk, setRisk] = useState<RiskFilter>("all");
   const [minConf, setMinConf] = useState<number>(0);
 
   const filtered = useMemo(() => {
     return signals.filter((s) => {
-      const sh = s.stock?.sharia_status ?? null;
-      if (sharia === "halal_only" && sh !== "halal") return false;
-      if (sharia === "exclude_haram" && sh === "haram") return false;
       if (risk !== "all" && s.risk_class !== risk) return false;
       if (s.confidence != null && s.confidence < minConf) return false;
       return true;
     });
-  }, [signals, sharia, risk, minConf]);
+  }, [signals, risk, minConf]);
 
   return (
     <>
       <section className="panel p-4">
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-muted">الشريعة:</span>
-            <div className="flex bg-panel2 rounded-xl p-1 border border-border">
-              {(
-                [
-                  ["all", "الكل"],
-                  ["exclude_haram", "بدون المحرّم"],
-                  ["halal_only", "حلال فقط"],
-                ] as [SharaFilter, string][]
-              ).map(([val, lbl]) => (
-                <button
-                  key={val}
-                  onClick={() => setSharia(val)}
-                  className={`px-3 py-1.5 text-xs rounded-lg transition ${
-                    sharia === val
-                      ? "bg-brand text-bg font-medium"
-                      : "text-muted hover:text-text"
-                  }`}
-                >
-                  {lbl}
-                </button>
-              ))}
-            </div>
-          </div>
-
           <div className="flex items-center gap-2">
             <span className="text-xs text-muted">المخاطرة:</span>
             <div className="flex bg-panel2 rounded-xl p-1 border border-border">

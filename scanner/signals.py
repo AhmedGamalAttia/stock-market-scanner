@@ -24,6 +24,10 @@ TARGET_2_ATR_MULT = 4.0   # final exit,  R:R = 2.67  →  blended R:R = 2.0
 DEFAULT_CAPITAL = 20_000
 DEFAULT_RISK_PCT = 0.02   # 2% max loss per trade
 MAX_POSITION_PCT = 0.40   # never put more than 40% of capital in one stock
+# Hard cash cap per stock (user rule 2026): never buy more than this much of one
+# name, so the 20k account holds ≥4 names (4 × 5k = 20k) and one stock can't sink
+# the book. Binds before MAX_POSITION_PCT on a 20k account.
+MAX_POSITION_EGP = 5_000
 
 # Liquidity gate — minimum average daily traded value in EGP
 MIN_ADV_EGP = 50_000
@@ -200,7 +204,8 @@ def _position_size(entry: float, stop: float, capital: float, risk_pct: float) -
     max_loss_egp = capital * risk_pct
     shares_by_risk = int(max_loss_egp // risk_per_share)
     shares_by_capital = int((capital * MAX_POSITION_PCT) // entry)
-    shares = max(0, min(shares_by_risk, shares_by_capital))
+    shares_by_cash_cap = int(MAX_POSITION_EGP // entry)  # user's 5k-per-stock rule
+    shares = max(0, min(shares_by_risk, shares_by_capital, shares_by_cash_cap))
     position_value = round(shares * entry, 2)
     actual_loss = round(shares * risk_per_share, 2)
     return shares, position_value, actual_loss

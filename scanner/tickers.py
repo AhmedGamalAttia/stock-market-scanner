@@ -79,6 +79,18 @@ def sharia_for(symbol: str) -> str:
     return "mixed"
 
 
+def is_compliant(symbol: str) -> bool:
+    """التوافق الشرعى المعتمد فى الأداة: الحلال الصافى فقط.
+
+    قرار المستخدم (٢٠٢٦): "مختلط" يُعامَل معاملة غير المتوافق ويُستبعَد،
+    فالمراكز الورقية الجديدة تُفتح على الأسهم الحلال فقط."""
+    return sharia_for(symbol) == "halal"
+
+
+def compliant_symbols() -> list[str]:
+    return [s for s in list_symbols() if is_compliant(s)]
+
+
 def stock_info(symbol: str) -> dict | None:
     for row in metadata_rows():
         if row["symbol"] == symbol:

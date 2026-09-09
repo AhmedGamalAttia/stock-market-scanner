@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Nav } from "@/components/nav";
+import { HalalProvider } from "@/components/halal-context";
 
 export const metadata: Metadata = {
   title: "EGX Scanner — ماسح البورصة المصرية",
@@ -26,11 +27,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen bg-bg text-text">
-        <Nav />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6">{children}</main>
-        <footer className="max-w-7xl mx-auto px-4 sm:px-6 py-10 text-center text-xs text-muted">
-          هذه الأداة للأغراض التعليمية فقط ولا تُعدّ توصية بشراء أو بيع. تداول على مسؤوليتك.
-        </footer>
+        <HalalProvider>
+          <Nav />
+          <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6">{children}</main>
+          <footer className="max-w-7xl mx-auto px-4 sm:px-6 py-10 text-center text-xs text-muted">
+            هذه الأداة للأغراض التعليمية فقط ولا تُعدّ توصية بشراء أو بيع. تداول على مسؤوليتك.
+          </footer>
+        </HalalProvider>
       </body>
     </html>
   );

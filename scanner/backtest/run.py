@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import sys
 from datetime import datetime, timezone
+from pathlib import Path
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -29,7 +30,7 @@ from backtest.metrics import equity_curve, portfolio_sim, summarize, trade_to_di
 from paths import BACKTEST_DETAIL_DIR, BACKTEST_DIR
 from store_json import read_prices, write_json
 from strategies import ALL_STRATEGIES, get_strategy
-from tickers import list_symbols
+from tickers import compliant_symbols, list_symbols
 
 MIN_OOS_TRADES = 30
 
@@ -40,6 +41,24 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--split", type=float, default=0.7, help="in-sample fraction of the date range")
     p.add_argument("--max-concurrent", type=int, default=4)
     p.add_argument("--min-score", type=int, default=30)
+    p.add_argument(
+        "--halal-only",
+        action="store_true",
+        help="Restrict the universe to fully-halal stocks (what the live tool actually trades)",
+    )
+    p.add_argument(
+        "--out-dir",
+        default=None,
+        help="Where to write the report JSONs (default: web/public/data/backtest). "
+        "Use a scratch dir to avoid overwriting the published site data.",
+    )
+    p.add_argument(
+        "--recommend",
+        default=None,
+        help="Force this strategy as the recommended/live one (overrides the "
+        "automatic return/drawdown pick). Use to pin a deliberately chosen "
+        "strategy, e.g. a beginner-friendly one over the raw calmar winner.",
+    )
     return p.parse_args()
 
 
@@ -55,8 +74,9 @@ def main() -> int:
     args = parse_args()
     cfg = BacktestConfig()
     names = [s.strip() for s in args.strategies.split(",") if s.strip()]
+    out_dir = Path(args.out_dir) if args.out_dir else BACKTEST_DIR
 
-    symbols = list_symbols()
+    symbols = compliant_symbols() if args.halal_only else list_symbols()
     frames = {s: read_prices(s) for s in symbols}
     frames = {s: df for s, df in frames.items() if df is not None and len(df) >= 80}
     if not frames:
@@ -65,7 +85,11 @@ def main() -> int:
     split_date = _split_date(list(frames.values()), args.split)
     first = min(df.index[0] for df in frames.values()).date().isoformat()
     last = max(df.index[-1] for df in frames.values()).date().isoformat()
-    print(f"=== Backtest ===  {len(frames)} tickers  {first} → {last}   in-sample ends {split_date}")
+    universe = "halal-only" if args.halal_only else "all"
+    print(
+        f"=== Backtest ({universe}) ===  {len(frames)} tickers  {first} → {last}   "
+        f"in-sample ends {split_date}   → {out_dir}"
+    )
 
     generated_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
     index: list[dict] = []
@@ -113,8 +137,8 @@ def main() -> int:
             "pooled_equity_curve": equity_curve(all_trades, cfg.capital),
             "per_ticker": sorted(per_ticker, key=lambda r: -(r["full"].get("total_pnl") or 0)),
         }
-        BACKTEST_DIR.mkdir(parents=True, exist_ok=True)
-        write_json(BACKTEST_DIR / f"{strat.name}.json", report)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        write_json(out_dir / f"{strat.name}.json", report)
         BACKTEST_DETAIL_DIR.mkdir(parents=True, exist_ok=True)
         write_json(
             BACKTEST_DETAIL_DIR / f"{strat.name}_trades.json",
@@ -157,16 +181,32 @@ def main() -> int:
     for r in index:
         r["oos_calmar"] = round(calmar(r), 2)
     best = max(pool, key=calmar) if pool else None
+    auto_pick = best["strategy"] if best else None
+
+    if args.recommend:
+        names_available = {r["strategy"] for r in index}
+        if args.recommend not in names_available:
+            print(f"!! --recommend '{args.recommend}' not among tested strategies {sorted(names_available)}")
+            return 2
+        recommended = args.recommend
+        selection_rule = (
+            f"اختيار مثبّت يدوياً: {args.recommend} (استقرار ونسبة نجاح أعلى للمبتدئ)"
+            f" — الاختيار التلقائى بالعائد/التراجع كان: {auto_pick}"
+        )
+    else:
+        recommended = auto_pick
+        selection_rule = (
+            f"أعلى نسبة عائد/تراجع خارج العينة على حساب 20 ألف (بحد أقصى {args.max_concurrent} مراكز)"
+            f" مع ≥{MIN_OOS_TRADES} صفقة"
+        )
+
     write_json(
-        BACKTEST_DIR / "index.json",
+        out_dir / "index.json",
         {
             "generated_at": generated_at,
             "period": {"from": first, "to": last, "in_sample_until": split_date},
-            "selection_rule": (
-                f"أعلى نسبة عائد/تراجع خارج العينة على حساب 20 ألف (بحد أقصى {args.max_concurrent} مراكز)"
-                f" مع ≥{MIN_OOS_TRADES} صفقة"
-            ),
-            "recommended": best["strategy"] if best else None,
+            "selection_rule": selection_rule,
+            "recommended": recommended,
             "strategies": index,
         },
     )
@@ -176,8 +216,9 @@ def main() -> int:
         f"calmar={r['oos_calmar']}"
         for r in index
     ))
-    if best:
-        print(f"\nRecommended live strategy (OOS return/drawdown): {best['strategy']}")
+    if recommended:
+        tag = "pinned" if args.recommend else "OOS return/drawdown"
+        print(f"\nRecommended live strategy ({tag}): {recommended}")
     return 0
 
 

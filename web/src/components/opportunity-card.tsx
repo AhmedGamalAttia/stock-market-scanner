@@ -14,6 +14,14 @@ export function OpportunityCard({ s }: { s: SignalWithStock }) {
   const sharia = shariaBadge(s.stock?.sharia_status ?? null);
   const upside = ((s.target_1 - s.entry) / s.entry) * 100;
   const riskPct = ((s.entry - s.stop_loss) / s.entry) * 100;
+  const shares = s.suggested_shares_20k ?? 0;
+  const profit1 = shares > 0 ? shares * (s.target_1 - s.entry) : null;
+  const profit2 = shares > 0 ? shares * (s.target_2 - s.entry) : null;
+  // خطة دخول آمنة على مرحلتين: نص الكمية عند الدخول، والنص التانى فقط لو أكّد
+  // (وصل نص الطريق للهدف الأول) — زيادة فى الرابح لا فى الخاسر، ووقف واحد للكل.
+  const stage1 = Math.ceil(shares / 2);
+  const stage2 = shares - stage1;
+  const addLevel = s.entry + 0.5 * (s.target_1 - s.entry);
 
   return (
     <Link
@@ -82,14 +90,37 @@ export function OpportunityCard({ s }: { s: SignalWithStock }) {
         )}
       </div>
 
-      {s.suggested_shares_20k != null && s.suggested_shares_20k > 0 && (
-        <div className="mt-3 p-2.5 bg-brand/5 border border-brand/20 rounded-lg text-xs">
-          <span className="text-muted">لـ 20 ألف ج: </span>
-          <span className="font-semibold">{s.suggested_shares_20k} سهم</span>
-          <span className="text-muted"> ≈ </span>
-          <span className="font-semibold">{fmtMoney(s.suggested_value_20k)}</span>
-          <span className="text-muted"> • أقصى خسارة </span>
-          <span className="text-danger font-semibold">{fmtMoney(s.max_loss_20k)}</span>
+      {shares > 0 && (
+        <div className="mt-3 p-2.5 bg-brand/5 border border-brand/20 rounded-lg text-xs space-y-1.5">
+          <div>
+            <span className="text-muted">تشتري: </span>
+            <span className="font-semibold">{shares} سهم</span>
+            <span className="text-muted"> ≈ </span>
+            <span className="font-semibold">{fmtMoney(s.suggested_value_20k)}</span>
+            <span className="text-muted"> (بحد أقصى 5 آلاف للسهم)</span>
+          </div>
+          <div className="flex items-center justify-between gap-2">
+            <span>
+              <span className="text-muted">لو نجحت: </span>
+              <span className="text-success font-semibold">+{fmtMoney(profit1)}</span>
+              <span className="text-muted"> → </span>
+              <span className="text-success font-semibold">+{fmtMoney(profit2)}</span>
+            </span>
+            <span>
+              <span className="text-muted">لو فشلت: </span>
+              <span className="text-danger font-semibold">{fmtMoney(s.max_loss_20k != null ? -s.max_loss_20k : null)}</span>
+            </span>
+          </div>
+
+          {stage2 > 0 && (
+            <div className="pt-1.5 border-t border-border/60 text-[11px] leading-relaxed text-muted">
+              <span className="text-text font-semibold">دخول على مرحلتين (اختيارى): </span>
+              اشترِ <span className="text-text font-semibold">{stage1}</span> دلوقتي، وزوّد{" "}
+              <span className="text-text font-semibold">{stage2}</span> بس لو طلع فوق{" "}
+              <span className="text-text font-semibold">{fmtNum(addLevel)}</span> (تأكيد). الوقف واحد للكل عند{" "}
+              <span className="text-danger font-semibold">{fmtNum(s.stop_loss)}</span> — ومتزوّدش تحته.
+            </div>
+          )}
         </div>
       )}
 
@@ -97,7 +128,7 @@ export function OpportunityCard({ s }: { s: SignalWithStock }) {
         <span>R:R = {(s.blended_rr ?? 0).toFixed(1)}</span>
         <span>صعود ~{upside.toFixed(1)}%</span>
         <span>مخاطرة ~{riskPct.toFixed(1)}%</span>
-        <span>{s.expected_days} جلسة</span>
+        <span>⏱ ~{s.expected_days} جلسة</span>
       </div>
     </Link>
   );

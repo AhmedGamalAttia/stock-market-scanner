@@ -44,7 +44,7 @@ from store_json import (
     write_stocks,
 )
 from strategies import DEFAULT_STRATEGY, get_strategy
-from tickers import list_symbols, metadata_rows, stock_info
+from tickers import is_compliant, list_symbols, metadata_rows, stock_info
 
 SLEEP_PER_CALL = 0.4  # be polite to Yahoo
 
@@ -154,6 +154,16 @@ def main() -> int:
     # Sort by confidence (expert layer's verdict), then by raw technical score
     signals.sort(key=lambda s: (s.confidence, s.score), reverse=True)
 
+    # Sharia policy: only fully-halal stocks become NEW paper positions. Mixed &
+    # haram signals are still published to latest.json (the site hides them behind
+    # the "حلال فقط" toggle, revealable on demand) but never open a paper trade.
+    compliant_signals = [s for s in signals if is_compliant(s.symbol)]
+    if len(compliant_signals) != len(signals):
+        print(
+            f"\n(sharia: {len(compliant_signals)}/{len(signals)} signals are halal — "
+            f"only those can open a new paper position)"
+        )
+
     print("\n--- Top opportunities ---")
     if not signals:
         print("(no signals today)")
@@ -188,7 +198,7 @@ def main() -> int:
         seeded = bootstrap(book, prepared, strategy, names)
         print(f"\nbootstrap: seeded {len(seeded)} open position(s) from the strategy's current state")
     closed_now = evaluate(book, prepared, strategy)
-    open_new(signals, book, names)
+    open_new(compliant_signals, book, names)
     closed_all = archive_closed(book)
     history = read_trades_live() + closed_all
     holds, exits = build_actions(book, data_date, history)

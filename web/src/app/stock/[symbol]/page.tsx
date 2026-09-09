@@ -15,6 +15,7 @@ import {
   fmtDate,
   fmtMoney,
   fmtNum,
+  isHalal,
   riskBadge,
   setupLabel,
   shariaBadge,
@@ -84,6 +85,23 @@ export default async function StockPage({ params }: { params: Promise<{ symbol: 
           <WatchlistButton symbol={symbol} />
         </div>
       </header>
+
+      {stock && !isHalal(stock.sharia_status) && (
+        <section
+          className={`panel p-4 ${
+            stock.sharia_status === "haram"
+              ? "border-danger/50 bg-danger/5"
+              : "border-warning/50 bg-warning/5"
+          }`}
+        >
+          <div className={stock.sharia_status === "haram" ? "text-danger" : "text-warning"}>
+            <b>{sharia.emoji} {sharia.label}.</b>{" "}
+            {stock.sharia_status === "haram"
+              ? "السهم ده مش ضمن قائمتك المتوافقة مع الشريعة، والأداة مش بتفتح عليه مراكز جديدة."
+              : "السهم ده مختلط ومُستبعَد من قائمتك المتوافقة (بيتعامل معاملة غير المتوافق)؛ راجعه بنفسك أو مع هيئة شرعية قبل أى قرار."}
+          </div>
+        </section>
+      )}
 
       <CandlesChart bars={bars} entry={entry} stop={stop} targets={targets} />
 

@@ -47,7 +47,10 @@ jobs:
       - name: Run backtest
         env:
           PYTHONIOENCODING: utf-8
-        run: python -m backtest.run
+        # Halal universe only (what the tool actually trades), and pin the live
+        # strategy to the beginner-friendly kalman_ma200 so the Performance page
+        # and the daily scanner agree.
+        run: python -m backtest.run --halal-only --recommend kalman_ma200
 
       - name: Commit & push
         working-directory: .

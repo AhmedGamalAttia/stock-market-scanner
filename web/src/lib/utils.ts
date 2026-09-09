@@ -211,6 +211,14 @@ export function shariaBadge(s: ShariaStatus | string | null | undefined): {
   }
 }
 
+/**
+ * التوافق الشرعى المعتمد فى الأداة: الحلال الصافى فقط.
+ * قرار المستخدم (٢٠٢٦): "مختلط" يُعامل معاملة غير المتوافق ويُستبعد افتراضياً.
+ */
+export function isHalal(s: ShariaStatus | string | null | undefined): boolean {
+  return s === "halal";
+}
+
 export function confidenceColor(c: number | null | undefined): string {
   if (c == null) return "text-muted";
   if (c >= 75) return "text-success";

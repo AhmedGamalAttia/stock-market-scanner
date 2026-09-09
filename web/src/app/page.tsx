@@ -1,17 +1,19 @@
 import Link from "next/link";
-import { ExitCard } from "@/components/exit-card";
-import { OpportunitiesGrid } from "@/components/opportunities-grid";
-import { PositionCard } from "@/components/position-card";
-import { getBacktestIndex, getLatest, getMeta } from "@/lib/data";
+import { TodayBoard } from "@/components/today-board";
+import { getAllStocks, getBacktestIndex, getLatest, getMeta } from "@/lib/data";
 import { fmtDate, fmtDateTime, fmtRelative, strategyLabel } from "@/lib/utils";
 
 export default async function Home() {
-  const [latest, meta, bt] = await Promise.all([getLatest(), getMeta(), getBacktestIndex()]);
+  const [latest, meta, bt, stocks] = await Promise.all([
+    getLatest(),
+    getMeta(),
+    getBacktestIndex(),
+    getAllStocks(),
+  ]);
   const buys = latest?.buys ?? [];
   const holds = latest?.holds ?? [];
   const exits = latest?.exits ?? [];
-  const urgent = holds.filter((h) => h.pending_exit);
-  const calm = holds.filter((h) => !h.pending_exit);
+  const statusBySymbol = Object.fromEntries(stocks.map((s) => [s.symbol, s.sharia_status]));
   const live = bt?.strategies.find((s) => s.strategy === (latest?.strategy ?? bt?.recommended));
 
   return (
@@ -77,67 +79,7 @@ export default async function Home() {
         />
       ) : (
         <>
-          {exits.length > 0 && (
-            <Section
-              emoji="🔴"
-              title={`اخرج (${exits.length})`}
-              hint="المراكز دى اتقفلت بقواعد الاستراتيجية فى جلسة اليوم. لو داخل فيها، اخرج على الافتتاح."
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                {exits.map((e) => (
-                  <ExitCard key={e.id} e={e} />
-                ))}
-              </div>
-            </Section>
-          )}
-
-          {urgent.length > 0 && (
-            <Section
-              emoji="⚠️"
-              title={`اخرج بكرة على الافتتاح (${urgent.length})`}
-              hint="الاتجاه انقلب على إقفال اليوم. الاستراتيجية بتبيع على افتتاح الجلسة الجاية."
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                {urgent.map((h) => (
-                  <PositionCard key={h.id} h={h} />
-                ))}
-              </div>
-            </Section>
-          )}
-
-          <Section
-            emoji="🟢"
-            title={`ادخل (${buys.length})`}
-            hint="إشارات جديدة على إقفال اليوم. الدخول على افتتاح الجلسة الجاية بسعر الدخول أو أقل، والوقف من أول لحظة."
-          >
-            {buys.length === 0 ? (
-              <div className="panel p-8 text-center">
-                <div className="font-semibold mb-1">مفيش إشارات دخول جديدة النهاردة</div>
-                <p className="text-muted text-sm max-w-lg mx-auto leading-relaxed">
-                  ده طبيعى — الاستراتيجية بتدخل لما الاتجاه ينقلب لصاعد بس، وده بيحصل كام مرة فى الشهر على كل
-                  الأسهم. الانتظار جزء من الخطة.
-                </p>
-              </div>
-            ) : (
-              <OpportunitiesGrid signals={buys} />
-            )}
-          </Section>
-
-          <Section
-            emoji="🔵"
-            title={`استمر (${calm.length})`}
-            hint="مراكز مفتوحة حسب الاستراتيجية. لو داخل فيها: سيبها شغالة، والتزم بالوقف المكتوب على كل كارت."
-          >
-            {calm.length === 0 ? (
-              <div className="panel p-6 text-center text-muted text-sm">مفيش مراكز مفتوحة حالياً.</div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                {calm.map((h) => (
-                  <PositionCard key={h.id} h={h} />
-                ))}
-              </div>
-            )}
-          </Section>
+          <TodayBoard buys={buys} holds={holds} exits={exits} statusBySymbol={statusBySymbol} />
 
           <section className="panel p-5 text-sm leading-relaxed">
             <h3 className="font-semibold mb-2">إزاى تستخدم الصفحة دى (3 قواعد)</h3>
@@ -159,30 +101,6 @@ export default async function Home() {
         </>
       )}
     </div>
-  );
-}
-
-function Section({
-  emoji,
-  title,
-  hint,
-  children,
-}: {
-  emoji: string;
-  title: string;
-  hint: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section className="space-y-3">
-      <div>
-        <h2 className="text-xl font-bold">
-          {emoji} {title}
-        </h2>
-        <p className="text-xs text-muted mt-0.5">{hint}</p>
-      </div>
-      {children}
-    </section>
   );
 }
 

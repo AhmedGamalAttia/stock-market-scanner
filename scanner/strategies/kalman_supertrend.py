@@ -109,11 +109,22 @@ class KalmanSupertrend(Strategy):
     breakeven_after_tp1 = False
     max_hold = None  # Pine has no time stop; the trend flip is the exit
 
-    def __init__(self, *, trend_filter: bool = False, use_tps: bool = True):
+    def __init__(
+        self,
+        *,
+        trend_filter: bool = False,
+        use_tps: bool = True,
+        single_tp: bool = False,
+        max_hold_bars: int | None = None,
+    ):
         self.trend_filter = trend_filter  # only buy flips above the 200-day MA
         self.use_tps = use_tps            # False → no ladder, ride until flip/stop
+        self.single_tp = single_tp        # True → sell 100% at target 1 (quick exit)
         if not use_tps:
             self.tp_fractions = ()
+        elif single_tp:
+            self.tp_fractions = (1.0,)    # whole position off at the first target
+        self.max_hold = max_hold_bars     # per-instance time stop in bars (None = none)
 
     def prepare(self, df: pd.DataFrame) -> pd.DataFrame:
         out = enrich(df)  # ma20/50/200, rsi, macd, atr14, vol_z, adv20 — for the expert layer
@@ -152,7 +163,7 @@ class KalmanSupertrend(Strategy):
         risk = close - stop
         out["stop"] = stop
         for k, rr in enumerate(TP_RR, start=1):
-            if self.use_tps:
+            if self.use_tps and (not self.single_tp or k == 1):
                 out[f"tp{k}"] = np.where(out["long_entry"], close + risk * rr, np.nan)
             else:
                 out[f"tp{k}"] = np.nan
@@ -192,11 +203,18 @@ class KalmanSupertrend(Strategy):
             setups.append("above_ma200")
         entry = float(last["close"])
         risk = entry - float(last["stop"])
-        if self.use_tps:
+        if self.use_tps and self.single_tp:
+            targets = [float(last["tp1"])]
+            lead = (
+                "انقلب اتجاه السوبرترند (بفلتر كالمان) من هابط لصاعد — "
+                "دخول عند الإغلاق، الوقف على خط السوبرترند، وخروج كامل عند الهدف الأول "
+                "(ربح سريع) أو بعد أسبوع بحد أقصى."
+            )
+        elif self.use_tps:
             targets = [float(last["tp1"]), float(last["tp2"]), float(last["tp3"])]
             lead = (
                 "انقلب اتجاه السوبرترند (بفلتر كالمان) من هابط لصاعد — "
-                "الدخول عند الإغلاق والوقف على خط السوبرترند نفسه، وجنى الأرباح على ثلاث مراحل."
+                "الدخول عند الإغلاق والوقف على خط السوبرترند نفسه, وجنى الأرباح على ثلاث مراحل."
             )
         else:
             # No ladder: show reference levels (1R / 2R / 3R) but the real exit is the flip.
@@ -217,7 +235,7 @@ class KalmanSupertrend(Strategy):
             entry=entry,
             stop=float(last["stop"]),
             targets=targets,
-            max_hold=None,
+            max_hold=self.max_hold,
         )
 
 
@@ -239,6 +257,20 @@ class KalmanRide(KalmanSupertrend):
 
     def __init__(self):
         super().__init__(trend_filter=False, use_tps=False)
+
+
+class KalmanQuick(KalmanSupertrend):
+    """Short-term variant answering "can I do 2-7 day trades?": same entry (only
+    above the 200-day MA, the safer flips), but sell the WHOLE position at the
+    first target (a small ~0.5R quick gain) and hard-exit after 5 bars (≈ one
+    week) if neither target nor stop is hit. Rules fixed in advance — NOT tuned
+    to the data — so the out-of-sample number is an honest estimate."""
+
+    name = "kalman_quick"
+    label_ar = "كالمان سريع — دخول وخروج قصير (أسبوع)"
+
+    def __init__(self):
+        super().__init__(trend_filter=True, use_tps=True, single_tp=True, max_hold_bars=5)
 
 
 def _kalman_context(last: pd.Series) -> tuple[list[str], int, list[str]]:

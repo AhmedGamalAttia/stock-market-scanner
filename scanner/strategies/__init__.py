@@ -10,13 +10,19 @@ DEFAULT_STRATEGY = "kalman_supertrend"
 
 def get_strategy(name: str) -> Strategy:
     from strategies.current_scoring import CurrentScoring
-    from strategies.kalman_supertrend import KalmanMA200, KalmanRide, KalmanSupertrend
+    from strategies.kalman_supertrend import (
+        KalmanMA200,
+        KalmanQuick,
+        KalmanRide,
+        KalmanSupertrend,
+    )
 
     registry: dict[str, type[Strategy]] = {
         CurrentScoring.name: CurrentScoring,
         KalmanSupertrend.name: KalmanSupertrend,
         KalmanMA200.name: KalmanMA200,
         KalmanRide.name: KalmanRide,
+        KalmanQuick.name: KalmanQuick,
     }
     aliases = {"current": CurrentScoring.name, "kalman": KalmanSupertrend.name}
     key = aliases.get(name, name)

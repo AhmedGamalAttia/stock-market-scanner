@@ -43,6 +43,10 @@ jobs:
       - name: Run scanner
         env:
           PYTHONIOENCODING: utf-8
+          # Halal tool: pin the beginner-friendly strategy (65% win, ~7% drawdown)
+          # rather than the raw return/drawdown winner. New paper positions open on
+          # fully-halal stocks only (see scanner/tickers.is_compliant).
+          LIVE_STRATEGY: kalman_ma200
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python main.py --bootstrap
