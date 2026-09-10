@@ -420,5 +420,67 @@
     "realized_pnl": 294.33,
     "realized_r": 0.818,
     "exit_price": 26.09
+  },
+  {
+    "id": "PRDC-2026-07-06",
+    "symbol": "PRDC",
+    "name_ar": "بايونيرز",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-07-06",
+    "status": "closed",
+    "entry_ref": 8.31,
+    "entry": 8.31,
+    "entry_date": "2026-07-07",
+    "stop": 6.8,
+    "initial_stop": 6.8,
+    "tps": [
+      9.06,
+      9.82,
+      10.57
+    ],
+    "tp_hit": [
+      true,
+      true,
+      false
+    ],
+    "shares": 264,
+    "shares_open": 0,
+    "risk_egp": 398.64,
+    "max_hold": null,
+    "bars_held": 43,
+    "high_water": 10.4,
+    "exits": [
+      {
+        "date": "2026-07-14",
+        "price": 9.06,
+        "shares": 88,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-07-15",
+        "price": 9.82,
+        "shares": 88,
+        "reason": "tp2"
+      },
+      {
+        "date": "2026-09-09",
+        "price": 8.4,
+        "shares": 88,
+        "reason": "trend_flip"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-09",
+    "last_close": 8.3,
+    "unrealized_pnl": 191.34,
+    "unrealized_r": 0.48,
+    "note_ar": "انقلب الاتجاه لهابط",
+    "bootstrap": true,
+    "closed_date": "2026-09-09",
+    "reason": "trend_flip",
+    "reason_ar": "انقلب الاتجاه لهابط",
+    "realized_pnl": 188.42,
+    "realized_r": 0.473,
+    "exit_price": 8.4
   }
 ]
