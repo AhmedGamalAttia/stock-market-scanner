@@ -482,5 +482,110 @@
     "realized_pnl": 188.42,
     "realized_r": 0.473,
     "exit_price": 8.4
+  },
+  {
+    "id": "COMI-2026-07-06",
+    "symbol": "COMI",
+    "name_ar": "البنك التجارى الدولى",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-07-06",
+    "status": "closed",
+    "entry_ref": 134.5,
+    "entry": 134.5,
+    "entry_date": "2026-07-07",
+    "stop": 124.48,
+    "initial_stop": 124.48,
+    "tps": [
+      139.51,
+      144.52,
+      149.53
+    ],
+    "tp_hit": [
+      true,
+      false,
+      false
+    ],
+    "shares": 39,
+    "shares_open": 0,
+    "risk_egp": 390.78,
+    "max_hold": null,
+    "bars_held": 47,
+    "high_water": 142.88,
+    "exits": [
+      {
+        "date": "2026-07-21",
+        "price": 139.51,
+        "shares": 13,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-09-15",
+        "price": 133.32,
+        "shares": 26,
+        "reason": "trend_flip"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-15",
+    "last_close": 132.5,
+    "unrealized_pnl": 6.33,
+    "unrealized_r": 0.02,
+    "note_ar": "انقلب الاتجاه لهابط",
+    "bootstrap": true,
+    "closed_date": "2026-09-15",
+    "reason": "trend_flip",
+    "reason_ar": "انقلب الاتجاه لهابط",
+    "realized_pnl": -7.65,
+    "realized_r": -0.02,
+    "exit_price": 133.32
+  },
+  {
+    "id": "MASR-2026-09-06",
+    "symbol": "MASR",
+    "name_ar": "مدينة مصر للاسكان",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-09-06",
+    "status": "closed",
+    "entry_ref": 8.7,
+    "entry": 8.75,
+    "entry_date": "2026-09-08",
+    "stop": 7.74,
+    "initial_stop": 7.74,
+    "tps": [
+      9.18,
+      9.66,
+      10.14
+    ],
+    "tp_hit": [
+      false,
+      false,
+      false
+    ],
+    "shares": 396,
+    "shares_open": 0,
+    "risk_egp": 399.96,
+    "max_hold": null,
+    "bars_held": 5,
+    "high_water": 8.880000114440918,
+    "exits": [
+      {
+        "date": "2026-09-15",
+        "price": 7.91,
+        "shares": 396,
+        "reason": "trend_flip"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-15",
+    "last_close": 7.88,
+    "unrealized_pnl": -345.17,
+    "unrealized_r": -0.86,
+    "note_ar": "انقلب الاتجاه لهابط",
+    "closed_date": "2026-09-15",
+    "reason": "trend_flip",
+    "reason_ar": "انقلب الاتجاه لهابط",
+    "realized_pnl": -359.03,
+    "realized_r": -0.898,
+    "exit_price": 7.91
   }
 ]

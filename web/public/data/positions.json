@@ -1,50 +1,6 @@
 {
-  "updated": "2026-09-15T22:24:32+00:00",
+  "updated": "2026-09-16T10:10:49+00:00",
   "positions": [
-    {
-      "id": "COMI-2026-07-06",
-      "symbol": "COMI",
-      "name_ar": "البنك التجارى الدولى",
-      "strategy": "kalman_supertrend",
-      "signal_date": "2026-07-06",
-      "status": "open",
-      "entry_ref": 134.5,
-      "entry": 134.5,
-      "entry_date": "2026-07-07",
-      "stop": 124.48,
-      "initial_stop": 124.48,
-      "tps": [
-        139.51,
-        144.52,
-        149.53
-      ],
-      "tp_hit": [
-        true,
-        false,
-        false
-      ],
-      "shares": 39,
-      "shares_open": 26,
-      "risk_egp": 390.78,
-      "max_hold": null,
-      "bars_held": 47,
-      "high_water": 142.88,
-      "exits": [
-        {
-          "date": "2026-07-21",
-          "price": 139.51,
-          "shares": 13,
-          "reason": "tp1"
-        }
-      ],
-      "pending_exit": "trend_flip",
-      "last_evaluated": "2026-09-14",
-      "last_close": 133.32,
-      "unrealized_pnl": 6.33,
-      "unrealized_r": 0.02,
-      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح",
-      "bootstrap": true
-    },
     {
       "id": "EFIH-2026-07-06",
       "symbol": "EFIH",
@@ -71,7 +27,7 @@
       "shares_open": 92,
       "risk_egp": 397.44,
       "max_hold": null,
-      "bars_held": 47,
+      "bars_held": 48,
       "high_water": 25.4,
       "exits": [
         {
@@ -82,10 +38,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-14",
-      "last_close": 23.0,
-      "unrealized_pnl": 9.33,
-      "unrealized_r": 0.02,
+      "last_evaluated": "2026-09-15",
+      "last_close": 23.52,
+      "unrealized_pnl": 56.97,
+      "unrealized_r": 0.14,
       "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -115,14 +71,14 @@
       "shares_open": 52,
       "risk_egp": 392.6,
       "max_hold": null,
-      "bars_held": 40,
+      "bars_held": 41,
       "high_water": 103.87,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-14",
-      "last_close": 96.75,
-      "unrealized_pnl": -241.64,
-      "unrealized_r": -0.62,
+      "last_evaluated": "2026-09-15",
+      "last_close": 95.94,
+      "unrealized_pnl": -283.6,
+      "unrealized_r": -0.72,
       "note_ar": "دخول سابق بتاريخ 2026-07-16 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -152,14 +108,14 @@
       "shares_open": 86,
       "risk_egp": 399.04,
       "max_hold": null,
-      "bars_held": 27,
+      "bars_held": 28,
       "high_water": 28.79,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-14",
-      "last_close": 26.68,
-      "unrealized_pnl": -33.26,
-      "unrealized_r": -0.08,
+      "last_evaluated": "2026-09-15",
+      "last_close": 27.0,
+      "unrealized_pnl": -5.85,
+      "unrealized_r": -0.01,
       "note_ar": "دخول سابق بتاريخ 2026-08-05 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -189,7 +145,7 @@
       "shares_open": 23,
       "risk_egp": 396.75,
       "max_hold": null,
-      "bars_held": 83,
+      "bars_held": 84,
       "high_water": 44.290000915527344,
       "exits": [
         {
@@ -206,10 +162,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-14",
-      "last_close": 41.57,
-      "unrealized_pnl": 293.27,
-      "unrealized_r": 0.74,
+      "last_evaluated": "2026-09-15",
+      "last_close": 41.71,
+      "unrealized_pnl": 296.47,
+      "unrealized_r": 0.75,
       "note_ar": "دخول سابق بتاريخ 2026-05-14 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -239,14 +195,14 @@
       "shares_open": 238,
       "risk_egp": 399.84,
       "max_hold": null,
-      "bars_held": 6,
+      "bars_held": 7,
       "high_water": 22.389999389648438,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-14",
-      "last_close": 20.69,
-      "unrealized_pnl": -233.9,
-      "unrealized_r": -0.58,
+      "last_evaluated": "2026-09-15",
+      "last_close": 20.82,
+      "unrealized_pnl": -203.08,
+      "unrealized_r": -0.51,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -275,51 +231,15 @@
       "shares_open": 701,
       "risk_egp": 399.57,
       "max_hold": null,
-      "bars_held": 5,
+      "bars_held": 6,
       "high_water": 8.15999984741211,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-14",
-      "last_close": 7.95,
-      "unrealized_pnl": -127.44,
-      "unrealized_r": -0.32,
+      "last_evaluated": "2026-09-15",
+      "last_close": 8.0,
+      "unrealized_pnl": -92.53,
+      "unrealized_r": -0.23,
       "note_ar": "مركز مفتوح"
-    },
-    {
-      "id": "MASR-2026-09-06",
-      "symbol": "MASR",
-      "name_ar": "مدينة مصر للاسكان",
-      "strategy": "kalman_supertrend",
-      "signal_date": "2026-09-06",
-      "status": "open",
-      "entry_ref": 8.7,
-      "entry": 8.75,
-      "entry_date": "2026-09-08",
-      "stop": 7.74,
-      "initial_stop": 7.74,
-      "tps": [
-        9.18,
-        9.66,
-        10.14
-      ],
-      "tp_hit": [
-        false,
-        false,
-        false
-      ],
-      "shares": 396,
-      "shares_open": 396,
-      "risk_egp": 399.96,
-      "max_hold": null,
-      "bars_held": 5,
-      "high_water": 8.880000114440918,
-      "exits": [],
-      "pending_exit": "trend_flip",
-      "last_evaluated": "2026-09-14",
-      "last_close": 7.91,
-      "unrealized_pnl": -345.17,
-      "unrealized_r": -0.86,
-      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح"
     },
     {
       "id": "CIRA-2026-09-06",
@@ -347,7 +267,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 5,
+      "bars_held": 6,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -358,10 +278,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-14",
-      "last_close": 39.34,
-      "unrealized_pnl": 181.64,
-      "unrealized_r": 0.46,
+      "last_evaluated": "2026-09-15",
+      "last_close": 39.81,
+      "unrealized_pnl": 203.65,
+      "unrealized_r": 0.51,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -390,14 +310,14 @@
       "shares_open": 10,
       "risk_egp": 364.4,
       "max_hold": null,
-      "bars_held": 4,
+      "bars_held": 5,
       "high_water": 229.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-14",
-      "last_close": 199.03,
-      "unrealized_pnl": -267.66,
-      "unrealized_r": -0.73,
+      "last_evaluated": "2026-09-15",
+      "last_close": 194.0,
+      "unrealized_pnl": -317.76,
+      "unrealized_r": -0.87,
       "note_ar": "مركز مفتوح"
     }
   ]
