@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-16T22:16:19+00:00",
+  "updated": "2026-09-17T10:16:54+00:00",
   "positions": [
     {
       "id": "EFIH-2026-07-06",
@@ -27,7 +27,7 @@
       "shares_open": 92,
       "risk_egp": 397.44,
       "max_hold": null,
-      "bars_held": 48,
+      "bars_held": 49,
       "high_water": 25.4,
       "exits": [
         {
@@ -38,10 +38,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-15",
-      "last_close": 23.52,
-      "unrealized_pnl": 56.97,
-      "unrealized_r": 0.14,
+      "last_evaluated": "2026-09-16",
+      "last_close": 23.27,
+      "unrealized_pnl": 34.07,
+      "unrealized_r": 0.09,
       "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -71,15 +71,15 @@
       "shares_open": 52,
       "risk_egp": 392.6,
       "max_hold": null,
-      "bars_held": 41,
+      "bars_held": 42,
       "high_water": 103.87,
       "exits": [],
-      "pending_exit": null,
-      "last_evaluated": "2026-09-15",
-      "last_close": 95.94,
-      "unrealized_pnl": -283.6,
-      "unrealized_r": -0.72,
-      "note_ar": "دخول سابق بتاريخ 2026-07-16 — للمتابعة فقط، مش دخول جديد",
+      "pending_exit": "trend_flip",
+      "last_evaluated": "2026-09-16",
+      "last_close": 95.0,
+      "unrealized_pnl": -332.28,
+      "unrealized_r": -0.85,
+      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح",
       "bootstrap": true
     },
     {
@@ -108,14 +108,14 @@
       "shares_open": 86,
       "risk_egp": 399.04,
       "max_hold": null,
-      "bars_held": 28,
+      "bars_held": 29,
       "high_water": 28.79,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-15",
-      "last_close": 27.0,
-      "unrealized_pnl": -5.85,
-      "unrealized_r": -0.01,
+      "last_evaluated": "2026-09-16",
+      "last_close": 27.08,
+      "unrealized_pnl": 1.0,
+      "unrealized_r": 0.0,
       "note_ar": "دخول سابق بتاريخ 2026-08-05 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -145,7 +145,7 @@
       "shares_open": 23,
       "risk_egp": 396.75,
       "max_hold": null,
-      "bars_held": 84,
+      "bars_held": 85,
       "high_water": 44.290000915527344,
       "exits": [
         {
@@ -162,9 +162,9 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-15",
-      "last_close": 41.71,
-      "unrealized_pnl": 296.47,
+      "last_evaluated": "2026-09-16",
+      "last_close": 41.75,
+      "unrealized_pnl": 297.39,
       "unrealized_r": 0.75,
       "note_ar": "دخول سابق بتاريخ 2026-05-14 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
@@ -195,14 +195,14 @@
       "shares_open": 238,
       "risk_egp": 399.84,
       "max_hold": null,
-      "bars_held": 7,
+      "bars_held": 8,
       "high_water": 22.389999389648438,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-15",
-      "last_close": 20.82,
-      "unrealized_pnl": -203.08,
-      "unrealized_r": -0.51,
+      "last_evaluated": "2026-09-16",
+      "last_close": 20.8,
+      "unrealized_pnl": -207.82,
+      "unrealized_r": -0.52,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -231,14 +231,14 @@
       "shares_open": 701,
       "risk_egp": 399.57,
       "max_hold": null,
-      "bars_held": 6,
-      "high_water": 8.15999984741211,
+      "bars_held": 7,
+      "high_water": 8.300000190734863,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-15",
-      "last_close": 8.0,
-      "unrealized_pnl": -92.53,
-      "unrealized_r": -0.23,
+      "last_evaluated": "2026-09-16",
+      "last_close": 8.23,
+      "unrealized_pnl": 68.05,
+      "unrealized_r": 0.17,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -267,7 +267,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 6,
+      "bars_held": 7,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -278,10 +278,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-15",
-      "last_close": 39.81,
-      "unrealized_pnl": 203.65,
-      "unrealized_r": 0.51,
+      "last_evaluated": "2026-09-16",
+      "last_close": 39.0,
+      "unrealized_pnl": 165.73,
+      "unrealized_r": 0.42,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -310,14 +310,14 @@
       "shares_open": 10,
       "risk_egp": 364.4,
       "max_hold": null,
-      "bars_held": 5,
+      "bars_held": 6,
       "high_water": 229.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-15",
-      "last_close": 194.0,
-      "unrealized_pnl": -317.76,
-      "unrealized_r": -0.87,
+      "last_evaluated": "2026-09-16",
+      "last_close": 195.0,
+      "unrealized_pnl": -307.8,
+      "unrealized_r": -0.84,
       "note_ar": "مركز مفتوح"
     }
   ]
