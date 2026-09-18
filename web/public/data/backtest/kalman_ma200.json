@@ -1,7 +1,7 @@
 {
   "strategy": "kalman_ma200",
   "label_ar": "كالمان سوبرترند + فلتر متوسط 200",
-  "generated_at": "2026-09-11T10:48:33+00:00",
+  "generated_at": "2026-09-18T10:45:46+00:00",
   "config": {
     "capital": 20000.0,
     "risk_pct": 0.02,
@@ -19,92 +19,92 @@
   },
   "period": {
     "from": "2021-08-29",
-    "to": "2026-09-10",
-    "in_sample_until": "2025-03-06"
+    "to": "2026-09-16",
+    "in_sample_until": "2025-03-11"
   },
   "aggregate": {
     "full": {
-      "n_trades": 254,
-      "win_rate": 0.6535,
-      "avg_r": 0.268,
+      "n_trades": 256,
+      "win_rate": 0.6484,
+      "avg_r": 0.261,
       "avg_win_r": 0.78,
-      "avg_loss_r": -0.699,
-      "profit_factor": 2.18,
-      "expectancy_egp": 106.2,
-      "total_pnl": 26973.71,
+      "avg_loss_r": -0.696,
+      "profit_factor": 2.14,
+      "expectancy_egp": 103.85,
+      "total_pnl": 26585.51,
       "avg_hold_bars": 24.3,
       "best_r": 1.8,
       "worst_r": -1.96,
       "exit_reasons": {
         "tp_final": 129,
-        "trend_flip": 96,
+        "trend_flip": 98,
         "stop_hit": 29
       },
-      "tp1_hit_rate": 0.7677
+      "tp1_hit_rate": 0.7656
     },
     "in_sample": {
-      "n_trades": 158,
-      "win_rate": 0.6709,
-      "avg_r": 0.299,
-      "avg_win_r": 0.783,
+      "n_trades": 159,
+      "win_rate": 0.673,
+      "avg_r": 0.303,
+      "avg_win_r": 0.784,
       "avg_loss_r": -0.689,
-      "profit_factor": 2.39,
-      "expectancy_egp": 119.71,
-      "total_pnl": 18913.82,
-      "avg_hold_bars": 24.7,
+      "profit_factor": 2.42,
+      "expectancy_egp": 121.26,
+      "total_pnl": 19280.49,
+      "avg_hold_bars": 24.6,
       "best_r": 1.71,
       "worst_r": -1.33,
       "exit_reasons": {
-        "tp_final": 82,
+        "tp_final": 83,
         "trend_flip": 59,
         "stop_hit": 17
       },
-      "tp1_hit_rate": 0.7785
+      "tp1_hit_rate": 0.7799
     },
     "out_of_sample": {
-      "n_trades": 96,
-      "win_rate": 0.625,
-      "avg_r": 0.216,
-      "avg_win_r": 0.774,
-      "avg_loss_r": -0.713,
-      "profit_factor": 1.87,
-      "expectancy_egp": 83.96,
-      "total_pnl": 8059.89,
+      "n_trades": 97,
+      "win_rate": 0.6082,
+      "avg_r": 0.193,
+      "avg_win_r": 0.772,
+      "avg_loss_r": -0.704,
+      "profit_factor": 1.76,
+      "expectancy_egp": 75.31,
+      "total_pnl": 7305.02,
       "avg_hold_bars": 23.7,
       "best_r": 1.8,
       "worst_r": -1.96,
       "exit_reasons": {
-        "tp_final": 47,
-        "trend_flip": 37,
+        "trend_flip": 39,
+        "tp_final": 46,
         "stop_hit": 12
       },
-      "tp1_hit_rate": 0.75
+      "tp1_hit_rate": 0.7423
     }
   },
   "portfolio": {
     "full": {
       "stats": {
-        "n_trades": 123,
-        "win_rate": 0.6829,
-        "avg_r": 0.28,
+        "n_trades": 125,
+        "win_rate": 0.672,
+        "avg_r": 0.267,
         "avg_win_r": 0.772,
-        "avg_loss_r": -0.779,
-        "profit_factor": 2.23,
-        "expectancy_egp": 111.58,
-        "total_pnl": 13724.81,
-        "avg_hold_bars": 23.8,
+        "avg_loss_r": -0.767,
+        "profit_factor": 2.15,
+        "expectancy_egp": 106.69,
+        "total_pnl": 13336.61,
+        "avg_hold_bars": 23.7,
         "best_r": 1.8,
         "worst_r": -1.96,
         "exit_reasons": {
           "tp_final": 62,
-          "trend_flip": 45,
+          "trend_flip": 47,
           "stop_hit": 16
         },
-        "tp1_hit_rate": 0.7642,
-        "total_return_pct": 0.6862,
+        "tp1_hit_rate": 0.76,
+        "total_return_pct": 0.6668,
         "max_drawdown_pct": 0.0712,
-        "years": 4.11,
-        "cagr_pct": 0.1356,
+        "years": 4.15,
+        "cagr_pct": 0.1312,
         "skipped_signals": 131,
         "max_concurrent": 4
       },
@@ -604,231 +604,243 @@
         {
           "date": "2026-09-02",
           "equity": 33724.81
+        },
+        {
+          "date": "2026-09-13",
+          "equity": 33681.0
+        },
+        {
+          "date": "2026-09-15",
+          "equity": 33336.61
         }
       ]
     },
     "out_of_sample": {
       "stats": {
-        "n_trades": 48,
-        "win_rate": 0.6875,
-        "avg_r": 0.236,
-        "avg_win_r": 0.77,
-        "avg_loss_r": -0.939,
-        "profit_factor": 1.92,
-        "expectancy_egp": 94.35,
-        "total_pnl": 4528.86,
+        "n_trades": 49,
+        "win_rate": 0.6531,
+        "avg_r": 0.19,
+        "avg_win_r": 0.765,
+        "avg_loss_r": -0.892,
+        "profit_factor": 1.71,
+        "expectancy_egp": 77.02,
+        "total_pnl": 3773.99,
         "avg_hold_bars": 22.1,
         "best_r": 1.8,
         "worst_r": -1.96,
         "exit_reasons": {
-          "tp_final": 24,
-          "trend_flip": 16,
+          "trend_flip": 18,
+          "tp_final": 23,
           "stop_hit": 8
         },
-        "tp1_hit_rate": 0.75,
-        "total_return_pct": 0.2264,
-        "max_drawdown_pct": 0.0484,
-        "years": 1.48,
-        "cagr_pct": 0.1478,
+        "tp1_hit_rate": 0.7347,
+        "total_return_pct": 0.1887,
+        "max_drawdown_pct": 0.0503,
+        "years": 1.51,
+        "cagr_pct": 0.1212,
         "skipped_signals": 48,
         "max_concurrent": 4
       },
       "equity_curve": [
         {
-          "date": "2025-03-10",
+          "date": "2025-03-12",
           "equity": 20000.0
         },
         {
-          "date": "2025-03-19",
-          "equity": 20366.67
-        },
-        {
           "date": "2025-04-08",
-          "equity": 20477.74
+          "equity": 20111.07
         },
         {
           "date": "2025-04-27",
-          "equity": 20763.39
+          "equity": 20396.72
         },
         {
           "date": "2025-05-13",
-          "equity": 20909.4
+          "equity": 20542.73
         },
         {
           "date": "2025-05-19",
-          "equity": 21251.55
+          "equity": 20884.88
         },
         {
           "date": "2025-06-10",
-          "equity": 21592.68
+          "equity": 21226.01
         },
         {
           "date": "2025-06-10",
-          "equity": 21945.97
+          "equity": 21579.3
         },
         {
           "date": "2025-06-16",
-          "equity": 22067.06
+          "equity": 21700.39
         },
         {
           "date": "2025-06-29",
-          "equity": 22351.36
+          "equity": 21984.69
         },
         {
           "date": "2025-07-27",
-          "equity": 22673.84
+          "equity": 22307.17
         },
         {
           "date": "2025-08-20",
-          "equity": 22458.13
+          "equity": 22091.46
         },
         {
           "date": "2025-09-08",
-          "equity": 22221.17
+          "equity": 21854.5
         },
         {
           "date": "2025-09-08",
-          "equity": 21848.44
+          "equity": 21481.77
         },
         {
           "date": "2025-09-09",
-          "equity": 21576.02
+          "equity": 21209.35
         },
         {
           "date": "2025-10-02",
-          "equity": 21944.91
+          "equity": 21578.24
         },
         {
           "date": "2025-10-02",
-          "equity": 22309.27
+          "equity": 21942.6
         },
         {
           "date": "2025-10-13",
-          "equity": 22753.14
+          "equity": 22386.47
         },
         {
           "date": "2025-10-20",
-          "equity": 23096.88
+          "equity": 22730.21
         },
         {
           "date": "2025-10-23",
-          "equity": 22810.24
+          "equity": 22443.57
         },
         {
           "date": "2025-11-05",
-          "equity": 22497.4
+          "equity": 22130.73
         },
         {
           "date": "2025-11-06",
-          "equity": 22347.14
+          "equity": 21980.47
         },
         {
           "date": "2025-11-09",
-          "equity": 22673.12
+          "equity": 22306.45
         },
         {
           "date": "2025-11-30",
-          "equity": 22857.33
+          "equity": 22490.66
         },
         {
           "date": "2025-12-15",
-          "equity": 23205.17
+          "equity": 22838.5
         },
         {
           "date": "2026-01-11",
-          "equity": 23567.17
+          "equity": 23200.5
         },
         {
           "date": "2026-01-14",
-          "equity": 23695.64
+          "equity": 23328.97
         },
         {
           "date": "2026-01-18",
-          "equity": 23341.53
+          "equity": 22974.86
         },
         {
           "date": "2026-02-01",
-          "equity": 23249.97
+          "equity": 22883.3
         },
         {
           "date": "2026-02-03",
-          "equity": 23596.55
+          "equity": 23229.88
         },
         {
           "date": "2026-02-15",
-          "equity": 23950.57
+          "equity": 23583.9
         },
         {
           "date": "2026-03-01",
-          "equity": 23726.28
+          "equity": 23359.61
         },
         {
           "date": "2026-03-02",
-          "equity": 23832.36
+          "equity": 23465.69
         },
         {
           "date": "2026-03-29",
-          "equity": 23405.75
+          "equity": 23039.08
         },
         {
           "date": "2026-05-06",
-          "equity": 23773.23
+          "equity": 23406.56
         },
         {
           "date": "2026-05-21",
-          "equity": 23988.14
+          "equity": 23621.47
         },
         {
           "date": "2026-06-02",
-          "equity": 24228.51
+          "equity": 23861.84
         },
         {
           "date": "2026-06-14",
-          "equity": 24418.24
+          "equity": 24051.57
         },
         {
           "date": "2026-06-25",
-          "equity": 24764.12
+          "equity": 24397.45
         },
         {
           "date": "2026-06-28",
-          "equity": 24401.57
+          "equity": 24034.9
         },
         {
           "date": "2026-07-22",
-          "equity": 24732.49
+          "equity": 24365.82
         },
         {
           "date": "2026-08-03",
-          "equity": 25054.23
+          "equity": 24687.56
         },
         {
           "date": "2026-08-04",
-          "equity": 25399.67
+          "equity": 25033.0
         },
         {
           "date": "2026-08-04",
-          "equity": 24615.92
+          "equity": 24249.25
         },
         {
           "date": "2026-08-06",
-          "equity": 24967.5
+          "equity": 24600.83
         },
         {
           "date": "2026-08-06",
-          "equity": 25271.7
+          "equity": 24905.03
         },
         {
           "date": "2026-08-19",
-          "equity": 24848.97
+          "equity": 24482.3
         },
         {
           "date": "2026-08-27",
-          "equity": 24963.27
+          "equity": 24596.6
         },
         {
           "date": "2026-09-02",
-          "equity": 24528.86
+          "equity": 24162.19
+        },
+        {
+          "date": "2026-09-13",
+          "equity": 24118.38
+        },
+        {
+          "date": "2026-09-15",
+          "equity": 23773.99
         }
       ]
     }
@@ -1853,6 +1865,14 @@
     {
       "date": "2026-09-03",
       "equity": 46973.71
+    },
+    {
+      "date": "2026-09-13",
+      "equity": 46929.9
+    },
+    {
+      "date": "2026-09-15",
+      "equity": 46585.51
     }
   ],
   "per_ticker": [
@@ -1996,22 +2016,22 @@
         "tp1_hit_rate": 0.9
       },
       "out_of_sample": {
-        "n_trades": 6,
-        "win_rate": 0.8333,
-        "avg_r": 0.427,
-        "avg_win_r": 0.656,
+        "n_trades": 5,
+        "win_rate": 0.8,
+        "avg_r": 0.329,
+        "avg_win_r": 0.59,
         "avg_loss_r": -0.717,
-        "profit_factor": 4.75,
-        "expectancy_egp": 172.27,
-        "total_pnl": 1033.63,
-        "avg_hold_bars": 28.5,
+        "profit_factor": 3.42,
+        "expectancy_egp": 133.39,
+        "total_pnl": 666.96,
+        "avg_hold_bars": 32.6,
         "best_r": 0.92,
         "worst_r": -0.72,
         "exit_reasons": {
-          "tp_final": 3,
+          "tp_final": 2,
           "trend_flip": 3
         },
-        "tp1_hit_rate": 0.8333
+        "tp1_hit_rate": 0.8
       }
     },
     {
@@ -2318,46 +2338,6 @@
       }
     },
     {
-      "symbol": "MASR",
-      "full": {
-        "n_trades": 14,
-        "win_rate": 0.5,
-        "avg_r": 0.195,
-        "avg_win_r": 0.838,
-        "avg_loss_r": -0.448,
-        "profit_factor": 1.98,
-        "expectancy_egp": 82.69,
-        "total_pnl": 1157.63,
-        "avg_hold_bars": 23.6,
-        "best_r": 0.93,
-        "worst_r": -1.12,
-        "exit_reasons": {
-          "tp_final": 6,
-          "trend_flip": 7,
-          "stop_hit": 1
-        },
-        "tp1_hit_rate": 0.7857
-      },
-      "out_of_sample": {
-        "n_trades": 5,
-        "win_rate": 0.4,
-        "avg_r": 0.274,
-        "avg_win_r": 0.894,
-        "avg_loss_r": -0.138,
-        "profit_factor": 5.41,
-        "expectancy_egp": 116.49,
-        "total_pnl": 582.44,
-        "avg_hold_bars": 24.2,
-        "best_r": 0.92,
-        "worst_r": -0.27,
-        "exit_reasons": {
-          "trend_flip": 3,
-          "tp_final": 2
-        },
-        "tp1_hit_rate": 1.0
-      }
-    },
-    {
       "symbol": "OLFI",
       "full": {
         "n_trades": 5,
@@ -2635,6 +2615,46 @@
       }
     },
     {
+      "symbol": "MASR",
+      "full": {
+        "n_trades": 15,
+        "win_rate": 0.4667,
+        "avg_r": 0.124,
+        "avg_win_r": 0.838,
+        "avg_loss_r": -0.5,
+        "profit_factor": 1.53,
+        "expectancy_egp": 54.22,
+        "total_pnl": 813.24,
+        "avg_hold_bars": 22.4,
+        "best_r": 0.93,
+        "worst_r": -1.12,
+        "exit_reasons": {
+          "tp_final": 6,
+          "trend_flip": 8,
+          "stop_hit": 1
+        },
+        "tp1_hit_rate": 0.7333
+      },
+      "out_of_sample": {
+        "n_trades": 6,
+        "win_rate": 0.3333,
+        "avg_r": 0.085,
+        "avg_win_r": 0.894,
+        "avg_loss_r": -0.32,
+        "profit_factor": 1.5,
+        "expectancy_egp": 39.67,
+        "total_pnl": 238.05,
+        "avg_hold_bars": 21,
+        "best_r": 0.92,
+        "worst_r": -0.86,
+        "exit_reasons": {
+          "trend_flip": 4,
+          "tp_final": 2
+        },
+        "tp1_hit_rate": 0.8333
+      }
+    },
+    {
       "symbol": "CIRA",
       "full": {
         "n_trades": 2,
@@ -2790,45 +2810,6 @@
       }
     },
     {
-      "symbol": "FAITA",
-      "full": {
-        "n_trades": 7,
-        "win_rate": 0.4286,
-        "avg_r": -0.392,
-        "avg_win_r": 0.593,
-        "avg_loss_r": -1.13,
-        "profit_factor": 0.47,
-        "expectancy_egp": -59.91,
-        "total_pnl": -419.37,
-        "avg_hold_bars": 20.4,
-        "best_r": 0.83,
-        "worst_r": -1.7,
-        "exit_reasons": {
-          "stop_hit": 2,
-          "tp_final": 3,
-          "trend_flip": 2
-        },
-        "tp1_hit_rate": 0.5714
-      },
-      "out_of_sample": {
-        "n_trades": 1,
-        "win_rate": 0.0,
-        "avg_r": -1.696,
-        "avg_win_r": 0.0,
-        "avg_loss_r": -1.696,
-        "profit_factor": 0.0,
-        "expectancy_egp": -272.42,
-        "total_pnl": -272.42,
-        "avg_hold_bars": 6,
-        "best_r": -1.7,
-        "worst_r": -1.7,
-        "exit_reasons": {
-          "stop_hit": 1
-        },
-        "tp1_hit_rate": 0.0
-      }
-    },
-    {
       "symbol": "UEFM",
       "full": {
         "n_trades": 4,
@@ -2864,6 +2845,46 @@
         "exit_reasons": {
           "tp_final": 1,
           "stop_hit": 2,
+          "trend_flip": 1
+        },
+        "tp1_hit_rate": 0.5
+      }
+    },
+    {
+      "symbol": "FAITA",
+      "full": {
+        "n_trades": 8,
+        "win_rate": 0.375,
+        "avg_r": -0.37,
+        "avg_win_r": 0.593,
+        "avg_loss_r": -0.947,
+        "profit_factor": 0.45,
+        "expectancy_egp": -57.9,
+        "total_pnl": -463.18,
+        "avg_hold_bars": 20.9,
+        "best_r": 0.83,
+        "worst_r": -1.7,
+        "exit_reasons": {
+          "stop_hit": 2,
+          "tp_final": 3,
+          "trend_flip": 3
+        },
+        "tp1_hit_rate": 0.625
+      },
+      "out_of_sample": {
+        "n_trades": 2,
+        "win_rate": 0.0,
+        "avg_r": -0.956,
+        "avg_win_r": 0.0,
+        "avg_loss_r": -0.956,
+        "profit_factor": 0.0,
+        "expectancy_egp": -158.12,
+        "total_pnl": -316.23,
+        "avg_hold_bars": 15,
+        "best_r": -0.22,
+        "worst_r": -1.7,
+        "exit_reasons": {
+          "stop_hit": 1,
           "trend_flip": 1
         },
         "tp1_hit_rate": 0.5
