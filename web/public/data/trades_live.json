@@ -587,5 +587,117 @@
     "realized_pnl": -359.03,
     "realized_r": -0.898,
     "exit_price": 7.91
+  },
+  {
+    "id": "TMGH-2026-07-15",
+    "symbol": "TMGH",
+    "name_ar": "مجموعة طلعت مصطفى",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-07-15",
+    "status": "closed",
+    "entry_ref": 101.01,
+    "entry": 101.01,
+    "entry_date": "2026-07-16",
+    "stop": 93.46,
+    "initial_stop": 93.46,
+    "tps": [
+      104.79,
+      108.56,
+      112.34
+    ],
+    "tp_hit": [
+      false,
+      false,
+      false
+    ],
+    "shares": 52,
+    "shares_open": 0,
+    "risk_egp": 392.6,
+    "max_hold": null,
+    "bars_held": 42,
+    "high_water": 103.87,
+    "exits": [
+      {
+        "date": "2026-09-20",
+        "price": 95.8,
+        "shares": 52,
+        "reason": "trend_flip"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-20",
+    "last_close": 94.7,
+    "unrealized_pnl": -332.28,
+    "unrealized_r": -0.85,
+    "note_ar": "انقلب الاتجاه لهابط",
+    "bootstrap": true,
+    "closed_date": "2026-09-20",
+    "reason": "trend_flip",
+    "reason_ar": "انقلب الاتجاه لهابط",
+    "realized_pnl": -311.86,
+    "realized_r": -0.794,
+    "exit_price": 95.8
+  },
+  {
+    "id": "CANA-2026-05-13",
+    "symbol": "CANA",
+    "name_ar": "بنك قناة السويس",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-05-13",
+    "status": "closed",
+    "entry_ref": 37.26,
+    "entry": 37.26,
+    "entry_date": "2026-05-14",
+    "stop": 31.51,
+    "initial_stop": 31.51,
+    "tps": [
+      40.13,
+      43.01,
+      45.88
+    ],
+    "tp_hit": [
+      true,
+      true,
+      true
+    ],
+    "shares": 69,
+    "shares_open": 0,
+    "risk_egp": 396.75,
+    "max_hold": null,
+    "bars_held": 86,
+    "high_water": 52.0,
+    "exits": [
+      {
+        "date": "2026-08-11",
+        "price": 40.75,
+        "shares": 23,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-08-13",
+        "price": 43.01,
+        "shares": 23,
+        "reason": "tp2"
+      },
+      {
+        "date": "2026-09-20",
+        "price": 45.88,
+        "shares": 23,
+        "reason": "tp3"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-20",
+    "last_close": 47.02,
+    "unrealized_pnl": 297.39,
+    "unrealized_r": 0.75,
+    "note_ar": "تحقق الهدف الأخير ✅",
+    "bootstrap": true,
+    "closed_date": "2026-09-20",
+    "reason": "tp_final",
+    "reason_ar": "تحقق الهدف الأخير ✅",
+    "realized_pnl": 388.57,
+    "realized_r": 0.979,
+    "exit_price": 45.88
   }
 ]

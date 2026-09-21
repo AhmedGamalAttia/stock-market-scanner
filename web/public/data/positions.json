@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-20T21:45:15+00:00",
+  "updated": "2026-09-21T10:58:23+00:00",
   "positions": [
     {
       "id": "EFIH-2026-07-06",
@@ -27,7 +27,7 @@
       "shares_open": 92,
       "risk_egp": 397.44,
       "max_hold": null,
-      "bars_held": 49,
+      "bars_held": 50,
       "high_water": 25.4,
       "exits": [
         {
@@ -38,48 +38,11 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-16",
-      "last_close": 23.27,
-      "unrealized_pnl": 34.07,
-      "unrealized_r": 0.09,
+      "last_evaluated": "2026-09-20",
+      "last_close": 23.25,
+      "unrealized_pnl": 32.23,
+      "unrealized_r": 0.08,
       "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
-      "bootstrap": true
-    },
-    {
-      "id": "TMGH-2026-07-15",
-      "symbol": "TMGH",
-      "name_ar": "مجموعة طلعت مصطفى",
-      "strategy": "kalman_supertrend",
-      "signal_date": "2026-07-15",
-      "status": "open",
-      "entry_ref": 101.01,
-      "entry": 101.01,
-      "entry_date": "2026-07-16",
-      "stop": 93.46,
-      "initial_stop": 93.46,
-      "tps": [
-        104.79,
-        108.56,
-        112.34
-      ],
-      "tp_hit": [
-        false,
-        false,
-        false
-      ],
-      "shares": 52,
-      "shares_open": 52,
-      "risk_egp": 392.6,
-      "max_hold": null,
-      "bars_held": 42,
-      "high_water": 103.87,
-      "exits": [],
-      "pending_exit": "trend_flip",
-      "last_evaluated": "2026-09-16",
-      "last_close": 95.0,
-      "unrealized_pnl": -332.28,
-      "unrealized_r": -0.85,
-      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح",
       "bootstrap": true
     },
     {
@@ -108,65 +71,15 @@
       "shares_open": 86,
       "risk_egp": 399.04,
       "max_hold": null,
-      "bars_held": 29,
+      "bars_held": 30,
       "high_water": 28.79,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-16",
-      "last_close": 27.08,
-      "unrealized_pnl": 1.0,
-      "unrealized_r": 0.0,
+      "last_evaluated": "2026-09-20",
+      "last_close": 26.9,
+      "unrealized_pnl": -14.41,
+      "unrealized_r": -0.04,
       "note_ar": "دخول سابق بتاريخ 2026-08-05 — للمتابعة فقط، مش دخول جديد",
-      "bootstrap": true
-    },
-    {
-      "id": "CANA-2026-05-13",
-      "symbol": "CANA",
-      "name_ar": "بنك قناة السويس",
-      "strategy": "kalman_supertrend",
-      "signal_date": "2026-05-13",
-      "status": "open",
-      "entry_ref": 37.26,
-      "entry": 37.26,
-      "entry_date": "2026-05-14",
-      "stop": 31.51,
-      "initial_stop": 31.51,
-      "tps": [
-        40.13,
-        43.01,
-        45.88
-      ],
-      "tp_hit": [
-        true,
-        true,
-        false
-      ],
-      "shares": 69,
-      "shares_open": 23,
-      "risk_egp": 396.75,
-      "max_hold": null,
-      "bars_held": 85,
-      "high_water": 44.290000915527344,
-      "exits": [
-        {
-          "date": "2026-08-11",
-          "price": 40.75,
-          "shares": 23,
-          "reason": "tp1"
-        },
-        {
-          "date": "2026-08-13",
-          "price": 43.01,
-          "shares": 23,
-          "reason": "tp2"
-        }
-      ],
-      "pending_exit": null,
-      "last_evaluated": "2026-09-16",
-      "last_close": 41.75,
-      "unrealized_pnl": 297.39,
-      "unrealized_r": 0.75,
-      "note_ar": "دخول سابق بتاريخ 2026-05-14 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
     {
@@ -195,14 +108,14 @@
       "shares_open": 238,
       "risk_egp": 399.84,
       "max_hold": null,
-      "bars_held": 8,
+      "bars_held": 9,
       "high_water": 22.389999389648438,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-16",
-      "last_close": 20.8,
-      "unrealized_pnl": -207.82,
-      "unrealized_r": -0.52,
+      "last_evaluated": "2026-09-20",
+      "last_close": 21.35,
+      "unrealized_pnl": -77.45,
+      "unrealized_r": -0.19,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -223,23 +136,30 @@
         9.21
       ],
       "tp_hit": [
-        false,
+        true,
         false,
         false
       ],
       "shares": 701,
-      "shares_open": 701,
+      "shares_open": 467,
       "risk_egp": 399.57,
       "max_hold": null,
-      "bars_held": 7,
-      "high_water": 8.300000190734863,
-      "exits": [],
+      "bars_held": 8,
+      "high_water": 8.770000457763672,
+      "exits": [
+        {
+          "date": "2026-09-20",
+          "price": 8.54,
+          "shares": 234,
+          "reason": "tp1"
+        }
+      ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-16",
-      "last_close": 8.23,
-      "unrealized_pnl": 68.05,
-      "unrealized_r": 0.17,
-      "note_ar": "مركز مفتوح"
+      "last_evaluated": "2026-09-20",
+      "last_close": 8.3,
+      "unrealized_pnl": 165.28,
+      "unrealized_r": 0.41,
+      "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
       "id": "CIRA-2026-09-06",
@@ -267,7 +187,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 7,
+      "bars_held": 8,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -278,10 +198,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-16",
-      "last_close": 39.0,
-      "unrealized_pnl": 165.73,
-      "unrealized_r": 0.42,
+      "last_evaluated": "2026-09-20",
+      "last_close": 40.35,
+      "unrealized_pnl": 228.92,
+      "unrealized_r": 0.57,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -310,14 +230,14 @@
       "shares_open": 10,
       "risk_egp": 364.4,
       "max_hold": null,
-      "bars_held": 6,
+      "bars_held": 7,
       "high_water": 229.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-16",
-      "last_close": 195.0,
-      "unrealized_pnl": -307.8,
-      "unrealized_r": -0.84,
+      "last_evaluated": "2026-09-20",
+      "last_close": 193.01,
+      "unrealized_pnl": -327.62,
+      "unrealized_r": -0.9,
       "note_ar": "مركز مفتوح"
     }
   ]
