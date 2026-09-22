@@ -699,5 +699,54 @@
     "realized_pnl": 388.57,
     "realized_r": 0.979,
     "exit_price": 45.88
+  },
+  {
+    "id": "EFIC-2026-09-08",
+    "symbol": "EFIC",
+    "name_ar": "المالية والصناعية",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-09-08",
+    "status": "closed",
+    "entry_ref": 225.0,
+    "entry": 225.0,
+    "entry_date": "2026-09-09",
+    "stop": 188.56,
+    "initial_stop": 188.56,
+    "tps": [
+      243.22,
+      261.44,
+      279.66
+    ],
+    "tp_hit": [
+      false,
+      false,
+      false
+    ],
+    "shares": 10,
+    "shares_open": 0,
+    "risk_egp": 364.4,
+    "max_hold": null,
+    "bars_held": 8,
+    "high_water": 229.0,
+    "exits": [
+      {
+        "date": "2026-09-21",
+        "price": 188.56,
+        "shares": 10,
+        "reason": "stop_hit"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-21",
+    "last_close": 185.35,
+    "unrealized_pnl": -327.62,
+    "unrealized_r": -0.9,
+    "note_ar": "ضرب وقف الخسارة",
+    "closed_date": "2026-09-21",
+    "reason": "stop_hit",
+    "reason_ar": "ضرب وقف الخسارة",
+    "realized_pnl": -380.94,
+    "realized_r": -1.045,
+    "exit_price": 188.56
   }
 ]

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-21T22:44:44+00:00",
+  "updated": "2026-09-22T10:12:15+00:00",
   "positions": [
     {
       "id": "EFIH-2026-07-06",
@@ -27,7 +27,7 @@
       "shares_open": 92,
       "risk_egp": 397.44,
       "max_hold": null,
-      "bars_held": 50,
+      "bars_held": 51,
       "high_water": 25.4,
       "exits": [
         {
@@ -38,10 +38,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-20",
-      "last_close": 23.25,
-      "unrealized_pnl": 32.23,
-      "unrealized_r": 0.08,
+      "last_evaluated": "2026-09-21",
+      "last_close": 22.9,
+      "unrealized_pnl": 0.16,
+      "unrealized_r": 0.0,
       "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -71,14 +71,14 @@
       "shares_open": 86,
       "risk_egp": 399.04,
       "max_hold": null,
-      "bars_held": 30,
+      "bars_held": 31,
       "high_water": 28.79,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-20",
-      "last_close": 26.9,
-      "unrealized_pnl": -14.41,
-      "unrealized_r": -0.04,
+      "last_evaluated": "2026-09-21",
+      "last_close": 27.25,
+      "unrealized_pnl": 15.57,
+      "unrealized_r": 0.04,
       "note_ar": "دخول سابق بتاريخ 2026-08-05 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -108,14 +108,14 @@
       "shares_open": 238,
       "risk_egp": 399.84,
       "max_hold": null,
-      "bars_held": 9,
+      "bars_held": 10,
       "high_water": 22.389999389648438,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-20",
-      "last_close": 21.35,
-      "unrealized_pnl": -77.45,
-      "unrealized_r": -0.19,
+      "last_evaluated": "2026-09-21",
+      "last_close": 21.97,
+      "unrealized_pnl": 69.52,
+      "unrealized_r": 0.17,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -144,7 +144,7 @@
       "shares_open": 467,
       "risk_egp": 399.57,
       "max_hold": null,
-      "bars_held": 8,
+      "bars_held": 9,
       "high_water": 8.770000457763672,
       "exits": [
         {
@@ -155,10 +155,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-20",
-      "last_close": 8.3,
-      "unrealized_pnl": 165.28,
-      "unrealized_r": 0.41,
+      "last_evaluated": "2026-09-21",
+      "last_close": 8.03,
+      "unrealized_pnl": 39.69,
+      "unrealized_r": 0.1,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -187,7 +187,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 8,
+      "bars_held": 9,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -198,47 +198,11 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-20",
-      "last_close": 40.35,
-      "unrealized_pnl": 228.92,
-      "unrealized_r": 0.57,
+      "last_evaluated": "2026-09-21",
+      "last_close": 41.0,
+      "unrealized_pnl": 259.35,
+      "unrealized_r": 0.65,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
-    },
-    {
-      "id": "EFIC-2026-09-08",
-      "symbol": "EFIC",
-      "name_ar": "المالية والصناعية",
-      "strategy": "kalman_supertrend",
-      "signal_date": "2026-09-08",
-      "status": "open",
-      "entry_ref": 225.0,
-      "entry": 225.0,
-      "entry_date": "2026-09-09",
-      "stop": 188.56,
-      "initial_stop": 188.56,
-      "tps": [
-        243.22,
-        261.44,
-        279.66
-      ],
-      "tp_hit": [
-        false,
-        false,
-        false
-      ],
-      "shares": 10,
-      "shares_open": 10,
-      "risk_egp": 364.4,
-      "max_hold": null,
-      "bars_held": 7,
-      "high_water": 229.0,
-      "exits": [],
-      "pending_exit": null,
-      "last_evaluated": "2026-09-20",
-      "last_close": 193.01,
-      "unrealized_pnl": -327.62,
-      "unrealized_r": -0.9,
-      "note_ar": "مركز مفتوح"
     }
   ]
 }
