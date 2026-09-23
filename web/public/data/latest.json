@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-21",
-  "generated_at": "2026-09-22T22:22:41+00:00",
+  "date": "2026-09-22",
+  "generated_at": "2026-09-23T10:12:54+00:00",
   "strategy": "kalman_ma200",
   "strategy_label_ar": "كالمان سوبرترند + فلتر متوسط 200",
   "buys": [],
@@ -86,12 +86,12 @@
       ],
       "shares": 238,
       "shares_open": 238,
-      "last_close": 21.97,
-      "change_pct": 1.76,
-      "stop_distance_pct": 9.38,
-      "unrealized_pnl": 69.52,
-      "unrealized_r": 0.17,
-      "bars_held": 10,
+      "last_close": 21.9,
+      "change_pct": 1.44,
+      "stop_distance_pct": 9.09,
+      "unrealized_pnl": 52.93,
+      "unrealized_r": 0.13,
+      "bars_held": 11,
       "pending_exit": null,
       "note_ar": "مركز مفتوح"
     },
@@ -156,25 +156,5 @@
       "note_ar": "دخول سابق بتاريخ 2026-08-05 — للمتابعة فقط، مش دخول جديد"
     }
   ],
-  "exits": [
-    {
-      "id": "EFIC-2026-09-08",
-      "symbol": "EFIC",
-      "name_ar": "المالية والصناعية",
-      "entry_date": "2026-09-09",
-      "entry": 225.0,
-      "exit_date": "2026-09-21",
-      "exit_price": 188.56,
-      "reason": "stop_hit",
-      "reason_ar": "ضرب وقف الخسارة",
-      "realized_pnl": -380.94,
-      "realized_r": -1.045,
-      "bars_held": 8,
-      "tp_hit": [
-        false,
-        false,
-        false
-      ]
-    }
-  ]
+  "exits": []
 }

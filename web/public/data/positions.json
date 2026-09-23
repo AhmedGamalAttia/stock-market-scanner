@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-22T22:22:41+00:00",
+  "updated": "2026-09-23T10:12:54+00:00",
   "positions": [
     {
       "id": "EFIH-2026-07-06",
@@ -108,14 +108,14 @@
       "shares_open": 238,
       "risk_egp": 399.84,
       "max_hold": null,
-      "bars_held": 10,
+      "bars_held": 11,
       "high_water": 22.389999389648438,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-21",
-      "last_close": 21.97,
-      "unrealized_pnl": 69.52,
-      "unrealized_r": 0.17,
+      "last_evaluated": "2026-09-22",
+      "last_close": 21.9,
+      "unrealized_pnl": 52.93,
+      "unrealized_r": 0.13,
       "note_ar": "مركز مفتوح"
     },
     {
