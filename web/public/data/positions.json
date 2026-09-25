@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-24T22:39:37+00:00",
+  "updated": "2026-09-25T10:24:51+00:00",
   "positions": [
     {
       "id": "EFIH-2026-07-06",
@@ -27,7 +27,7 @@
       "shares_open": 92,
       "risk_egp": 397.44,
       "max_hold": null,
-      "bars_held": 53,
+      "bars_held": 54,
       "high_water": 25.4,
       "exits": [
         {
@@ -38,10 +38,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-23",
-      "last_close": 23.32,
-      "unrealized_pnl": 38.65,
-      "unrealized_r": 0.1,
+      "last_evaluated": "2026-09-24",
+      "last_close": 22.98,
+      "unrealized_pnl": 7.49,
+      "unrealized_r": 0.02,
       "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -71,14 +71,14 @@
       "shares_open": 86,
       "risk_egp": 399.04,
       "max_hold": null,
-      "bars_held": 33,
+      "bars_held": 34,
       "high_water": 28.79,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-23",
-      "last_close": 26.83,
-      "unrealized_pnl": -20.41,
-      "unrealized_r": -0.05,
+      "last_evaluated": "2026-09-24",
+      "last_close": 25.98,
+      "unrealized_pnl": -93.22,
+      "unrealized_r": -0.23,
       "note_ar": "دخول سابق بتاريخ 2026-08-05 — للمتابعة فقط، مش دخول جديد",
       "bootstrap": true
     },
@@ -100,23 +100,30 @@
         24.11
       ],
       "tp_hit": [
-        false,
+        true,
         false,
         false
       ],
       "shares": 238,
-      "shares_open": 238,
+      "shares_open": 159,
       "risk_egp": 399.84,
       "max_hold": null,
-      "bars_held": 12,
-      "high_water": 22.389999389648438,
-      "exits": [],
+      "bars_held": 13,
+      "high_water": 22.5,
+      "exits": [
+        {
+          "date": "2026-09-24",
+          "price": 22.43,
+          "shares": 79,
+          "reason": "tp1"
+        }
+      ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-23",
-      "last_close": 21.8,
-      "unrealized_pnl": 29.23,
-      "unrealized_r": 0.07,
-      "note_ar": "مركز مفتوح"
+      "last_evaluated": "2026-09-24",
+      "last_close": 21.75,
+      "unrealized_pnl": 64.06,
+      "unrealized_r": 0.16,
+      "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
       "id": "HELI-2026-09-06",
@@ -144,7 +151,7 @@
       "shares_open": 467,
       "risk_egp": 399.57,
       "max_hold": null,
-      "bars_held": 11,
+      "bars_held": 12,
       "high_water": 8.770000457763672,
       "exits": [
         {
@@ -155,10 +162,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-23",
-      "last_close": 7.9,
-      "unrealized_pnl": -20.78,
-      "unrealized_r": -0.05,
+      "last_evaluated": "2026-09-24",
+      "last_close": 7.82,
+      "unrealized_pnl": -57.99,
+      "unrealized_r": -0.15,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -187,7 +194,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 11,
+      "bars_held": 12,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -198,10 +205,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-23",
-      "last_close": 39.91,
-      "unrealized_pnl": 208.33,
-      "unrealized_r": 0.52,
+      "last_evaluated": "2026-09-24",
+      "last_close": 39.07,
+      "unrealized_pnl": 169.0,
+      "unrealized_r": 0.42,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     }
   ]
