@@ -1,87 +1,6 @@
 {
-  "updated": "2026-09-28T23:53:14+00:00",
+  "updated": "2026-09-29T11:29:34+00:00",
   "positions": [
-    {
-      "id": "EFIH-2026-07-06",
-      "symbol": "EFIH",
-      "name_ar": "إى فاينانس للاستثمارات",
-      "strategy": "kalman_supertrend",
-      "signal_date": "2026-07-06",
-      "status": "open",
-      "entry_ref": 23.43,
-      "entry": 23.43,
-      "entry_date": "2026-07-07",
-      "stop": 20.55,
-      "initial_stop": 20.55,
-      "tps": [
-        24.87,
-        26.31,
-        27.76
-      ],
-      "tp_hit": [
-        true,
-        false,
-        false
-      ],
-      "shares": 138,
-      "shares_open": 92,
-      "risk_egp": 397.44,
-      "max_hold": null,
-      "bars_held": 55,
-      "high_water": 25.4,
-      "exits": [
-        {
-          "date": "2026-08-05",
-          "price": 24.87,
-          "shares": 46,
-          "reason": "tp1"
-        }
-      ],
-      "pending_exit": null,
-      "last_evaluated": "2026-09-27",
-      "last_close": 22.92,
-      "unrealized_pnl": 2.0,
-      "unrealized_r": 0.01,
-      "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد",
-      "bootstrap": true
-    },
-    {
-      "id": "JUFO-2026-08-04",
-      "symbol": "JUFO",
-      "name_ar": "جهينة للصناعات الغذائية",
-      "strategy": "kalman_supertrend",
-      "signal_date": "2026-08-04",
-      "status": "open",
-      "entry_ref": 26.96,
-      "entry": 26.96,
-      "entry_date": "2026-08-05",
-      "stop": 22.32,
-      "initial_stop": 22.32,
-      "tps": [
-        29.28,
-        31.6,
-        33.91
-      ],
-      "tp_hit": [
-        false,
-        false,
-        false
-      ],
-      "shares": 86,
-      "shares_open": 86,
-      "risk_egp": 399.04,
-      "max_hold": null,
-      "bars_held": 35,
-      "high_water": 28.79,
-      "exits": [],
-      "pending_exit": "trend_flip",
-      "last_evaluated": "2026-09-27",
-      "last_close": 25.52,
-      "unrealized_pnl": -132.62,
-      "unrealized_r": -0.33,
-      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح",
-      "bootstrap": true
-    },
     {
       "id": "EXPA-2026-09-03",
       "symbol": "EXPA",
@@ -108,7 +27,7 @@
       "shares_open": 159,
       "risk_egp": 399.84,
       "max_hold": null,
-      "bars_held": 14,
+      "bars_held": 15,
       "high_water": 22.5,
       "exits": [
         {
@@ -119,54 +38,11 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-27",
-      "last_close": 21.94,
-      "unrealized_pnl": 94.15,
-      "unrealized_r": 0.24,
+      "last_evaluated": "2026-09-28",
+      "last_close": 21.55,
+      "unrealized_pnl": 32.38,
+      "unrealized_r": 0.08,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
-    },
-    {
-      "id": "HELI-2026-09-06",
-      "symbol": "HELI",
-      "name_ar": "مصر الجديدة للاسكان",
-      "strategy": "kalman_supertrend",
-      "signal_date": "2026-09-06",
-      "status": "open",
-      "entry_ref": 8.2,
-      "entry": 8.1,
-      "entry_date": "2026-09-08",
-      "stop": 7.53,
-      "initial_stop": 7.53,
-      "tps": [
-        8.54,
-        8.87,
-        9.21
-      ],
-      "tp_hit": [
-        true,
-        false,
-        false
-      ],
-      "shares": 701,
-      "shares_open": 467,
-      "risk_egp": 399.57,
-      "max_hold": null,
-      "bars_held": 13,
-      "high_water": 8.770000457763672,
-      "exits": [
-        {
-          "date": "2026-09-20",
-          "price": 8.54,
-          "shares": 234,
-          "reason": "tp1"
-        }
-      ],
-      "pending_exit": "trend_flip",
-      "last_evaluated": "2026-09-27",
-      "last_close": 7.65,
-      "unrealized_pnl": -137.06,
-      "unrealized_r": -0.34,
-      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح"
     },
     {
       "id": "CIRA-2026-09-06",
@@ -194,7 +70,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 13,
+      "bars_held": 14,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -205,10 +81,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-27",
-      "last_close": 39.07,
-      "unrealized_pnl": 169.0,
-      "unrealized_r": 0.42,
+      "last_evaluated": "2026-09-28",
+      "last_close": 38.63,
+      "unrealized_pnl": 148.41,
+      "unrealized_r": 0.37,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     }
   ]

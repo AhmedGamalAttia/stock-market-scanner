@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-27",
-  "generated_at": "2026-09-28T23:53:14+00:00",
+  "date": "2026-09-28",
+  "generated_at": "2026-09-29T11:29:34+00:00",
   "strategy": "kalman_ma200",
   "strategy_label_ar": "كالمان سوبرترند + فلتر متوسط 200",
   "buys": [],
@@ -26,44 +26,14 @@
       ],
       "shares": 71,
       "shares_open": 47,
-      "last_close": 39.07,
-      "change_pct": 5.11,
-      "stop_distance_pct": 19.22,
-      "unrealized_pnl": 169.0,
-      "unrealized_r": 0.42,
-      "bars_held": 13,
+      "last_close": 38.63,
+      "change_pct": 3.93,
+      "stop_distance_pct": 18.3,
+      "unrealized_pnl": 148.41,
+      "unrealized_r": 0.37,
+      "bars_held": 14,
       "pending_exit": null,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
-    },
-    {
-      "id": "EFIH-2026-07-06",
-      "symbol": "EFIH",
-      "name_ar": "إى فاينانس للاستثمارات",
-      "status": "open",
-      "signal_date": "2026-07-06",
-      "entry_date": "2026-07-07",
-      "entry": 23.43,
-      "stop": 20.55,
-      "tps": [
-        24.87,
-        26.31,
-        27.76
-      ],
-      "tp_hit": [
-        true,
-        false,
-        false
-      ],
-      "shares": 138,
-      "shares_open": 92,
-      "last_close": 22.92,
-      "change_pct": -2.18,
-      "stop_distance_pct": 10.34,
-      "unrealized_pnl": 2.0,
-      "unrealized_r": 0.01,
-      "bars_held": 55,
-      "pending_exit": null,
-      "note_ar": "دخول سابق بتاريخ 2026-07-07 — للمتابعة فقط، مش دخول جديد"
     },
     {
       "id": "EXPA-2026-09-03",
@@ -86,75 +56,73 @@
       ],
       "shares": 238,
       "shares_open": 159,
-      "last_close": 21.94,
-      "change_pct": 1.62,
-      "stop_distance_pct": 9.25,
-      "unrealized_pnl": 94.15,
-      "unrealized_r": 0.24,
-      "bars_held": 14,
+      "last_close": 21.55,
+      "change_pct": -0.19,
+      "stop_distance_pct": 7.61,
+      "unrealized_pnl": 32.38,
+      "unrealized_r": 0.08,
+      "bars_held": 15,
       "pending_exit": null,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
+    }
+  ],
+  "exits": [
+    {
+      "id": "EFIH-2026-07-06",
+      "symbol": "EFIH",
+      "name_ar": "إى فاينانس للاستثمارات",
+      "entry_date": "2026-07-07",
+      "entry": 23.43,
+      "exit_date": "2026-09-28",
+      "exit_price": 20.55,
+      "reason": "stop_hit",
+      "reason_ar": "ضرب وقف الخسارة",
+      "realized_pnl": -223.79,
+      "realized_r": -0.563,
+      "bars_held": 56,
+      "tp_hit": [
+        true,
+        false,
+        false
+      ]
     },
     {
       "id": "HELI-2026-09-06",
       "symbol": "HELI",
       "name_ar": "مصر الجديدة للاسكان",
-      "status": "open",
-      "signal_date": "2026-09-06",
       "entry_date": "2026-09-08",
       "entry": 8.1,
-      "stop": 7.53,
-      "tps": [
-        8.54,
-        8.87,
-        9.21
-      ],
+      "exit_date": "2026-09-28",
+      "exit_price": 7.65,
+      "reason": "trend_flip",
+      "reason_ar": "انقلب الاتجاه لهابط",
+      "realized_pnl": -152.19,
+      "realized_r": -0.381,
+      "bars_held": 13,
       "tp_hit": [
         true,
         false,
         false
-      ],
-      "shares": 701,
-      "shares_open": 467,
-      "last_close": 7.65,
-      "change_pct": -5.56,
-      "stop_distance_pct": 1.57,
-      "unrealized_pnl": -137.06,
-      "unrealized_r": -0.34,
-      "bars_held": 13,
-      "pending_exit": "trend_flip",
-      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح"
+      ]
     },
     {
       "id": "JUFO-2026-08-04",
       "symbol": "JUFO",
       "name_ar": "جهينة للصناعات الغذائية",
-      "status": "open",
-      "signal_date": "2026-08-04",
       "entry_date": "2026-08-05",
       "entry": 26.96,
-      "stop": 22.32,
-      "tps": [
-        29.28,
-        31.6,
-        33.91
-      ],
+      "exit_date": "2026-09-28",
+      "exit_price": 25.52,
+      "reason": "trend_flip",
+      "reason_ar": "انقلب الاتجاه لهابط",
+      "realized_pnl": -141.89,
+      "realized_r": -0.356,
+      "bars_held": 35,
       "tp_hit": [
         false,
         false,
         false
-      ],
-      "shares": 86,
-      "shares_open": 86,
-      "last_close": 25.52,
-      "change_pct": -5.34,
-      "stop_distance_pct": 12.54,
-      "unrealized_pnl": -132.62,
-      "unrealized_r": -0.33,
-      "bars_held": 35,
-      "pending_exit": "trend_flip",
-      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح"
+      ]
     }
-  ],
-  "exits": []
+  ]
 }

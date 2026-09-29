@@ -748,5 +748,166 @@
     "realized_pnl": -380.94,
     "realized_r": -1.045,
     "exit_price": 188.56
+  },
+  {
+    "id": "EFIH-2026-07-06",
+    "symbol": "EFIH",
+    "name_ar": "إى فاينانس للاستثمارات",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-07-06",
+    "status": "closed",
+    "entry_ref": 23.43,
+    "entry": 23.43,
+    "entry_date": "2026-07-07",
+    "stop": 20.55,
+    "initial_stop": 20.55,
+    "tps": [
+      24.87,
+      26.31,
+      27.76
+    ],
+    "tp_hit": [
+      true,
+      false,
+      false
+    ],
+    "shares": 138,
+    "shares_open": 0,
+    "risk_egp": 397.44,
+    "max_hold": null,
+    "bars_held": 56,
+    "high_water": 25.4,
+    "exits": [
+      {
+        "date": "2026-08-05",
+        "price": 24.87,
+        "shares": 46,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-09-28",
+        "price": 20.55,
+        "shares": 92,
+        "reason": "stop_hit"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-28",
+    "last_close": 22.0,
+    "unrealized_pnl": 2.0,
+    "unrealized_r": 0.01,
+    "note_ar": "ضرب وقف الخسارة",
+    "bootstrap": true,
+    "closed_date": "2026-09-28",
+    "reason": "stop_hit",
+    "reason_ar": "ضرب وقف الخسارة",
+    "realized_pnl": -223.79,
+    "realized_r": -0.563,
+    "exit_price": 20.55
+  },
+  {
+    "id": "JUFO-2026-08-04",
+    "symbol": "JUFO",
+    "name_ar": "جهينة للصناعات الغذائية",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-08-04",
+    "status": "closed",
+    "entry_ref": 26.96,
+    "entry": 26.96,
+    "entry_date": "2026-08-05",
+    "stop": 22.32,
+    "initial_stop": 22.32,
+    "tps": [
+      29.28,
+      31.6,
+      33.91
+    ],
+    "tp_hit": [
+      false,
+      false,
+      false
+    ],
+    "shares": 86,
+    "shares_open": 0,
+    "risk_egp": 399.04,
+    "max_hold": null,
+    "bars_held": 35,
+    "high_water": 28.79,
+    "exits": [
+      {
+        "date": "2026-09-28",
+        "price": 25.52,
+        "shares": 86,
+        "reason": "trend_flip"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-28",
+    "last_close": 25.03,
+    "unrealized_pnl": -132.62,
+    "unrealized_r": -0.33,
+    "note_ar": "انقلب الاتجاه لهابط",
+    "bootstrap": true,
+    "closed_date": "2026-09-28",
+    "reason": "trend_flip",
+    "reason_ar": "انقلب الاتجاه لهابط",
+    "realized_pnl": -141.89,
+    "realized_r": -0.356,
+    "exit_price": 25.52
+  },
+  {
+    "id": "HELI-2026-09-06",
+    "symbol": "HELI",
+    "name_ar": "مصر الجديدة للاسكان",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-09-06",
+    "status": "closed",
+    "entry_ref": 8.2,
+    "entry": 8.1,
+    "entry_date": "2026-09-08",
+    "stop": 7.53,
+    "initial_stop": 7.53,
+    "tps": [
+      8.54,
+      8.87,
+      9.21
+    ],
+    "tp_hit": [
+      true,
+      false,
+      false
+    ],
+    "shares": 701,
+    "shares_open": 0,
+    "risk_egp": 399.57,
+    "max_hold": null,
+    "bars_held": 13,
+    "high_water": 8.770000457763672,
+    "exits": [
+      {
+        "date": "2026-09-20",
+        "price": 8.54,
+        "shares": 234,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-09-28",
+        "price": 7.65,
+        "shares": 467,
+        "reason": "trend_flip"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-09-28",
+    "last_close": 7.4,
+    "unrealized_pnl": -137.06,
+    "unrealized_r": -0.34,
+    "note_ar": "انقلب الاتجاه لهابط",
+    "closed_date": "2026-09-28",
+    "reason": "trend_flip",
+    "reason_ar": "انقلب الاتجاه لهابط",
+    "realized_pnl": -152.19,
+    "realized_r": -0.381,
+    "exit_price": 7.65
   }
 ]
