@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-29T23:06:41+00:00",
+  "updated": "2026-09-30T11:17:36+00:00",
   "positions": [
     {
       "id": "EXPA-2026-09-03",
@@ -27,7 +27,7 @@
       "shares_open": 159,
       "risk_egp": 399.84,
       "max_hold": null,
-      "bars_held": 15,
+      "bars_held": 16,
       "high_water": 22.5,
       "exits": [
         {
@@ -38,10 +38,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-28",
-      "last_close": 21.55,
-      "unrealized_pnl": 32.38,
-      "unrealized_r": 0.08,
+      "last_evaluated": "2026-09-29",
+      "last_close": 21.3,
+      "unrealized_pnl": -7.21,
+      "unrealized_r": -0.02,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -70,7 +70,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 14,
+      "bars_held": 15,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -81,11 +81,47 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-28",
-      "last_close": 38.63,
-      "unrealized_pnl": 148.41,
-      "unrealized_r": 0.37,
+      "last_evaluated": "2026-09-29",
+      "last_close": 38.23,
+      "unrealized_pnl": 129.68,
+      "unrealized_r": 0.33,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
+    },
+    {
+      "id": "UEFM-2026-09-29",
+      "symbol": "UEFM",
+      "name_ar": "صعيد مصر لمطاحن الدقيق",
+      "strategy": "kalman_ma200",
+      "signal_date": "2026-09-29",
+      "status": "pending",
+      "entry_ref": 509.46,
+      "entry": null,
+      "entry_date": null,
+      "stop": 397.82,
+      "initial_stop": 397.82,
+      "tps": [
+        565.28,
+        621.1,
+        676.91
+      ],
+      "tp_hit": [
+        false,
+        false,
+        false
+      ],
+      "shares": 3,
+      "shares_open": 3,
+      "risk_egp": null,
+      "max_hold": null,
+      "bars_held": 0,
+      "high_water": null,
+      "exits": [],
+      "pending_exit": null,
+      "last_evaluated": "2026-09-29",
+      "last_close": 509.46,
+      "unrealized_pnl": 0.0,
+      "unrealized_r": 0.0,
+      "note_ar": "فى انتظار الافتتاح لتنفيذ الدخول"
     }
   ]
 }
