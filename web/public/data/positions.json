@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-01T23:21:28+00:00",
+  "updated": "2026-10-02T11:14:52+00:00",
   "positions": [
     {
       "id": "EXPA-2026-09-03",
@@ -27,7 +27,7 @@
       "shares_open": 159,
       "risk_egp": 399.84,
       "max_hold": null,
-      "bars_held": 17,
+      "bars_held": 18,
       "high_water": 22.5,
       "exits": [
         {
@@ -38,10 +38,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-30",
-      "last_close": 20.92,
-      "unrealized_pnl": -67.39,
-      "unrealized_r": -0.17,
+      "last_evaluated": "2026-10-01",
+      "last_close": 21.03,
+      "unrealized_pnl": -49.97,
+      "unrealized_r": -0.12,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -70,7 +70,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 16,
+      "bars_held": 17,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -81,10 +81,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-09-30",
-      "last_close": 38.08,
-      "unrealized_pnl": 122.66,
-      "unrealized_r": 0.31,
+      "last_evaluated": "2026-10-01",
+      "last_close": 39.29,
+      "unrealized_pnl": 179.3,
+      "unrealized_r": 0.45,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -113,14 +113,14 @@
       "shares_open": 3,
       "risk_egp": 334.92,
       "max_hold": null,
-      "bars_held": 1,
-      "high_water": 527.0,
+      "bars_held": 2,
+      "high_water": 550.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-09-30",
-      "last_close": 490.0,
-      "unrealized_pnl": -64.26,
-      "unrealized_r": -0.19,
+      "last_evaluated": "2026-10-01",
+      "last_close": 509.97,
+      "unrealized_pnl": -4.59,
+      "unrealized_r": -0.01,
       "note_ar": "مركز مفتوح"
     }
   ]
