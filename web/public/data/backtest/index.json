@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-25T11:23:43+00:00",
+  "generated_at": "2026-10-02T12:04:06+00:00",
   "period": {
     "from": "2021-08-29",
-    "to": "2026-09-24",
-    "in_sample_until": "2025-03-18"
+    "to": "2026-10-01",
+    "in_sample_until": "2025-03-23"
   },
   "selection_rule": "اختيار مثبّت يدوياً: kalman_ma200 (استقرار ونسبة نجاح أعلى للمبتدئ) — الاختيار التلقائى بالعائد/التراجع كان: kalman_supertrend",
   "recommended": "kalman_ma200",
@@ -13,132 +13,132 @@
       "label_ar": "نظام النقاط (اختراق + MACD + تقاطع ذهبى)",
       "full": {
         "n_trades": 1206,
-        "win_rate": 0.524,
-        "avg_r": 0.085,
+        "win_rate": 0.5249,
+        "avg_r": 0.086,
         "profit_factor": 1.19,
-        "total_pnl": 31597.49
+        "total_pnl": 31825.71
       },
       "out_of_sample": {
-        "n_trades": 377,
-        "win_rate": 0.5279,
-        "avg_r": 0.043,
+        "n_trades": 375,
+        "win_rate": 0.528,
+        "avg_r": 0.045,
         "profit_factor": 1.2,
-        "total_pnl": 9090.69
+        "total_pnl": 9115.92
       },
       "portfolio_full": {
-        "total_pnl": 8094.81,
-        "cagr_pct": 0.0708,
-        "max_drawdown_pct": 0.2785,
-        "n_trades": 506,
-        "skipped_signals": 700
+        "total_pnl": 7326.35,
+        "cagr_pct": 0.0649,
+        "max_drawdown_pct": 0.3414,
+        "n_trades": 508,
+        "skipped_signals": 698
       },
       "portfolio_oos": {
-        "total_pnl": 2811.9,
-        "cagr_pct": 0.0918,
-        "max_drawdown_pct": 0.1053,
-        "n_trades": 157,
-        "skipped_signals": 220
+        "total_pnl": 3177.9,
+        "cagr_pct": 0.1035,
+        "max_drawdown_pct": 0.1039,
+        "n_trades": 156,
+        "skipped_signals": 219
       },
-      "oos_calmar": 0.87
+      "oos_calmar": 1.0
     },
     {
       "strategy": "kalman_supertrend",
       "label_ar": "كالمان سوبرترند (هيثم شريف)",
       "full": {
-        "n_trades": 398,
-        "win_rate": 0.6131,
-        "avg_r": 0.194,
-        "profit_factor": 1.75,
-        "total_pnl": 31385.24
+        "n_trades": 399,
+        "win_rate": 0.609,
+        "avg_r": 0.189,
+        "profit_factor": 1.73,
+        "total_pnl": 30694.21
       },
       "out_of_sample": {
-        "n_trades": 133,
-        "win_rate": 0.6015,
-        "avg_r": 0.153,
-        "profit_factor": 1.55,
-        "total_pnl": 7981.89
+        "n_trades": 135,
+        "win_rate": 0.5926,
+        "avg_r": 0.144,
+        "profit_factor": 1.51,
+        "total_pnl": 7621.7
       },
       "portfolio_full": {
-        "total_pnl": 9913.55,
-        "cagr_pct": 0.0864,
+        "total_pnl": 9706.4,
+        "cagr_pct": 0.0845,
         "max_drawdown_pct": 0.1003,
         "n_trades": 143,
-        "skipped_signals": 255
+        "skipped_signals": 256
       },
       "portfolio_oos": {
-        "total_pnl": 2785.23,
-        "cagr_pct": 0.0951,
+        "total_pnl": 2584.03,
+        "cagr_pct": 0.0872,
         "max_drawdown_pct": 0.0604,
         "n_trades": 48,
-        "skipped_signals": 85
+        "skipped_signals": 87
       },
-      "oos_calmar": 1.57
+      "oos_calmar": 1.44
     },
     {
       "strategy": "kalman_ma200",
       "label_ar": "كالمان سوبرترند + فلتر متوسط 200",
       "full": {
-        "n_trades": 258,
-        "win_rate": 0.6434,
-        "avg_r": 0.252,
-        "profit_factor": 2.08,
-        "total_pnl": 25835.08
+        "n_trades": 259,
+        "win_rate": 0.6409,
+        "avg_r": 0.248,
+        "profit_factor": 2.06,
+        "total_pnl": 25610.25
       },
       "out_of_sample": {
-        "n_trades": 97,
-        "win_rate": 0.5876,
-        "avg_r": 0.161,
-        "profit_factor": 1.59,
-        "total_pnl": 6101.4
+        "n_trades": 98,
+        "win_rate": 0.5816,
+        "avg_r": 0.154,
+        "profit_factor": 1.55,
+        "total_pnl": 5882.51
       },
       "portfolio_full": {
-        "total_pnl": 12928.72,
-        "cagr_pct": 0.1273,
+        "total_pnl": 12728.13,
+        "cagr_pct": 0.125,
         "max_drawdown_pct": 0.0712,
-        "n_trades": 126,
+        "n_trades": 127,
         "skipped_signals": 132
       },
       "portfolio_oos": {
-        "total_pnl": 2920.71,
-        "cagr_pct": 0.1011,
-        "max_drawdown_pct": 0.0678,
-        "n_trades": 48,
+        "total_pnl": 2726.07,
+        "cagr_pct": 0.0932,
+        "max_drawdown_pct": 0.0756,
+        "n_trades": 49,
         "skipped_signals": 49
       },
-      "oos_calmar": 1.49
+      "oos_calmar": 1.23
     },
     {
       "strategy": "kalman_ride",
       "label_ar": "كالمان سوبرترند — ركوب الاتجاه بدون أهداف",
       "full": {
-        "n_trades": 389,
-        "win_rate": 0.4602,
-        "avg_r": 1.086,
+        "n_trades": 394,
+        "win_rate": 0.4619,
+        "avg_r": 1.087,
         "profit_factor": 3.94,
-        "total_pnl": 163361.36
+        "total_pnl": 165437.86
       },
       "out_of_sample": {
-        "n_trades": 124,
-        "win_rate": 0.4032,
-        "avg_r": 0.72,
-        "profit_factor": 2.63,
-        "total_pnl": 31947.77
+        "n_trades": 130,
+        "win_rate": 0.4154,
+        "avg_r": 0.741,
+        "profit_factor": 2.7,
+        "total_pnl": 34348.17
       },
       "portfolio_full": {
-        "total_pnl": 25810.27,
-        "cagr_pct": 0.1849,
+        "total_pnl": 25443.0,
+        "cagr_pct": 0.1822,
         "max_drawdown_pct": 0.0805,
-        "n_trades": 91,
-        "skipped_signals": 298
+        "n_trades": 92,
+        "skipped_signals": 302
       },
       "portfolio_oos": {
-        "total_pnl": 5356.11,
-        "cagr_pct": 0.1799,
+        "total_pnl": 4994.72,
+        "cagr_pct": 0.1657,
         "max_drawdown_pct": 0.1185,
-        "n_trades": 28,
-        "skipped_signals": 96
+        "n_trades": 29,
+        "skipped_signals": 101
       },
-      "oos_calmar": 1.52
+      "oos_calmar": 1.4
     }
   ]
 }
