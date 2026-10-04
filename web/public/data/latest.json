@@ -1,6 +1,6 @@
 {
   "date": "2026-10-01",
-  "generated_at": "2026-10-04T11:13:31+00:00",
+  "generated_at": "2026-10-04T18:56:06+00:00",
   "strategy": "kalman_ma200",
   "strategy_label_ar": "كالمان سوبرترند + فلتر متوسط 200",
   "buys": [],
