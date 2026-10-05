@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04T22:26:32+00:00",
+  "updated": "2026-10-05T12:30:16+00:00",
   "positions": [
     {
       "id": "EXPA-2026-09-03",
@@ -27,7 +27,7 @@
       "shares_open": 159,
       "risk_egp": 399.84,
       "max_hold": null,
-      "bars_held": 18,
+      "bars_held": 19,
       "high_water": 22.5,
       "exits": [
         {
@@ -38,10 +38,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-10-01",
-      "last_close": 21.03,
-      "unrealized_pnl": -49.97,
-      "unrealized_r": -0.12,
+      "last_evaluated": "2026-10-04",
+      "last_close": 21.5,
+      "unrealized_pnl": 24.47,
+      "unrealized_r": 0.06,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -70,7 +70,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 17,
+      "bars_held": 18,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -81,10 +81,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-10-01",
-      "last_close": 39.29,
-      "unrealized_pnl": 179.3,
-      "unrealized_r": 0.45,
+      "last_evaluated": "2026-10-04",
+      "last_close": 39.85,
+      "unrealized_pnl": 205.52,
+      "unrealized_r": 0.52,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -113,15 +113,51 @@
       "shares_open": 3,
       "risk_egp": 334.92,
       "max_hold": null,
-      "bars_held": 2,
+      "bars_held": 3,
       "high_water": 550.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-10-01",
-      "last_close": 509.97,
-      "unrealized_pnl": -4.59,
-      "unrealized_r": -0.01,
+      "last_evaluated": "2026-10-04",
+      "last_close": 511.46,
+      "unrealized_pnl": -0.14,
+      "unrealized_r": -0.0,
       "note_ar": "مركز مفتوح"
+    },
+    {
+      "id": "MCQE-2026-10-04",
+      "symbol": "MCQE",
+      "name_ar": "مصر لانتاج الاسمنت قنا",
+      "strategy": "kalman_ma200",
+      "signal_date": "2026-10-04",
+      "status": "pending",
+      "entry_ref": 219.99,
+      "entry": null,
+      "entry_date": null,
+      "stop": 176.35,
+      "initial_stop": 176.35,
+      "tps": [
+        241.81,
+        263.63,
+        285.46
+      ],
+      "tp_hit": [
+        false,
+        false,
+        false
+      ],
+      "shares": 9,
+      "shares_open": 9,
+      "risk_egp": null,
+      "max_hold": null,
+      "bars_held": 0,
+      "high_water": null,
+      "exits": [],
+      "pending_exit": null,
+      "last_evaluated": "2026-10-04",
+      "last_close": 219.99,
+      "unrealized_pnl": 0.0,
+      "unrealized_r": 0.0,
+      "note_ar": "فى انتظار الافتتاح لتنفيذ الدخول"
     }
   ]
 }

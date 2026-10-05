@@ -1,11 +1,11 @@
 {
-  "ran_at": "2026-10-04T22:26:32+00:00",
+  "ran_at": "2026-10-05T12:30:16+00:00",
   "ok": true,
-  "data_date": "2026-10-01",
+  "data_date": "2026-10-04",
   "symbols_total": 42,
   "symbols_failed": 0,
   "symbols_stale": 0,
-  "signals_emitted": 0,
+  "signals_emitted": 2,
   "strategy": "kalman_ma200",
   "notes": "strategy=kalman_ma200 (env)"
 }
