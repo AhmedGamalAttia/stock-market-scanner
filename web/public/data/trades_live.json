@@ -909,5 +909,60 @@
     "realized_pnl": -152.19,
     "realized_r": -0.381,
     "exit_price": 7.65
+  },
+  {
+    "id": "EXPA-2026-09-03",
+    "symbol": "EXPA",
+    "name_ar": "بنك تنمية الصادرات",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-09-03",
+    "status": "closed",
+    "entry_ref": 21.59,
+    "entry": 21.59,
+    "entry_date": "2026-09-06",
+    "stop": 19.91,
+    "initial_stop": 19.91,
+    "tps": [
+      22.43,
+      23.27,
+      24.11
+    ],
+    "tp_hit": [
+      true,
+      false,
+      false
+    ],
+    "shares": 238,
+    "shares_open": 0,
+    "risk_egp": 399.84,
+    "max_hold": null,
+    "bars_held": 21,
+    "high_water": 22.5,
+    "exits": [
+      {
+        "date": "2026-09-24",
+        "price": 22.43,
+        "shares": 79,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-10-06",
+        "price": 16.0782,
+        "shares": 159,
+        "reason": "stop_hit"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-10-06",
+    "last_close": 16.2444,
+    "unrealized_pnl": -10.37,
+    "unrealized_r": -0.03,
+    "note_ar": "ضرب وقف الخسارة",
+    "closed_date": "2026-10-06",
+    "reason": "stop_hit",
+    "reason_ar": "ضرب وقف الخسارة",
+    "realized_pnl": -847.88,
+    "realized_r": -2.121,
+    "exit_price": 16.0782
   }
 ]

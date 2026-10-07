@@ -1,49 +1,6 @@
 {
-  "updated": "2026-10-06T23:11:55+00:00",
+  "updated": "2026-10-07T11:55:43+00:00",
   "positions": [
-    {
-      "id": "EXPA-2026-09-03",
-      "symbol": "EXPA",
-      "name_ar": "بنك تنمية الصادرات",
-      "strategy": "kalman_supertrend",
-      "signal_date": "2026-09-03",
-      "status": "open",
-      "entry_ref": 21.59,
-      "entry": 21.59,
-      "entry_date": "2026-09-06",
-      "stop": 19.91,
-      "initial_stop": 19.91,
-      "tps": [
-        22.43,
-        23.27,
-        24.11
-      ],
-      "tp_hit": [
-        true,
-        false,
-        false
-      ],
-      "shares": 238,
-      "shares_open": 159,
-      "risk_egp": 399.84,
-      "max_hold": null,
-      "bars_held": 20,
-      "high_water": 22.5,
-      "exits": [
-        {
-          "date": "2026-09-24",
-          "price": 22.43,
-          "shares": 79,
-          "reason": "tp1"
-        }
-      ],
-      "pending_exit": null,
-      "last_evaluated": "2026-10-05",
-      "last_close": 21.28,
-      "unrealized_pnl": -10.37,
-      "unrealized_r": -0.03,
-      "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
-    },
     {
       "id": "CIRA-2026-09-06",
       "symbol": "CIRA",
@@ -70,7 +27,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 19,
+      "bars_held": 20,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -81,10 +38,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-10-05",
-      "last_close": 40.19,
-      "unrealized_pnl": 221.43,
-      "unrealized_r": 0.56,
+      "last_evaluated": "2026-10-06",
+      "last_close": 39.49,
+      "unrealized_pnl": 188.67,
+      "unrealized_r": 0.47,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -113,14 +70,14 @@
       "shares_open": 3,
       "risk_egp": 334.92,
       "max_hold": null,
-      "bars_held": 4,
+      "bars_held": 5,
       "high_water": 550.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-10-05",
-      "last_close": 499.92,
-      "unrealized_pnl": -34.62,
-      "unrealized_r": -0.1,
+      "last_evaluated": "2026-10-06",
+      "last_close": 511.1,
+      "unrealized_pnl": -1.21,
+      "unrealized_r": -0.0,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -149,14 +106,14 @@
       "shares_open": 9,
       "risk_egp": 392.76,
       "max_hold": null,
-      "bars_held": 1,
+      "bars_held": 2,
       "high_water": 219.99000549316406,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-10-05",
-      "last_close": 207.99,
-      "unrealized_pnl": -115.49,
-      "unrealized_r": -0.29,
+      "last_evaluated": "2026-10-06",
+      "last_close": 196.0,
+      "unrealized_pnl": -222.97,
+      "unrealized_r": -0.57,
       "note_ar": "مركز مفتوح"
     }
   ]
