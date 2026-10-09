@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-02T12:04:06+00:00",
+  "generated_at": "2026-10-09T12:46:43+00:00",
   "period": {
     "from": "2021-08-29",
-    "to": "2026-10-01",
-    "in_sample_until": "2025-03-23"
+    "to": "2026-10-07",
+    "in_sample_until": "2025-03-26"
   },
   "selection_rule": "اختيار مثبّت يدوياً: kalman_ma200 (استقرار ونسبة نجاح أعلى للمبتدئ) — الاختيار التلقائى بالعائد/التراجع كان: kalman_supertrend",
   "recommended": "kalman_ma200",
@@ -16,30 +16,30 @@
         "win_rate": 0.5249,
         "avg_r": 0.086,
         "profit_factor": 1.19,
-        "total_pnl": 31825.71
+        "total_pnl": 31825.69
       },
       "out_of_sample": {
-        "n_trades": 375,
-        "win_rate": 0.528,
-        "avg_r": 0.045,
-        "profit_factor": 1.2,
-        "total_pnl": 9115.92
+        "n_trades": 373,
+        "win_rate": 0.5308,
+        "avg_r": 0.052,
+        "profit_factor": 1.21,
+        "total_pnl": 9624.76
       },
       "portfolio_full": {
-        "total_pnl": 7326.35,
+        "total_pnl": 7326.36,
         "cagr_pct": 0.0649,
         "max_drawdown_pct": 0.3414,
         "n_trades": 508,
         "skipped_signals": 698
       },
       "portfolio_oos": {
-        "total_pnl": 3177.9,
-        "cagr_pct": 0.1035,
-        "max_drawdown_pct": 0.1039,
-        "n_trades": 156,
+        "total_pnl": 3686.74,
+        "cagr_pct": 0.1196,
+        "max_drawdown_pct": 0.1019,
+        "n_trades": 154,
         "skipped_signals": 219
       },
-      "oos_calmar": 1.0
+      "oos_calmar": 1.17
     },
     {
       "strategy": "kalman_supertrend",
@@ -49,7 +49,7 @@
         "win_rate": 0.609,
         "avg_r": 0.189,
         "profit_factor": 1.73,
-        "total_pnl": 30694.21
+        "total_pnl": 30694.2
       },
       "out_of_sample": {
         "n_trades": 135,
@@ -82,7 +82,7 @@
         "win_rate": 0.6409,
         "avg_r": 0.248,
         "profit_factor": 2.06,
-        "total_pnl": 25610.25
+        "total_pnl": 25610.24
       },
       "out_of_sample": {
         "n_trades": 98,
@@ -115,7 +115,7 @@
         "win_rate": 0.4619,
         "avg_r": 1.087,
         "profit_factor": 3.94,
-        "total_pnl": 165437.86
+        "total_pnl": 165437.87
       },
       "out_of_sample": {
         "n_trades": 130,
