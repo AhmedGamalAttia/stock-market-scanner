@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13T12:52:43+00:00",
+  "updated": "2026-10-13T20:56:37+00:00",
   "positions": [
     {
       "id": "CIRA-2026-09-06",
@@ -27,7 +27,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 22,
+      "bars_held": 23,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -38,10 +38,10 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-10-11",
-      "last_close": 37.53,
-      "unrealized_pnl": 96.91,
-      "unrealized_r": 0.24,
+      "last_evaluated": "2026-10-12",
+      "last_close": 36.62,
+      "unrealized_pnl": 54.32,
+      "unrealized_r": 0.14,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
@@ -70,14 +70,14 @@
       "shares_open": 3,
       "risk_egp": 334.92,
       "max_hold": null,
-      "bars_held": 7,
+      "bars_held": 8,
       "high_water": 550.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-10-11",
-      "last_close": 515.11,
-      "unrealized_pnl": 10.77,
-      "unrealized_r": 0.03,
+      "last_evaluated": "2026-10-12",
+      "last_close": 503.68,
+      "unrealized_pnl": -23.38,
+      "unrealized_r": -0.07,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -106,14 +106,14 @@
       "shares_open": 9,
       "risk_egp": 392.76,
       "max_hold": null,
-      "bars_held": 4,
+      "bars_held": 5,
       "high_water": 219.99000549316406,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-10-11",
-      "last_close": 194.05,
-      "unrealized_pnl": -240.45,
-      "unrealized_r": -0.61,
+      "last_evaluated": "2026-10-12",
+      "last_close": 182.0,
+      "unrealized_pnl": -348.46,
+      "unrealized_r": -0.89,
       "note_ar": "مركز مفتوح"
     }
   ]
