@@ -964,5 +964,54 @@
     "realized_pnl": -847.88,
     "realized_r": -2.121,
     "exit_price": 16.0782
+  },
+  {
+    "id": "MCQE-2026-10-04",
+    "symbol": "MCQE",
+    "name_ar": "مصر لانتاج الاسمنت قنا",
+    "strategy": "kalman_ma200",
+    "signal_date": "2026-10-04",
+    "status": "closed",
+    "entry_ref": 219.99,
+    "entry": 219.99,
+    "entry_date": "2026-10-05",
+    "stop": 176.35,
+    "initial_stop": 176.35,
+    "tps": [
+      241.81,
+      263.63,
+      285.46
+    ],
+    "tp_hit": [
+      false,
+      false,
+      false
+    ],
+    "shares": 9,
+    "shares_open": 0,
+    "risk_egp": 392.76,
+    "max_hold": null,
+    "bars_held": 6,
+    "high_water": 219.99000549316406,
+    "exits": [
+      {
+        "date": "2026-10-13",
+        "price": 176.35,
+        "shares": 9,
+        "reason": "stop_hit"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-10-13",
+    "last_close": 177.01,
+    "unrealized_pnl": -348.46,
+    "unrealized_r": -0.89,
+    "note_ar": "ضرب وقف الخسارة",
+    "closed_date": "2026-10-13",
+    "reason": "stop_hit",
+    "reason_ar": "ضرب وقف الخسارة",
+    "realized_pnl": -407.03,
+    "realized_r": -1.036,
+    "exit_price": 176.35
   }
 ]
