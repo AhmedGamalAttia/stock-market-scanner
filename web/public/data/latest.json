@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-13",
-  "generated_at": "2026-10-14T22:30:38+00:00",
+  "date": "2026-10-14",
+  "generated_at": "2026-10-15T10:11:20+00:00",
   "strategy": "kalman_ma200",
   "strategy_label_ar": "كالمان سوبرترند + فلتر متوسط 200",
   "buys": [],
@@ -26,12 +26,12 @@
       ],
       "shares": 71,
       "shares_open": 47,
-      "last_close": 36.54,
-      "change_pct": -1.69,
-      "stop_distance_pct": 13.63,
-      "unrealized_pnl": 50.57,
-      "unrealized_r": 0.13,
-      "bars_held": 24,
+      "last_close": 38.19,
+      "change_pct": 2.74,
+      "stop_distance_pct": 17.36,
+      "unrealized_pnl": 127.81,
+      "unrealized_r": 0.32,
+      "bars_held": 25,
       "pending_exit": null,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
@@ -56,35 +56,15 @@
       ],
       "shares": 3,
       "shares_open": 3,
-      "last_close": 494.16,
-      "change_pct": -3.0,
-      "stop_distance_pct": 19.5,
-      "unrealized_pnl": -51.83,
-      "unrealized_r": -0.15,
-      "bars_held": 9,
+      "last_close": 476.42,
+      "change_pct": -6.49,
+      "stop_distance_pct": 16.5,
+      "unrealized_pnl": -104.84,
+      "unrealized_r": -0.31,
+      "bars_held": 10,
       "pending_exit": null,
       "note_ar": "مركز مفتوح"
     }
   ],
-  "exits": [
-    {
-      "id": "MCQE-2026-10-04",
-      "symbol": "MCQE",
-      "name_ar": "مصر لانتاج الاسمنت قنا",
-      "entry_date": "2026-10-05",
-      "entry": 219.99,
-      "exit_date": "2026-10-13",
-      "exit_price": 176.35,
-      "reason": "stop_hit",
-      "reason_ar": "ضرب وقف الخسارة",
-      "realized_pnl": -407.03,
-      "realized_r": -1.036,
-      "bars_held": 6,
-      "tp_hit": [
-        false,
-        false,
-        false
-      ]
-    }
-  ]
+  "exits": []
 }
