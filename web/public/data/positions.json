@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-18T21:40:40+00:00",
+  "updated": "2026-10-19T11:04:35+00:00",
   "positions": [
     {
       "id": "CIRA-2026-09-06",
@@ -27,7 +27,7 @@
       "shares_open": 47,
       "risk_egp": 398.31,
       "max_hold": null,
-      "bars_held": 26,
+      "bars_held": 27,
       "high_water": 41.7400016784668,
       "exits": [
         {
@@ -37,12 +37,12 @@
           "reason": "tp1"
         }
       ],
-      "pending_exit": null,
-      "last_evaluated": "2026-10-15",
-      "last_close": 37.77,
-      "unrealized_pnl": 108.15,
-      "unrealized_r": 0.27,
-      "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
+      "pending_exit": "trend_flip",
+      "last_evaluated": "2026-10-18",
+      "last_close": 35.4,
+      "unrealized_pnl": -2.8,
+      "unrealized_r": -0.01,
+      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح"
     },
     {
       "id": "UEFM-2026-09-29",
@@ -70,14 +70,14 @@
       "shares_open": 3,
       "risk_egp": 334.92,
       "max_hold": null,
-      "bars_held": 11,
+      "bars_held": 12,
       "high_water": 550.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-10-15",
-      "last_close": 479.55,
-      "unrealized_pnl": -95.48,
-      "unrealized_r": -0.29,
+      "last_evaluated": "2026-10-18",
+      "last_close": 475.07,
+      "unrealized_pnl": -108.87,
+      "unrealized_r": -0.33,
       "note_ar": "مركز مفتوح"
     }
   ]
