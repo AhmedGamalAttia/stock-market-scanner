@@ -1,49 +1,6 @@
 {
-  "updated": "2026-10-19T23:00:23+00:00",
+  "updated": "2026-10-20T10:17:43+00:00",
   "positions": [
-    {
-      "id": "CIRA-2026-09-06",
-      "symbol": "CIRA",
-      "name_ar": "كايرو للاستثمار التعليمى",
-      "strategy": "kalman_supertrend",
-      "signal_date": "2026-09-06",
-      "status": "open",
-      "entry_ref": 37.93,
-      "entry": 37.17,
-      "entry_date": "2026-09-08",
-      "stop": 31.56,
-      "initial_stop": 31.56,
-      "tps": [
-        41.11,
-        44.3,
-        47.48
-      ],
-      "tp_hit": [
-        true,
-        false,
-        false
-      ],
-      "shares": 71,
-      "shares_open": 47,
-      "risk_egp": 398.31,
-      "max_hold": null,
-      "bars_held": 27,
-      "high_water": 41.7400016784668,
-      "exits": [
-        {
-          "date": "2026-09-14",
-          "price": 41.11,
-          "shares": 24,
-          "reason": "tp1"
-        }
-      ],
-      "pending_exit": "trend_flip",
-      "last_evaluated": "2026-10-18",
-      "last_close": 35.4,
-      "unrealized_pnl": -2.8,
-      "unrealized_r": -0.01,
-      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح"
-    },
     {
       "id": "UEFM-2026-09-29",
       "symbol": "UEFM",
@@ -70,14 +27,14 @@
       "shares_open": 3,
       "risk_egp": 334.92,
       "max_hold": null,
-      "bars_held": 12,
+      "bars_held": 13,
       "high_water": 550.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-10-18",
-      "last_close": 475.07,
-      "unrealized_pnl": -108.87,
-      "unrealized_r": -0.33,
+      "last_evaluated": "2026-10-19",
+      "last_close": 480.03,
+      "unrealized_pnl": -94.05,
+      "unrealized_r": -0.28,
       "note_ar": "مركز مفتوح"
     }
   ]

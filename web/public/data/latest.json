@@ -1,40 +1,10 @@
 {
-  "date": "2026-10-18",
-  "generated_at": "2026-10-19T23:00:23+00:00",
+  "date": "2026-10-19",
+  "generated_at": "2026-10-20T10:17:43+00:00",
   "strategy": "kalman_ma200",
   "strategy_label_ar": "كالمان سوبرترند + فلتر متوسط 200",
   "buys": [],
   "holds": [
-    {
-      "id": "CIRA-2026-09-06",
-      "symbol": "CIRA",
-      "name_ar": "كايرو للاستثمار التعليمى",
-      "status": "open",
-      "signal_date": "2026-09-06",
-      "entry_date": "2026-09-08",
-      "entry": 37.17,
-      "stop": 31.56,
-      "tps": [
-        41.11,
-        44.3,
-        47.48
-      ],
-      "tp_hit": [
-        true,
-        false,
-        false
-      ],
-      "shares": 71,
-      "shares_open": 47,
-      "last_close": 35.4,
-      "change_pct": -4.76,
-      "stop_distance_pct": 10.85,
-      "unrealized_pnl": -2.8,
-      "unrealized_r": -0.01,
-      "bars_held": 27,
-      "pending_exit": "trend_flip",
-      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح"
-    },
     {
       "id": "UEFM-2026-09-29",
       "symbol": "UEFM",
@@ -56,15 +26,35 @@
       ],
       "shares": 3,
       "shares_open": 3,
-      "last_close": 475.07,
-      "change_pct": -6.75,
-      "stop_distance_pct": 16.26,
-      "unrealized_pnl": -108.87,
-      "unrealized_r": -0.33,
-      "bars_held": 12,
+      "last_close": 480.03,
+      "change_pct": -5.78,
+      "stop_distance_pct": 17.13,
+      "unrealized_pnl": -94.05,
+      "unrealized_r": -0.28,
+      "bars_held": 13,
       "pending_exit": null,
       "note_ar": "مركز مفتوح"
     }
   ],
-  "exits": []
+  "exits": [
+    {
+      "id": "CIRA-2026-09-06",
+      "symbol": "CIRA",
+      "name_ar": "كايرو للاستثمار التعليمى",
+      "entry_date": "2026-09-08",
+      "entry": 37.17,
+      "exit_date": "2026-10-19",
+      "exit_price": 35.4,
+      "reason": "trend_flip",
+      "reason_ar": "انقلب الاتجاه لهابط",
+      "realized_pnl": -9.79,
+      "realized_r": -0.025,
+      "bars_held": 27,
+      "tp_hit": [
+        true,
+        false,
+        false
+      ]
+    }
+  ]
 }

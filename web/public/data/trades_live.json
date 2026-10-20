@@ -1013,5 +1013,60 @@
     "realized_pnl": -407.03,
     "realized_r": -1.036,
     "exit_price": 176.35
+  },
+  {
+    "id": "CIRA-2026-09-06",
+    "symbol": "CIRA",
+    "name_ar": "كايرو للاستثمار التعليمى",
+    "strategy": "kalman_supertrend",
+    "signal_date": "2026-09-06",
+    "status": "closed",
+    "entry_ref": 37.93,
+    "entry": 37.17,
+    "entry_date": "2026-09-08",
+    "stop": 31.56,
+    "initial_stop": 31.56,
+    "tps": [
+      41.11,
+      44.3,
+      47.48
+    ],
+    "tp_hit": [
+      true,
+      false,
+      false
+    ],
+    "shares": 71,
+    "shares_open": 0,
+    "risk_egp": 398.31,
+    "max_hold": null,
+    "bars_held": 27,
+    "high_water": 41.7400016784668,
+    "exits": [
+      {
+        "date": "2026-09-14",
+        "price": 41.11,
+        "shares": 24,
+        "reason": "tp1"
+      },
+      {
+        "date": "2026-10-19",
+        "price": 35.4,
+        "shares": 47,
+        "reason": "trend_flip"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-10-19",
+    "last_close": 35.19,
+    "unrealized_pnl": -2.8,
+    "unrealized_r": -0.01,
+    "note_ar": "انقلب الاتجاه لهابط",
+    "closed_date": "2026-10-19",
+    "reason": "trend_flip",
+    "reason_ar": "انقلب الاتجاه لهابط",
+    "realized_pnl": -9.79,
+    "realized_r": -0.025,
+    "exit_price": 35.4
   }
 ]
