@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21T22:36:13+00:00",
+  "updated": "2026-10-22T10:26:23+00:00",
   "positions": [
     {
       "id": "UEFM-2026-09-29",
@@ -27,15 +27,51 @@
       "shares_open": 3,
       "risk_egp": 334.92,
       "max_hold": null,
-      "bars_held": 14,
+      "bars_held": 15,
       "high_water": 550.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-10-20",
-      "last_close": 482.41,
-      "unrealized_pnl": -86.94,
-      "unrealized_r": -0.26,
+      "last_evaluated": "2026-10-21",
+      "last_close": 472.89,
+      "unrealized_pnl": -115.38,
+      "unrealized_r": -0.34,
       "note_ar": "مركز مفتوح"
+    },
+    {
+      "id": "ABUK-2026-10-21",
+      "symbol": "ABUK",
+      "name_ar": "أبو قير للاسمدة",
+      "strategy": "kalman_ma200",
+      "signal_date": "2026-10-21",
+      "status": "pending",
+      "entry_ref": 95.75,
+      "entry": null,
+      "entry_date": null,
+      "stop": 81.5,
+      "initial_stop": 81.5,
+      "tps": [
+        102.87,
+        110.0,
+        117.12
+      ],
+      "tp_hit": [
+        false,
+        false,
+        false
+      ],
+      "shares": 28,
+      "shares_open": 28,
+      "risk_egp": null,
+      "max_hold": null,
+      "bars_held": 0,
+      "high_water": null,
+      "exits": [],
+      "pending_exit": null,
+      "last_evaluated": "2026-10-21",
+      "last_close": 95.75,
+      "unrealized_pnl": 0.0,
+      "unrealized_r": 0.0,
+      "note_ar": "فى انتظار الافتتاح لتنفيذ الدخول"
     }
   ]
 }
