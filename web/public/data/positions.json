@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29T23:30:16+00:00",
+  "updated": "2026-10-30T11:32:04+00:00",
   "positions": [
     {
       "id": "UEFM-2026-09-29",
@@ -27,14 +27,14 @@
       "shares_open": 3,
       "risk_egp": 334.92,
       "max_hold": null,
-      "bars_held": 20,
+      "bars_held": 21,
       "high_water": 550.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-10-28",
-      "last_close": 446.22,
-      "unrealized_pnl": -195.07,
-      "unrealized_r": -0.58,
+      "last_evaluated": "2026-10-29",
+      "last_close": 449.63,
+      "unrealized_pnl": -184.89,
+      "unrealized_r": -0.55,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -63,14 +63,14 @@
       "shares_open": 28,
       "risk_egp": 399.0,
       "max_hold": null,
-      "bars_held": 5,
+      "bars_held": 6,
       "high_water": 95.75,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-10-28",
-      "last_close": 91.23,
-      "unrealized_pnl": -136.78,
-      "unrealized_r": -0.34,
+      "last_evaluated": "2026-10-29",
+      "last_close": 88.03,
+      "unrealized_pnl": -226.02,
+      "unrealized_r": -0.57,
       "note_ar": "مركز مفتوح"
     }
   ]
