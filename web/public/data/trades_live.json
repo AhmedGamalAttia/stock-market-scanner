@@ -1068,5 +1068,54 @@
     "realized_pnl": -9.79,
     "realized_r": -0.025,
     "exit_price": 35.4
+  },
+  {
+    "id": "ABUK-2026-10-21",
+    "symbol": "ABUK",
+    "name_ar": "أبو قير للاسمدة",
+    "strategy": "kalman_ma200",
+    "signal_date": "2026-10-21",
+    "status": "closed",
+    "entry_ref": 95.75,
+    "entry": 95.75,
+    "entry_date": "2026-10-22",
+    "stop": 81.5,
+    "initial_stop": 81.5,
+    "tps": [
+      102.87,
+      110.0,
+      117.12
+    ],
+    "tp_hit": [
+      false,
+      false,
+      false
+    ],
+    "shares": 28,
+    "shares_open": 0,
+    "risk_egp": 399.0,
+    "max_hold": null,
+    "bars_held": 8,
+    "high_water": 95.75,
+    "exits": [
+      {
+        "date": "2026-11-02",
+        "price": 81.5,
+        "shares": 28,
+        "reason": "stop_hit"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-11-02",
+    "last_close": 80.6,
+    "unrealized_pnl": -323.07,
+    "unrealized_r": -0.81,
+    "note_ar": "ضرب وقف الخسارة",
+    "closed_date": "2026-11-02",
+    "reason": "stop_hit",
+    "reason_ar": "ضرب وقف الخسارة",
+    "realized_pnl": -418.85,
+    "realized_r": -1.05,
+    "exit_price": 81.5
   }
 ]

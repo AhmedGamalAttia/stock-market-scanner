@@ -1,91 +1,10 @@
 {
-  "date": "2026-11-01",
-  "generated_at": "2026-11-03T01:44:02+00:00",
+  "date": "2026-11-02",
+  "generated_at": "2026-11-03T12:56:32+00:00",
   "strategy": "kalman_ma200",
   "strategy_label_ar": "كالمان سوبرترند + فلتر متوسط 200",
-  "buys": [
-    {
-      "symbol": "CANA",
-      "signal_date": "2026-11-01",
-      "strategy": "kalman_ma200",
-      "score": 100,
-      "confidence": 100,
-      "risk_class": "جرىء",
-      "setups": [
-        "kalman_flip",
-        "above_ma50",
-        "volume_confirm",
-        "macd_positive",
-        "above_ma200"
-      ],
-      "trend": "صاعد",
-      "rsi": 61.33631942162589,
-      "macd_hist": 0.44630768564649737,
-      "ma20": 43.74150009155274,
-      "ma50": 43.77139995422363,
-      "volume_z": 1.4335517398527016,
-      "atr": 2.5606,
-      "atr_pct": 0.0538,
-      "adv_20": 19577460.03,
-      "entry": 47.63,
-      "stop_loss": 38.38,
-      "target_1": 52.25,
-      "target_2": 56.88,
-      "target_3": 61.5,
-      "rr_t1": 0.5,
-      "rr_t2": 1.0,
-      "blended_rr": 1.0,
-      "expected_days": 5,
-      "max_hold": null,
-      "suggested_shares_20k": 43,
-      "suggested_value_20k": 2048.09,
-      "max_loss_20k": 397.75,
-      "rationale_ar": "انقلاب سوبرترند صاعد • فوق متوسط 50 جلسة • فوق متوسط 200 جلسة • حجم تداول فوق المتوسط • زخم MACD إيجابى",
-      "strategy_ar": "انقلب اتجاه السوبرترند (بفلتر كالمان) من هابط لصاعد — الدخول عند الإغلاق والوقف على خط السوبرترند نفسه, وجنى الأرباح على ثلاث مراحل. الاتجاه العام للسهم صاعد فوق متوسط الـ 50 جلسة، ما يدعم الإشارة. سيولة السهم ممتازة، يسهل الدخول والخروج بأى حجم تقريباً. السهم متذبذب (±5.4% يومى)، الحركة قد تكون سريعة فى الاتجاهين. خطة الخروج تعطى نسبة عائد/مخاطرة 0.50:1 على الهدف الأول و1.00:1 على الثانى — إجمالى متوسط مرجّح ≈ 0.8:1. المدة المتوقعة: 5 جلسة. تجاوزها بدون تحرك يعنى أن الإشارة فقدت زخمها. التصنيف: 🔴 جرىء — مخاطرة عالية، خصص لها رأس مال أصغر. ثقة 100%.",
-      "warnings_ar": [
-        "الهدف الأول قريب (أقل من 1R) — بعد عمولة ثاندر (~0.8%) ربحه محدود، الهدفان التاليان هما اللى بيصنعوا الفرق."
-      ],
-      "close": 47.63,
-      "stock": {
-        "symbol": "CANA",
-        "name_ar": "بنك قناة السويس",
-        "name_en": "Suez Canal Bank",
-        "sector": "Banks",
-        "sharia_status": "haram"
-      }
-    }
-  ],
+  "buys": [],
   "holds": [
-    {
-      "id": "ABUK-2026-10-21",
-      "symbol": "ABUK",
-      "name_ar": "أبو قير للاسمدة",
-      "status": "open",
-      "signal_date": "2026-10-21",
-      "entry_date": "2026-10-22",
-      "entry": 95.75,
-      "stop": 81.5,
-      "tps": [
-        102.87,
-        110.0,
-        117.12
-      ],
-      "tp_hit": [
-        false,
-        false,
-        false
-      ],
-      "shares": 28,
-      "shares_open": 28,
-      "last_close": 84.55,
-      "change_pct": -11.7,
-      "stop_distance_pct": 3.61,
-      "unrealized_pnl": -323.07,
-      "unrealized_r": -0.81,
-      "bars_held": 7,
-      "pending_exit": null,
-      "note_ar": "مركز مفتوح"
-    },
     {
       "id": "UEFM-2026-09-29",
       "symbol": "UEFM",
@@ -107,15 +26,35 @@
       ],
       "shares": 3,
       "shares_open": 3,
-      "last_close": 435.28,
-      "change_pct": -14.56,
-      "stop_distance_pct": 8.61,
-      "unrealized_pnl": -227.76,
-      "unrealized_r": -0.68,
-      "bars_held": 22,
+      "last_close": 429.03,
+      "change_pct": -15.79,
+      "stop_distance_pct": 7.27,
+      "unrealized_pnl": -246.44,
+      "unrealized_r": -0.74,
+      "bars_held": 23,
       "pending_exit": null,
       "note_ar": "مركز مفتوح"
     }
   ],
-  "exits": []
+  "exits": [
+    {
+      "id": "ABUK-2026-10-21",
+      "symbol": "ABUK",
+      "name_ar": "أبو قير للاسمدة",
+      "entry_date": "2026-10-22",
+      "entry": 95.75,
+      "exit_date": "2026-11-02",
+      "exit_price": 81.5,
+      "reason": "stop_hit",
+      "reason_ar": "ضرب وقف الخسارة",
+      "realized_pnl": -418.85,
+      "realized_r": -1.05,
+      "bars_held": 8,
+      "tp_hit": [
+        false,
+        false,
+        false
+      ]
+    }
+  ]
 }
