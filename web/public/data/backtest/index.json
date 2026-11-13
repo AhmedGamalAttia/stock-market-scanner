@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-06T13:54:06+00:00",
+  "generated_at": "2026-11-13T14:07:29+00:00",
   "period": {
     "from": "2021-08-29",
-    "to": "2026-11-05",
-    "in_sample_until": "2025-04-23"
+    "to": "2026-11-12",
+    "in_sample_until": "2025-04-29"
   },
   "selection_rule": "اختيار مثبّت يدوياً: kalman_ma200 (استقرار ونسبة نجاح أعلى للمبتدئ) — الاختيار التلقائى بالعائد/التراجع كان: kalman_ride",
   "recommended": "kalman_ma200",
@@ -16,14 +16,14 @@
         "win_rate": 0.521,
         "avg_r": 0.078,
         "profit_factor": 1.17,
-        "total_pnl": 28710.91
+        "total_pnl": 28710.93
       },
       "out_of_sample": {
-        "n_trades": 372,
-        "win_rate": 0.5161,
-        "avg_r": 0.01,
-        "profit_factor": 1.11,
-        "total_pnl": 5175.85
+        "n_trades": 368,
+        "win_rate": 0.5136,
+        "avg_r": 0.001,
+        "profit_factor": 1.1,
+        "total_pnl": 4526.78
       },
       "portfolio_full": {
         "total_pnl": 4277.43,
@@ -33,13 +33,13 @@
         "skipped_signals": 698
       },
       "portfolio_oos": {
-        "total_pnl": 297.23,
-        "cagr_pct": 0.0098,
-        "max_drawdown_pct": 0.2203,
-        "n_trades": 165,
-        "skipped_signals": 207
+        "total_pnl": 35.57,
+        "cagr_pct": 0.0012,
+        "max_drawdown_pct": 0.2225,
+        "n_trades": 159,
+        "skipped_signals": 209
       },
-      "oos_calmar": 0.04
+      "oos_calmar": 0.01
     },
     {
       "strategy": "kalman_supertrend",
@@ -49,30 +49,30 @@
         "win_rate": 0.603,
         "avg_r": 0.179,
         "profit_factor": 1.68,
-        "total_pnl": 29397.25
+        "total_pnl": 29397.18
       },
       "out_of_sample": {
-        "n_trades": 133,
-        "win_rate": 0.5714,
-        "avg_r": 0.11,
-        "profit_factor": 1.37,
-        "total_pnl": 5772.39
+        "n_trades": 131,
+        "win_rate": 0.5649,
+        "avg_r": 0.103,
+        "profit_factor": 1.34,
+        "total_pnl": 5367.0
       },
       "portfolio_full": {
-        "total_pnl": 8749.4,
+        "total_pnl": 8749.38,
         "cagr_pct": 0.0757,
         "max_drawdown_pct": 0.1004,
         "n_trades": 146,
         "skipped_signals": 257
       },
       "portfolio_oos": {
-        "total_pnl": 1824.01,
-        "cagr_pct": 0.0596,
-        "max_drawdown_pct": 0.0883,
+        "total_pnl": 2047.18,
+        "cagr_pct": 0.0667,
+        "max_drawdown_pct": 0.0875,
         "n_trades": 50,
-        "skipped_signals": 83
+        "skipped_signals": 81
       },
-      "oos_calmar": 0.67
+      "oos_calmar": 0.76
     },
     {
       "strategy": "kalman_ma200",
@@ -82,30 +82,30 @@
         "win_rate": 0.6336,
         "avg_r": 0.237,
         "profit_factor": 1.99,
-        "total_pnl": 24730.18
+        "total_pnl": 24730.13
       },
       "out_of_sample": {
-        "n_trades": 99,
-        "win_rate": 0.5556,
-        "avg_r": 0.116,
-        "profit_factor": 1.4,
-        "total_pnl": 4572.0
+        "n_trades": 97,
+        "win_rate": 0.5464,
+        "avg_r": 0.107,
+        "profit_factor": 1.36,
+        "total_pnl": 4166.61
       },
       "portfolio_full": {
-        "total_pnl": 12258.51,
+        "total_pnl": 12258.49,
         "cagr_pct": 0.1183,
         "max_drawdown_pct": 0.0712,
         "n_trades": 129,
         "skipped_signals": 133
       },
       "portfolio_oos": {
-        "total_pnl": 1825.02,
-        "cagr_pct": 0.0625,
-        "max_drawdown_pct": 0.0965,
+        "total_pnl": 1531.33,
+        "cagr_pct": 0.0526,
+        "max_drawdown_pct": 0.0977,
         "n_trades": 49,
-        "skipped_signals": 50
+        "skipped_signals": 48
       },
-      "oos_calmar": 0.65
+      "oos_calmar": 0.54
     },
     {
       "strategy": "kalman_ride",
@@ -115,14 +115,14 @@
         "win_rate": 0.4602,
         "avg_r": 1.066,
         "profit_factor": 3.85,
-        "total_pnl": 165481.14
+        "total_pnl": 165481.07
       },
       "out_of_sample": {
-        "n_trades": 132,
-        "win_rate": 0.4091,
-        "avg_r": 0.726,
-        "profit_factor": 2.6,
-        "total_pnl": 34280.45
+        "n_trades": 130,
+        "win_rate": 0.4077,
+        "avg_r": 0.557,
+        "profit_factor": 2.24,
+        "total_pnl": 26289.36
       },
       "portfolio_full": {
         "total_pnl": 24429.98,
@@ -132,13 +132,13 @@
         "skipped_signals": 307
       },
       "portfolio_oos": {
-        "total_pnl": 8685.61,
-        "cagr_pct": 0.2684,
-        "max_drawdown_pct": 0.0693,
-        "n_trades": 29,
-        "skipped_signals": 103
+        "total_pnl": 5052.28,
+        "cagr_pct": 0.161,
+        "max_drawdown_pct": 0.0874,
+        "n_trades": 30,
+        "skipped_signals": 100
       },
-      "oos_calmar": 3.87
+      "oos_calmar": 1.84
     }
   ]
 }
