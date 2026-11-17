@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T02:34:11+00:00",
+  "updated": "2026-11-17T14:46:34+00:00",
   "positions": [
     {
       "id": "UEFM-2026-09-29",
@@ -27,14 +27,14 @@
       "shares_open": 3,
       "risk_egp": 334.92,
       "max_hold": null,
-      "bars_held": 31,
+      "bars_held": 32,
       "high_water": 550.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-11-12",
-      "last_close": 520.19,
-      "unrealized_pnl": 25.95,
-      "unrealized_r": 0.08,
+      "last_evaluated": "2026-11-16",
+      "last_close": 510.77,
+      "unrealized_pnl": -2.2,
+      "unrealized_r": -0.01,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -55,23 +55,30 @@
         23.85
       ],
       "tp_hit": [
-        false,
+        true,
         false,
         false
       ],
       "shares": 134,
-      "shares_open": 134,
+      "shares_open": 89,
       "risk_egp": 397.98,
       "max_hold": null,
-      "bars_held": 6,
-      "high_water": 20.149999618530273,
-      "exits": [],
+      "bars_held": 7,
+      "high_water": 21.0,
+      "exits": [
+        {
+          "date": "2026-11-16",
+          "price": 20.88,
+          "shares": 45,
+          "reason": "tp1"
+        }
+      ],
       "pending_exit": null,
-      "last_evaluated": "2026-11-12",
-      "last_close": 19.59,
-      "unrealized_pnl": 14.96,
-      "unrealized_r": 0.04,
-      "note_ar": "مركز مفتوح"
+      "last_evaluated": "2026-11-16",
+      "last_close": 20.66,
+      "unrealized_pnl": 164.14,
+      "unrealized_r": 0.41,
+      "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
     {
       "id": "RMDA-2026-11-08",
@@ -99,14 +106,14 @@
       "shares_open": 487,
       "risk_egp": 399.34,
       "max_hold": null,
-      "bars_held": 4,
+      "bars_held": 5,
       "high_water": 5.71999979019165,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-11-12",
-      "last_close": 5.68,
-      "unrealized_pnl": 57.12,
-      "unrealized_r": 0.14,
+      "last_evaluated": "2026-11-16",
+      "last_close": 5.41,
+      "unrealized_pnl": -73.85,
+      "unrealized_r": -0.18,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -135,14 +142,14 @@
       "shares_open": 21,
       "risk_egp": 384.09,
       "max_hold": null,
-      "bars_held": 3,
+      "bars_held": 4,
       "high_water": 123.44999694824219,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-11-12",
-      "last_close": 120.7,
-      "unrealized_pnl": -3.0,
-      "unrealized_r": -0.01,
+      "last_evaluated": "2026-11-16",
+      "last_close": 121.9,
+      "unrealized_pnl": 22.1,
+      "unrealized_r": 0.06,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -171,14 +178,14 @@
       "shares_open": 59,
       "risk_egp": 397.66,
       "max_hold": null,
-      "bars_held": 2,
+      "bars_held": 3,
       "high_water": 50.439998626708984,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-11-12",
-      "last_close": 49.4,
-      "unrealized_pnl": -73.02,
-      "unrealized_r": -0.18,
+      "last_evaluated": "2026-11-16",
+      "last_close": 48.76,
+      "unrealized_pnl": -110.63,
+      "unrealized_r": -0.28,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -207,14 +214,14 @@
       "shares_open": 65,
       "risk_egp": 395.85,
       "max_hold": null,
-      "bars_held": 1,
+      "bars_held": 2,
       "high_water": 40.11000061035156,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-11-12",
-      "last_close": 39.02,
-      "unrealized_pnl": -34.2,
-      "unrealized_r": -0.09,
+      "last_evaluated": "2026-11-16",
+      "last_close": 39.5,
+      "unrealized_pnl": -3.12,
+      "unrealized_r": -0.01,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -243,15 +250,51 @@
       "shares_open": 399,
       "risk_egp": 399.0,
       "max_hold": null,
-      "bars_held": 1,
+      "bars_held": 2,
       "high_water": 7.170000076293945,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-11-12",
-      "last_close": 7.01,
-      "unrealized_pnl": -43.11,
-      "unrealized_r": -0.11,
+      "last_evaluated": "2026-11-16",
+      "last_close": 6.9,
+      "unrealized_pnl": -86.82,
+      "unrealized_r": -0.22,
       "note_ar": "مركز مفتوح"
+    },
+    {
+      "id": "ETEL-2026-11-16",
+      "symbol": "ETEL",
+      "name_ar": "المصرية للاتصالات",
+      "strategy": "kalman_ma200",
+      "signal_date": "2026-11-16",
+      "status": "pending",
+      "entry_ref": 143.0,
+      "entry": null,
+      "entry_date": null,
+      "stop": 121.02,
+      "initial_stop": 121.02,
+      "tps": [
+        153.99,
+        164.98,
+        175.97
+      ],
+      "tp_hit": [
+        false,
+        false,
+        false
+      ],
+      "shares": 18,
+      "shares_open": 18,
+      "risk_egp": null,
+      "max_hold": null,
+      "bars_held": 0,
+      "high_water": null,
+      "exits": [],
+      "pending_exit": null,
+      "last_evaluated": "2026-11-16",
+      "last_close": 143.0,
+      "unrealized_pnl": 0.0,
+      "unrealized_r": 0.0,
+      "note_ar": "فى انتظار الافتتاح لتنفيذ الدخول"
     }
   ]
 }
