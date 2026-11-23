@@ -1117,5 +1117,54 @@
     "realized_pnl": -418.85,
     "realized_r": -1.05,
     "exit_price": 81.5
+  },
+  {
+    "id": "HELI-2026-11-11",
+    "symbol": "HELI",
+    "name_ar": "مصر الجديدة للاسكان",
+    "strategy": "kalman_ma200",
+    "signal_date": "2026-11-11",
+    "status": "closed",
+    "entry_ref": 7.09,
+    "entry": 7.09,
+    "entry_date": "2026-11-12",
+    "stop": 6.09,
+    "initial_stop": 6.09,
+    "tps": [
+      7.59,
+      8.09,
+      8.59
+    ],
+    "tp_hit": [
+      false,
+      false,
+      false
+    ],
+    "shares": 399,
+    "shares_open": 0,
+    "risk_egp": 399.0,
+    "max_hold": null,
+    "bars_held": 6,
+    "high_water": 7.170000076293945,
+    "exits": [
+      {
+        "date": "2026-11-22",
+        "price": 6.09,
+        "shares": 399,
+        "reason": "stop_hit"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-11-22",
+    "last_close": 6.19,
+    "unrealized_pnl": -206.04,
+    "unrealized_r": -0.52,
+    "note_ar": "ضرب وقف الخسارة",
+    "closed_date": "2026-11-22",
+    "reason": "stop_hit",
+    "reason_ar": "ضرب وقف الخسارة",
+    "realized_pnl": -420.04,
+    "realized_r": -1.053,
+    "exit_price": 6.09
   }
 ]
