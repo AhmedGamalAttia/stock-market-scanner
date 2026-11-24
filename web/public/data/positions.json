@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T04:22:31+00:00",
+  "updated": "2026-11-24T16:08:39+00:00",
   "positions": [
     {
       "id": "UEFM-2026-09-29",
@@ -27,14 +27,14 @@
       "shares_open": 3,
       "risk_egp": 334.92,
       "max_hold": null,
-      "bars_held": 36,
+      "bars_held": 37,
       "high_water": 550.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-11-22",
-      "last_close": 477.92,
-      "unrealized_pnl": -100.36,
-      "unrealized_r": -0.3,
+      "last_evaluated": "2026-11-23",
+      "last_close": 496.27,
+      "unrealized_pnl": -45.53,
+      "unrealized_r": -0.14,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -63,7 +63,7 @@
       "shares_open": 89,
       "risk_egp": 397.98,
       "max_hold": null,
-      "bars_held": 11,
+      "bars_held": 12,
       "high_water": 21.350000381469727,
       "exits": [
         {
@@ -74,47 +74,11 @@
         }
       ],
       "pending_exit": null,
-      "last_evaluated": "2026-11-22",
-      "last_close": 20.1,
-      "unrealized_pnl": 114.49,
-      "unrealized_r": 0.29,
+      "last_evaluated": "2026-11-23",
+      "last_close": 20.4,
+      "unrealized_pnl": 141.09,
+      "unrealized_r": 0.35,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
-    },
-    {
-      "id": "RMDA-2026-11-08",
-      "symbol": "RMDA",
-      "name_ar": "راميدا",
-      "strategy": "kalman_ma200",
-      "signal_date": "2026-11-08",
-      "status": "open",
-      "entry_ref": 5.54,
-      "entry": 5.54,
-      "entry_date": "2026-11-09",
-      "stop": 4.72,
-      "initial_stop": 4.72,
-      "tps": [
-        5.95,
-        6.36,
-        6.77
-      ],
-      "tp_hit": [
-        false,
-        false,
-        false
-      ],
-      "shares": 487,
-      "shares_open": 487,
-      "risk_egp": 399.34,
-      "max_hold": null,
-      "bars_held": 9,
-      "high_water": 5.71999979019165,
-      "exits": [],
-      "pending_exit": "trend_flip",
-      "last_evaluated": "2026-11-22",
-      "last_close": 4.93,
-      "unrealized_pnl": -306.67,
-      "unrealized_r": -0.77,
-      "note_ar": "⚠️ انقلب الاتجاه — اخرج غداً عند الافتتاح"
     },
     {
       "id": "SWDY-2026-11-09",
@@ -142,14 +106,14 @@
       "shares_open": 21,
       "risk_egp": 384.09,
       "max_hold": null,
-      "bars_held": 8,
+      "bars_held": 9,
       "high_water": 123.44999694824219,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-11-22",
-      "last_close": 114.05,
-      "unrealized_pnl": -142.09,
-      "unrealized_r": -0.37,
+      "last_evaluated": "2026-11-23",
+      "last_close": 116.99,
+      "unrealized_pnl": -80.6,
+      "unrealized_r": -0.21,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -178,14 +142,14 @@
       "shares_open": 59,
       "risk_egp": 397.66,
       "max_hold": null,
-      "bars_held": 7,
+      "bars_held": 8,
       "high_water": 50.439998626708984,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-11-22",
-      "last_close": 45.89,
-      "unrealized_pnl": -279.28,
-      "unrealized_r": -0.7,
+      "last_evaluated": "2026-11-23",
+      "last_close": 46.43,
+      "unrealized_pnl": -247.55,
+      "unrealized_r": -0.62,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -214,14 +178,14 @@
       "shares_open": 65,
       "risk_egp": 395.85,
       "max_hold": null,
-      "bars_held": 6,
+      "bars_held": 7,
       "high_water": 40.11000061035156,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-11-22",
-      "last_close": 36.98,
-      "unrealized_pnl": -166.26,
-      "unrealized_r": -0.42,
+      "last_evaluated": "2026-11-23",
+      "last_close": 37.71,
+      "unrealized_pnl": -119.0,
+      "unrealized_r": -0.3,
       "note_ar": "مركز مفتوح"
     },
     {
@@ -250,14 +214,14 @@
       "shares_open": 18,
       "risk_egp": 395.64,
       "max_hold": null,
-      "bars_held": 4,
+      "bars_held": 5,
       "high_water": 147.0,
       "exits": [],
       "pending_exit": null,
-      "last_evaluated": "2026-11-22",
-      "last_close": 137.0,
-      "unrealized_pnl": -117.86,
-      "unrealized_r": -0.3,
+      "last_evaluated": "2026-11-23",
+      "last_close": 139.98,
+      "unrealized_pnl": -64.44,
+      "unrealized_r": -0.16,
       "note_ar": "مركز مفتوح"
     }
   ]

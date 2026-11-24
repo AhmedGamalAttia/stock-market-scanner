@@ -1166,5 +1166,54 @@
     "realized_pnl": -420.04,
     "realized_r": -1.053,
     "exit_price": 6.09
+  },
+  {
+    "id": "RMDA-2026-11-08",
+    "symbol": "RMDA",
+    "name_ar": "راميدا",
+    "strategy": "kalman_ma200",
+    "signal_date": "2026-11-08",
+    "status": "closed",
+    "entry_ref": 5.54,
+    "entry": 5.54,
+    "entry_date": "2026-11-09",
+    "stop": 4.72,
+    "initial_stop": 4.72,
+    "tps": [
+      5.95,
+      6.36,
+      6.77
+    ],
+    "tp_hit": [
+      false,
+      false,
+      false
+    ],
+    "shares": 487,
+    "shares_open": 0,
+    "risk_egp": 399.34,
+    "max_hold": null,
+    "bars_held": 9,
+    "high_water": 5.71999979019165,
+    "exits": [
+      {
+        "date": "2026-11-23",
+        "price": 4.93,
+        "shares": 487,
+        "reason": "trend_flip"
+      }
+    ],
+    "pending_exit": null,
+    "last_evaluated": "2026-11-23",
+    "last_close": 5.05,
+    "unrealized_pnl": -306.67,
+    "unrealized_r": -0.77,
+    "note_ar": "انقلب الاتجاه لهابط",
+    "closed_date": "2026-11-23",
+    "reason": "trend_flip",
+    "reason_ar": "انقلب الاتجاه لهابط",
+    "realized_pnl": -317.47,
+    "realized_r": -0.795,
+    "exit_price": 4.93
   }
 ]
