@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-23",
-  "generated_at": "2026-11-25T03:07:42+00:00",
+  "date": "2026-11-24",
+  "generated_at": "2026-11-25T15:55:02+00:00",
   "strategy": "kalman_ma200",
   "strategy_label_ar": "كالمان سوبرترند + فلتر متوسط 200",
   "buys": [],
@@ -26,12 +26,12 @@
       ],
       "shares": 59,
       "shares_open": 59,
-      "last_close": 46.43,
-      "change_pct": -7.95,
-      "stop_distance_pct": 5.88,
-      "unrealized_pnl": -247.55,
-      "unrealized_r": -0.62,
-      "bars_held": 8,
+      "last_close": 46.15,
+      "change_pct": -8.51,
+      "stop_distance_pct": 5.31,
+      "unrealized_pnl": -264.0,
+      "unrealized_r": -0.66,
+      "bars_held": 9,
       "pending_exit": null,
       "note_ar": "مركز مفتوح"
     },
@@ -56,12 +56,12 @@
       ],
       "shares": 65,
       "shares_open": 65,
-      "last_close": 37.71,
-      "change_pct": -4.27,
-      "stop_distance_pct": 11.69,
-      "unrealized_pnl": -119.0,
-      "unrealized_r": -0.3,
-      "bars_held": 7,
+      "last_close": 38.45,
+      "change_pct": -2.39,
+      "stop_distance_pct": 13.39,
+      "unrealized_pnl": -71.1,
+      "unrealized_r": -0.18,
+      "bars_held": 8,
       "pending_exit": null,
       "note_ar": "مركز مفتوح"
     },
@@ -91,7 +91,7 @@
       "stop_distance_pct": 19.46,
       "unrealized_pnl": 141.09,
       "unrealized_r": 0.35,
-      "bars_held": 12,
+      "bars_held": 13,
       "pending_exit": null,
       "note_ar": "تحقق الهدف 1 — بيع جزء من المركز"
     },
@@ -116,12 +116,12 @@
       ],
       "shares": 18,
       "shares_open": 18,
-      "last_close": 139.98,
-      "change_pct": -2.11,
-      "stop_distance_pct": 13.54,
-      "unrealized_pnl": -64.44,
-      "unrealized_r": -0.16,
-      "bars_held": 5,
+      "last_close": 141.0,
+      "change_pct": -1.4,
+      "stop_distance_pct": 14.17,
+      "unrealized_pnl": -46.15,
+      "unrealized_r": -0.12,
+      "bars_held": 6,
       "pending_exit": null,
       "note_ar": "مركز مفتوح"
     },
@@ -151,7 +151,7 @@
       "stop_distance_pct": 12.75,
       "unrealized_pnl": -80.6,
       "unrealized_r": -0.21,
-      "bars_held": 9,
+      "bars_held": 10,
       "pending_exit": null,
       "note_ar": "مركز مفتوح"
     },
@@ -181,30 +181,10 @@
       "stop_distance_pct": 19.84,
       "unrealized_pnl": -45.53,
       "unrealized_r": -0.14,
-      "bars_held": 37,
+      "bars_held": 38,
       "pending_exit": null,
       "note_ar": "مركز مفتوح"
     }
   ],
-  "exits": [
-    {
-      "id": "RMDA-2026-11-08",
-      "symbol": "RMDA",
-      "name_ar": "راميدا",
-      "entry_date": "2026-11-09",
-      "entry": 5.54,
-      "exit_date": "2026-11-23",
-      "exit_price": 4.93,
-      "reason": "trend_flip",
-      "reason_ar": "انقلب الاتجاه لهابط",
-      "realized_pnl": -317.47,
-      "realized_r": -0.795,
-      "bars_held": 9,
-      "tp_hit": [
-        false,
-        false,
-        false
-      ]
-    }
-  ]
+  "exits": []
 }
